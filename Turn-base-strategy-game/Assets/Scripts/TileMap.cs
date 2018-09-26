@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileMap : MonoBehaviour {
 
+    public GameObject selectedUnit;
 
     public TileType[] tileTypes;
 
@@ -56,7 +57,7 @@ public class TileMap : MonoBehaviour {
 
 
 
-
+    //creates tiles visually on the map
         void generateMapVisuals()
     {
 
@@ -65,10 +66,34 @@ public class TileMap : MonoBehaviour {
             for (int y = 0; y < MapSizeY; y++)
             {
                 TileType tt = tileTypes[tiles[x, y]];
+                //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
-                Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity );
+                GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity );
+                //the game object is initalized and created at set coordinace
+
+                tileClicker CT = go.GetComponent<tileClicker>();
+                //gets components of the tile game object and sets them to the tile clicker to help that
+
+                CT.Xtile = x;
+                CT.Ytile = y;
+                CT.map = this;
             }
         }
 
     }
+
+    //get the tile coordinace on the map and relates that to the worlds coordinace
+    public Vector3 TileCoordToWorldCoord(int x, int y)
+    {
+        return new Vector3(x, y, 0);
+    }
+
+    //sets the units data on what tile it is on and then set it up visually
+    public void MoveSelectedUnitTo(int x, int y)
+    {
+        selectedUnit.GetComponent<Unit>().Xtile = x;
+        selectedUnit.GetComponent<Unit>().Ytile = y;
+        selectedUnit.transform.position = TileCoordToWorldCoord(x,y);
+    }
+
 }

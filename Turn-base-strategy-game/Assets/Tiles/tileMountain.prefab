@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33027062039952596}
   - component: {fileID: 23439170969686560}
   - component: {fileID: 65368405566718612}
+  - component: {fileID: 114728869523011130}
   m_Layer: 0
   m_Name: tileMountain
   m_TagString: Untagged
@@ -96,3 +97,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114728869523011130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021012975500636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9a6870f8f305747b705f01d238b498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Xtile: 0
+  Ytile: 0
+  map: {fileID: 0}
