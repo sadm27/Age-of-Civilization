@@ -21,6 +21,11 @@ public class TileMap : MonoBehaviour {
 
     void Start()
     {
+        //selectedUnit.GetComponent<Unit>().Xtile = selectedUnit.transform.position.x;
+        selectedUnit.GetComponent<Unit>().Xtile = (int)selectedUnit.transform.position.x;
+        selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
+        selectedUnit.GetComponent<Unit>().map = this;
+
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
@@ -59,26 +64,29 @@ public class TileMap : MonoBehaviour {
         tiles[8, 6] = 2;
     }
 
-    public class Node
+
+
+    public float CostToEnterTile(int sourcex, int sourceY, int targetX, int targetY)
     {
-       public List<Node> neighbors;
-        public int NodeX;
-        public int NodeY;
+        //for civ 5 cost into hills method where a unit has any movment points left
+        //they can move into the hill tiles you would calculate that here
+        TileType tt = tileTypes[tiles[targetX, targetY]];
 
-
-        //just initilizes list
-        public Node()
+        if(EnterTileCheck(targetX, targetY) == false)
         {
-            neighbors = new List<Node>();
+            return Mathf.Infinity;
         }
 
-        public float DistanceTo(Node n)
-        {
-           
+        float cost = tt.moveCost;
 
-            return Vector2.Distance(new Vector2(NodeX, NodeY), new Vector2(n.NodeX, n.NodeY));
+        if(sourcex != targetX && sourceY != targetY)
+        {
+            //diagonal moves makes diagonals cost more getting rid of stupid zig zags
+            cost += 0.001f;
+
         }
 
+        return cost;
     }
 
 
@@ -175,17 +183,40 @@ public class TileMap : MonoBehaviour {
 
     }
 
-    //get the tile coordinace on the map and relates that to the worlds coordinace
+    //get the tile coordinace on the map and relates that to the worlds coordinace  STATIC CAN BE ADDED IN TO HANDLE LARGE SCALLING OF MAP IF PROBLEMS HAPPEN REMOVE IT
     public Vector3 TileCoordToWorldCoord(int x, int y)
     {
         return new Vector3(x, y, 0);
     }
 
+
+
+
+
+    public bool EnterTileCheck(int x, int y)
+    {
+        //test unit type to trerrain
+
+        return tileTypes[ tiles[x,y] ].isWalkable;
+    }
+
+
+
     //sets the units data on what tile it is on and then set it up visually
+    //Dijkstra's algorithm is used for the pathfinding A* search algorithm is another more commonly used pathfinging algorithm that goes in a general direction and is quicker
+    //Dijkstra's was used because I did just under a year ago in COMP250
     public void MoveSelectedUnitTo(int x, int y)
     {
         //clear path
         selectedUnit.GetComponent<Unit>().CurrPath = null;
+
+
+        if(EnterTileCheck(x, y) == false)
+        {
+            //mountain click or non-move tile click
+            return;
+        }
+
 
         Dictionary<Node, float> dist = new Dictionary<Node, float>();
         Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
@@ -239,8 +270,9 @@ public class TileMap : MonoBehaviour {
 
             foreach (Node v in u.neighbors)
             {
-                float alt = dist[u] + u.DistanceTo(v);
-                if(alt < dist[v])
+                //float alt = dist[u] + u.DistanceTo(v);    also NodeX = x  NodeY = y
+                float alt = dist[u] + CostToEnterTile(u.NodeX, u.NodeY, v.NodeX, v.NodeY);
+                if (alt < dist[v])
                 {
                     dist[v] = alt;
                     prev[v] = u;
