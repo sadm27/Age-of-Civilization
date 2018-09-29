@@ -8,4 +8,5 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
 
+    public List<TileMap.Node> CurrPath = null;
 }
