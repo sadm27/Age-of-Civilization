@@ -9,8 +9,8 @@ public class TileMap : MonoBehaviour {
 
     int[,] tiles;
 
-    int MapSizeX = 100;
-    int MapSizeY = 100;
+    int MapSizeX = 200;
+    int MapSizeY = 200;
 
     void Start()
     {
@@ -74,8 +74,10 @@ public class TileMap : MonoBehaviour {
                 TileType tt = tileTypes[tiles[x, y]];
 
                 Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity );
+                
             }
         }
 
     }
+
 }
