@@ -37,13 +37,13 @@ public class TileMap : MonoBehaviour {
             for (int y = 0; y < MapSizeY; y++)
             {
                 float height = GetHeight(x,y);
-                if(height < .3)
+                if(height < .35)
                 {
-                    tiles[x, y] = 1;
+                    tiles[x, y] = 3;
                 }else if(height < .4)
                 {
                     tiles[x, y] = 1;
-                }else if(height < .8){
+                }else if(height < .7){
                     tiles[x, y] = 0;
                 }
                 else { tiles[x, y] = 2; }
