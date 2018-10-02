@@ -9,8 +9,8 @@ public class TileMap : MonoBehaviour {
 
     int[,] tiles;
 
-    int MapSizeX = 10;
-    int MapSizeY = 10;
+    int MapSizeX = 100;
+    int MapSizeY = 100;
 
     void Start()
     {
@@ -36,23 +36,30 @@ public class TileMap : MonoBehaviour {
         {
             for (int y = 0; y < MapSizeY; y++)
             {
-                tiles[x, y] = 0;
+                float height = GetHeight(x,y);
+                if(height < .3)
+                {
+                    tiles[x, y] = 1;
+                }else if(height < .4)
+                {
+                    tiles[x, y] = 1;
+                }else if(height < .8){
+                    tiles[x, y] = 0;
+                }
+                else { tiles[x, y] = 2; }
             }
         }
 
-        tiles[4, 4] = 2;
-        tiles[5, 4] = 1;
-        tiles[6, 4] = 2;
-        tiles[7, 4] = 2;
-        tiles[8, 4] = 2;
-
-        tiles[4, 5] = 2;
-        tiles[4, 6] = 2;
-
-        tiles[8, 5] = 2;
-        tiles[8, 6] = 2;
     }
 
+    float GetHeight(int x, int y)
+    {
+        float xCoords = (float)x / MapSizeX * 10;
+        float yCoords = (float)y / MapSizeY * 10;
+
+        float sample = Mathf.PerlinNoise(xCoords, yCoords);
+        return sample;
+    }
 
 
 
