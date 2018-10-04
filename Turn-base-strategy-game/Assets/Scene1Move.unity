@@ -689,6 +689,7 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -38.136, y: 7.376, z: -16.103}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +819,8 @@ CanvasRenderer:
   m_GameObject: {fileID: 713606492}
   m_CullTransparentMesh: 0
 >>>>>>> 8835cdff6a4b90d31729a29e39a0ab27e815ce12
+=======
+>>>>>>> parent of 8835cdf... Main menu, take 2
 =======
 >>>>>>> parent of 8835cdf... Main menu, take 2
 --- !u!1 &779655009
