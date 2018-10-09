@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1078864730}
+      - m_Target: {fileID: 306735076}
         m_MethodName: MoveNextTile
         m_Mode: 1
         m_Arguments:
@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4fe12115ab9f34b95e493d74a85d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUnit: {fileID: 449481283}
+  selectedUnit: {fileID: 306735074}
   tileTypes:
   - name: Grassland
     TileVisualPrefab: {fileID: 1648933689292672, guid: 36d693e0b5c9b24498eda6f6738e9b92,

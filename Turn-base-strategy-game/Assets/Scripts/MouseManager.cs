@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseManager : MonoBehaviour {
 
@@ -12,12 +13,17 @@ public class MouseManager : MonoBehaviour {
 		
 	}
 	
+
 	// Update is called once per frame
 	void Update () {
 
         if (Input.GetMouseButtonDown(0))
         {
-            
+
+            //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             RaycastHit hitInfo = new RaycastHit();
 
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
@@ -41,6 +47,7 @@ public class MouseManager : MonoBehaviour {
 
 
             }
+
             else
             {
                 ClearSelection();
