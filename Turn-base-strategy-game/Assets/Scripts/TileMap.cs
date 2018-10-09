@@ -9,8 +9,8 @@ public class TileMap : MonoBehaviour {
 
     int[,] tiles;
 
-    int MapSizeX = 200;
-    int MapSizeY = 200;
+    int MapSizeX = 20;
+    int MapSizeY = 20;
 
     void Start()
     {
@@ -54,8 +54,8 @@ public class TileMap : MonoBehaviour {
 
     float GetHeight(int x, int y)
     {
-        float xCoords = (float)x / MapSizeX * 10;
-        float yCoords = (float)y / MapSizeY * 10;
+        float xCoords = (float)x / MapSizeX * 5;
+        float yCoords = (float)y / MapSizeY * 5;
 
         float sample = Mathf.PerlinNoise(xCoords, yCoords);
         return sample;
