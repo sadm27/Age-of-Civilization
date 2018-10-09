@@ -1409,6 +1409,11 @@ MonoBehaviour:
       type: 2}
     moveCost: 1
     isWalkable: 0
+  - name: Water
+    TileVisualPrefab: {fileID: 1515343761520410, guid: f9481ae9da8f76b48af04d3d4a88d41b,
+      type: 2}
+    moveCost: 1
+    isWalkable: 0
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0
