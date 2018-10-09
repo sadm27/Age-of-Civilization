@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class tileClicker : MonoBehaviour {
 
@@ -11,6 +12,10 @@ public class tileClicker : MonoBehaviour {
 
     void OnMouseUp()
     {
+        //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         Debug.Log("click!");
 
         map.MoveSelectedUnitTo(Xtile, Ytile);

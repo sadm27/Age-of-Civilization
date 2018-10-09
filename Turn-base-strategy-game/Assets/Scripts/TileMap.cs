@@ -19,6 +19,8 @@ public class TileMap : MonoBehaviour {
     int MapSizeX = 10;
     int MapSizeY = 10;
 
+    //200 by 200 test
+
     void Start()
     {
         //selectedUnit.GetComponent<Unit>().Xtile = selectedUnit.transform.position.x;
@@ -40,6 +42,29 @@ public class TileMap : MonoBehaviour {
         //allocation of map tiles
         tiles = new int[MapSizeX, MapSizeY];
 
+
+        /*
+        for (int x = 0; x < MapSizeX; x++)
+        {
+            for (int y = 0; y < MapSizeY; y++)
+            {
+                float height = GetHeight(x, y);
+                if (height < .35)
+                {
+                    tiles[x, y] = 3;
+                }
+                else if (height < .4)
+                {
+                    tiles[x, y] = 1;
+                }
+                else if (height < .7)
+                {
+                    tiles[x, y] = 0;
+                }
+                else { tiles[x, y] = 2; }
+            }
+        }
+        */
 
 
         //initialize map tiles
@@ -63,6 +88,20 @@ public class TileMap : MonoBehaviour {
         tiles[8, 5] = 2;
         tiles[8, 6] = 2;
     }
+
+
+    /*
+
+    float GetHeight(int x, int y)
+    {
+        float xCoords = (float)x / MapSizeX * 10;
+        float yCoords = (float)y / MapSizeY * 10;
+
+        float sample = Mathf.PerlinNoise(xCoords, yCoords);
+        return sample;
+    }
+
+    */
 
 
 
