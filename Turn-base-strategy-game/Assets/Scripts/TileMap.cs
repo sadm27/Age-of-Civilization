@@ -4,6 +4,25 @@ using System.Linq;
 using UnityEngine;
 
 
+public class Tile
+{
+    public enum Type
+    {
+        grassland,
+        mountain,
+        marsh,
+        water
+    }
+
+    public enum Resource
+    {
+        wood,
+        food,
+        stone
+    }
+
+}
+
 public class TileMap : MonoBehaviour {
 
     public GameObject selectedUnit;
@@ -13,6 +32,7 @@ public class TileMap : MonoBehaviour {
     int[,] tiles;    //tile types
     Node[,] graph;  //who every tile is touchiung
 
+    Tile[,] map;
 
     
 
@@ -40,7 +60,7 @@ public class TileMap : MonoBehaviour {
     void generateMap()
     {
         //allocation of map tiles
-        tiles = new int[MapSizeX, MapSizeY];
+        map = new Tile[MapSizeX, MapSizeY];
 
 
         
@@ -51,7 +71,7 @@ public class TileMap : MonoBehaviour {
                 float height = GetHeight(x, y);
                 if (height < .35)
                 {
-                    tiles[x, y] = 3;
+                    map[x, y] = 3;
                 }
                 else if (height < .4)
                 {
