@@ -16,8 +16,8 @@ public class TileMap : MonoBehaviour {
 
     
 
-    int MapSizeX = 10;
-    int MapSizeY = 10;
+    int MapSizeX = 20;
+    int MapSizeY = 20;
 
     //200 by 200 test
 
@@ -43,7 +43,7 @@ public class TileMap : MonoBehaviour {
         tiles = new int[MapSizeX, MapSizeY];
 
 
-        /*
+        
         for (int x = 0; x < MapSizeX; x++)
         {
             for (int y = 0; y < MapSizeY; y++)
@@ -64,9 +64,9 @@ public class TileMap : MonoBehaviour {
                 else { tiles[x, y] = 2; }
             }
         }
-        */
+        
 
-
+        /*
         //initialize map tiles
         for (int x = 0; x < MapSizeX; x++)
         {
@@ -87,10 +87,12 @@ public class TileMap : MonoBehaviour {
 
         tiles[8, 5] = 2;
         tiles[8, 6] = 2;
+
+        */
     }
 
 
-    /*
+    
 
     float GetHeight(int x, int y)
     {
@@ -101,7 +103,7 @@ public class TileMap : MonoBehaviour {
         return sample;
     }
 
-    */
+    
 
 
 
