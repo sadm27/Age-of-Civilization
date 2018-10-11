@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -207,7 +207,7 @@ Transform:
   m_Children:
   - {fileID: 1665691703}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &306735076
 MonoBehaviour:
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
+  map: {fileID: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,15 +417,33 @@ MonoBehaviour:
   - name: Grassland
     TileVisualPrefab: {fileID: 1648933689292672, guid: 36d693e0b5c9b24498eda6f6738e9b92,
       type: 2}
+    moveCost: 1
     isWalkable: 0
   - name: Marsh
     TileVisualPrefab: {fileID: 1522482761629902, guid: 2e97005d25d695c4b94b65e8ec06ec55,
       type: 2}
+    moveCost: 1
     isWalkable: 0
   - name: Mountain
     TileVisualPrefab: {fileID: 1021012975500636, guid: 1346ec68f247a2941aa925f6020f47ee,
       type: 2}
+    moveCost: 1
     isWalkable: 0
+  - name: Water
+    TileVisualPrefab: {fileID: 1515343761520410, guid: f9481ae9da8f76b48af04d3d4a88d41b,
+      type: 2}
+    moveCost: 1
+    isWalkable: 0
+  tileResource:
+  - name: Food
+    ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
+      type: 2}
+  - name: Stone
+    ResourceVisualPrefab: {fileID: 1968303927088900, guid: bfd64ef81e7ac9949aecca6502e1fdde,
+      type: 2}
+  - name: Wood
+    ResourceVisualPrefab: {fileID: 1841384508222040, guid: be3e093c16981034f8e995570ef4c9b5,
+      type: 2}
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0
@@ -436,5 +455,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -6,20 +6,22 @@ using UnityEngine;
 
 public class Tile
 {
-    public enum Type
+    public enum tileType
     {
-        grassland,
-        mountain,
-        marsh,
-        water
+        Grassland,
+        Marsh,
+        Mountain,
+        Water
+    }
+    public enum tileResource
+    {
+        Wood,
+        Stone,
+        Food
     }
 
-    public enum Resource
-    {
-        wood,
-        food,
-        stone
-    }
+    public tileType type;
+    public tileResource resource;
 
 }
 
@@ -28,16 +30,17 @@ public class TileMap : MonoBehaviour {
     public GameObject selectedUnit;
 
     public TileType[] tileTypes;
+    public TileResource[] tileResource;
 
     int[,] tiles;    //tile types
     Node[,] graph;  //who every tile is touchiung
 
     Tile[,] map;
 
-    
+    int MapSizeX = 50;
+    int MapSizeY = 50;
 
-    int MapSizeX = 20;
-    int MapSizeY = 20;
+    
 
     //200 by 200 test
 
@@ -60,18 +63,47 @@ public class TileMap : MonoBehaviour {
     void generateMap()
     {
         //allocation of map tiles
+        tiles = new int[MapSizeX, MapSizeY];
         map = new Tile[MapSizeX, MapSizeY];
 
-
-        
-        for (int x = 0; x < MapSizeX; x++)
+        for ( int x = 0; x < MapSizeX; x++)
         {
             for (int y = 0; y < MapSizeY; y++)
             {
                 float height = GetHeight(x, y);
                 if (height < .35)
                 {
-                    map[x, y] = 3;
+                    map[x, y] = new Tile();
+                    map[x, y].type = Tile.tileType.Water;
+                }else if (height < .4)
+                {
+                    map[x, y] = new Tile();
+                    map[x, y].type = Tile.tileType.Marsh;
+                }
+                else if (height < .7)
+                {
+                    map[x, y] = new Tile();
+                    map[x, y].type = Tile.tileType.Grassland;
+                }
+                else
+                {
+                    map[x, y] = new Tile();
+                    map[x, y].type = Tile.tileType.Mountain;
+                }
+            }
+        }
+
+        GenerateResources();
+
+        
+        /*for (int x = 0; x < MapSizeX; x++)
+        {
+            for (int y = 0; y < MapSizeY; y++)
+            {
+                float height = GetHeight(x, y);
+                if (height < .35)
+                {
+                    tiles[x, y] = 3;
                 }
                 else if (height < .4)
                 {
@@ -83,7 +115,7 @@ public class TileMap : MonoBehaviour {
                 }
                 else { tiles[x, y] = 2; }
             }
-        }
+        }*/
         
 
         /*
@@ -111,6 +143,27 @@ public class TileMap : MonoBehaviour {
         */
     }
 
+    void GenerateResources()
+    {
+        
+        for (int x = 0; x < MapSizeX; x++)
+        {
+            for (int y = 0; y < MapSizeY; y++)
+            {
+                int rand = Random.Range((int)0, (int)3);
+                if (rand == 0){
+                    map[x, y].resource = Tile.tileResource.Food;
+                }else if(rand == 1)
+                {
+                    map[x, y].resource = Tile.tileResource.Stone;
+                }
+                else
+                {
+                    map[x, y].resource = Tile.tileResource.Wood;
+                }
+            }
+        }
+    }
 
     
 
@@ -222,16 +275,65 @@ public class TileMap : MonoBehaviour {
     //creates tiles visually on the map
         void generateMapVisuals()
     {
+        TileType tt = tileTypes[0];
+        TileResource tr = tileResource[0];
 
         for (int x = 0; x < MapSizeX; x++)
         {
             for (int y = 0; y < MapSizeY; y++)
             {
-                TileType tt = tileTypes[tiles[x, y]];
+
+
+                switch (map[x , y].type)
+                {
+                    case Tile.tileType.Grassland:
+                        tt = tileTypes[0];
+                        break;
+
+                    case Tile.tileType.Marsh:
+                        tt = tileTypes[1];
+                        break;
+
+                    case Tile.tileType.Mountain:
+                        tt = tileTypes[2];
+                        break;
+
+                    case Tile.tileType.Water:
+                        tt = tileTypes[3];
+                        break;
+
+                    default:
+                        break;
+                }
+
+                //TileType tt = tileTypes[tiles[x, y]];
                 //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
-                GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity );
+                GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
                 //the game object is initalized and created at set coordinace
+
+                switch (map[x, y].resource)
+                {
+                    case Tile.tileResource.Food:
+                        tr = tileResource[0];
+                        break;
+
+                    case Tile.tileResource.Stone:
+                        tr = tileResource[1];
+                        break;
+
+                    case Tile.tileResource.Wood:
+                        tr = tileResource[2];
+                        break;
+
+                    default:
+                        break;
+                }
+
+                if (map[x, y].type != Tile.tileType.Water)
+                {
+                    GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
+                }
 
                 tileClicker CT = go.GetComponent<tileClicker>();
                 //gets components of the tile game object and sets them to the tile clicker to help that
