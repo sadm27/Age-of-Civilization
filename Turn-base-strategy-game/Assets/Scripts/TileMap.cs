@@ -34,7 +34,10 @@ public class TileMap : MonoBehaviour {
     }
 
 
-
+    public void SelectUnit(GameObject unit)
+    {
+        this.selectedUnit = unit;
+    }
 
 
     void generateMap()

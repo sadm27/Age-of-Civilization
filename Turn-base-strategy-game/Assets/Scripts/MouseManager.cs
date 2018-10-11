@@ -8,6 +8,8 @@ public class MouseManager : MonoBehaviour {
 
     public GameObject selectedUnit;
 
+    public TileMap map;
+
     // Use this for initialization
     void Start () {
 		
@@ -37,6 +39,7 @@ public class MouseManager : MonoBehaviour {
                     GameObject hitObject = hitInfo.transform.root.gameObject;
 
                     SelectUnit(hitObject);
+                    map.SelectUnit(selectedUnit);
 
                     
                 }
