@@ -17,7 +17,8 @@ public class Tile
     {
         Wood,
         Stone,
-        Food
+        Food,
+        Nothing
     }
 
     public tileType type;
@@ -37,8 +38,8 @@ public class TileMap : MonoBehaviour {
 
     Tile[,] map;
 
-    int MapSizeX = 50;
-    int MapSizeY = 50;
+    int MapSizeX = 106;
+    int MapSizeY = 66;
 
     
 
@@ -94,53 +95,6 @@ public class TileMap : MonoBehaviour {
         }
 
         GenerateResources();
-
-        
-        /*for (int x = 0; x < MapSizeX; x++)
-        {
-            for (int y = 0; y < MapSizeY; y++)
-            {
-                float height = GetHeight(x, y);
-                if (height < .35)
-                {
-                    tiles[x, y] = 3;
-                }
-                else if (height < .4)
-                {
-                    tiles[x, y] = 1;
-                }
-                else if (height < .7)
-                {
-                    tiles[x, y] = 0;
-                }
-                else { tiles[x, y] = 2; }
-            }
-        }*/
-        
-
-        /*
-        //initialize map tiles
-        for (int x = 0; x < MapSizeX; x++)
-        {
-            for (int y = 0; y < MapSizeY; y++)
-            {
-                tiles[x, y] = 0;
-            }
-        }
-
-        tiles[4, 4] = 2;
-        tiles[5, 4] = 1;
-        tiles[6, 4] = 2;
-        tiles[7, 4] = 2;
-        tiles[8, 4] = 2;
-
-        tiles[4, 5] = 2;
-        tiles[4, 6] = 2;
-
-        tiles[8, 5] = 2;
-        tiles[8, 6] = 2;
-
-        */
     }
 
     void GenerateResources()
@@ -150,22 +104,59 @@ public class TileMap : MonoBehaviour {
         {
             for (int y = 0; y < MapSizeY; y++)
             {
-                int rand = Random.Range((int)0, (int)3);
+                int rand = Random.Range((int)0, (int)15);
                 if (rand == 0){
                     map[x, y].resource = Tile.tileResource.Food;
+                    if(CheckIfNextToMountain(x,y))
+                    {
+                        map[x, y].resource = Tile.tileResource.Stone;
+                    }
                 }else if(rand == 1)
                 {
                     map[x, y].resource = Tile.tileResource.Stone;
                 }
-                else
+                else if(rand == 2)
                 {
                     map[x, y].resource = Tile.tileResource.Wood;
+                    if (CheckIfNextToMountain(x, y))
+                    {
+                        map[x, y].resource = Tile.tileResource.Stone;
+                    }
                 }
+                else
+                {
+                    map[x, y].resource = Tile.tileResource.Nothing;
+                }
+
             }
         }
     }
 
-    
+    bool CheckIfNextToMountain(int x, int y)
+    {
+        for (int i = x - 1; i < x + 1; i++)
+        {
+            for (int j = y - 1; j < y + 1; j++)
+            {
+                    if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (map[i,j].type == Tile.tileType.Mountain)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                        continue;
+                        }
+                    }
+            }
+        }
+        return false;
+    }
 
     float GetHeight(int x, int y)
     {
@@ -326,11 +317,15 @@ public class TileMap : MonoBehaviour {
                         tr = tileResource[2];
                         break;
 
+                    case Tile.tileResource.Nothing:
+                        tr = tileResource[3];
+                        break;
+
                     default:
                         break;
                 }
 
-                if (map[x, y].type != Tile.tileType.Water)
+                if (map[x, y].type != Tile.tileType.Water && map[x,y].resource != Tile.tileResource.Nothing && map[x, y].type != Tile.tileType.Mountain)
                 {
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
                 }

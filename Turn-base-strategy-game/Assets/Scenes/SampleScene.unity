@@ -444,6 +444,8 @@ MonoBehaviour:
   - name: Wood
     ResourceVisualPrefab: {fileID: 1841384508222040, guid: be3e093c16981034f8e995570ef4c9b5,
       type: 2}
+  - name: Nothing
+    ResourceVisualPrefab: {fileID: 0}
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0
