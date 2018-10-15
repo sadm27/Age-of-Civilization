@@ -14,6 +14,7 @@ public class TileMap : MonoBehaviour {
     Node[,] graph;  //who every tile is touchiung
 
 
+
     
 
     int MapSizeX = 20;
@@ -38,6 +39,20 @@ public class TileMap : MonoBehaviour {
     {
         this.selectedUnit = unit;
     }
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
 
 
     void generateMap()

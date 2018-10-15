@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseManager : MonoBehaviour {
+public class MouseManagerS : MonoBehaviour {
 
 
     public GameObject selectedUnit;
@@ -37,15 +37,21 @@ public class MouseManager : MonoBehaviour {
                 {
                     
                     GameObject hitObject = hitInfo.transform.root.gameObject;
+                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
                     map.SelectUnit(selectedUnit);
+                    UnitInfo.gameObject.fing
+                    gameObject.Find(UnitInfo).SetActive(true);
 
-                    
                 }
-                else
+                else 
                 {
-                    ClearSelection();
+                    if (hitInfo.transform.gameObject.tag == "Mount_Un")
+                    {
+                        ClearSelection();
+                    }
+                    
                 }
 
 
@@ -53,7 +59,10 @@ public class MouseManager : MonoBehaviour {
 
             else
             {
-                ClearSelection();
+                if (hitInfo.transform.gameObject.tag == "Mount_Un")
+                {
+                    ClearSelection();
+                }
             }
 
         }
@@ -92,6 +101,24 @@ public class MouseManager : MonoBehaviour {
 
         selectedUnit = null;
 	}
+
+
+
+
+
+
+
+
+    public void RunMoveNext()
+    {
+        selectedUnit.GetComponent<Unit>().MoveNextTile();
+    }
+
+
+
+
+
+
 
 
 }

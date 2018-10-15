@@ -10,8 +10,12 @@ public class Unit : MonoBehaviour {
     public TileMap map;
 
     public List<Node> CurrPath = null;
+    private int moveSpeeds = 2;
 
-    int moveSpeed = 2;
+   
+  
+
+    
 
     void Update()
     {
@@ -33,9 +37,14 @@ public class Unit : MonoBehaviour {
         }
     }
 
+
+
+
     public void MoveNextTile()
     {
-        float remainingMovement = moveSpeed;
+        float remainingMovement = moveSpeeds;
+
+
 
         while (remainingMovement > 0)
         {
@@ -67,5 +76,7 @@ public class Unit : MonoBehaviour {
 
 
     }
+
+
 
 }
