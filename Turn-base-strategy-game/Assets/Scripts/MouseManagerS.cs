@@ -47,11 +47,7 @@ public class MouseManagerS : MonoBehaviour {
                 }
                 else 
                 {
-                    if (hitInfo.transform.gameObject.tag == "Mount_Un")
-                    {
-                        ClearSelection();
-                        UnitInfo.gameObject.SetActive(false);
-                    }
+                   
                     
                 }
 
@@ -60,13 +56,19 @@ public class MouseManagerS : MonoBehaviour {
 
             else
             {
-                if (hitInfo.transform.gameObject.tag == "Mount_Un")
+                if (Input.GetButtonDown("Cancel"))
                 {
                     ClearSelection();
                     UnitInfo.gameObject.SetActive(false);
                 }
             }
 
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ClearSelection();
+            UnitInfo.gameObject.SetActive(false);
         }
     }
 
