@@ -7,6 +7,7 @@ public class MouseManagerS : MonoBehaviour {
 
 
     public GameObject selectedUnit;
+    public GameObject UnitInfo;
 
     public TileMap map;
 
@@ -41,8 +42,7 @@ public class MouseManagerS : MonoBehaviour {
 
                     SelectUnit(hitObject);
                     map.SelectUnit(selectedUnit);
-                    UnitInfo.gameObject.fing
-                    gameObject.Find(UnitInfo).SetActive(true);
+                    UnitInfo.gameObject.SetActive(true);
 
                 }
                 else 
@@ -50,6 +50,7 @@ public class MouseManagerS : MonoBehaviour {
                     if (hitInfo.transform.gameObject.tag == "Mount_Un")
                     {
                         ClearSelection();
+                        UnitInfo.gameObject.SetActive(false);
                     }
                     
                 }
@@ -62,6 +63,7 @@ public class MouseManagerS : MonoBehaviour {
                 if (hitInfo.transform.gameObject.tag == "Mount_Un")
                 {
                     ClearSelection();
+                    UnitInfo.gameObject.SetActive(false);
                 }
             }
 
