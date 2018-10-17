@@ -41,7 +41,7 @@ public class MouseManagerS : MonoBehaviour {
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
-                    map.SelectUnit(selectedUnit);
+                    //map.SelectUnit(selectedUnit);
                     UnitInfo.gameObject.SetActive(true);
 
                 }
