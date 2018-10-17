@@ -6,32 +6,45 @@ using UnityEngine;
 
 public class TileMap : MonoBehaviour {
 
-    public GameObject selectedUnit;
-
+    //public GameObject selectedUnit;
     public TileType[] tileTypes;
 
     int[,] tiles;    //tile types
     Node[,] graph;  //who every tile is touchiung
 
 
+    MouseManagerS mouseManagerS;
     
 
     int MapSizeX = 20;
     int MapSizeY = 20;
-
+   
     //200 by 200 test
 
     void Start()
     {
-        //selectedUnit.GetComponent<Unit>().Xtile = selectedUnit.transform.position.x;
-        selectedUnit.GetComponent<Unit>().Xtile = (int)selectedUnit.transform.position.x;
-        selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
-        selectedUnit.GetComponent<Unit>().map = this;
-
+        mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
     }
+
+    /*
+    public void SelectUnit(GameObject unit)
+    {
+        this.selectedUnit = unit;
+    }
+    */
+
+
+
+
+
+  
+
+
+
+
 
 
 
@@ -248,6 +261,8 @@ public class TileMap : MonoBehaviour {
     //Dijkstra's was used because I did just under a year ago in COMP250
     public void MoveSelectedUnitTo(int x, int y)
     {
+        GameObject selectedUnit = mouseManagerS.selectedUnit; //get the selected unit from Mouse Manager
+
         //clear path
         selectedUnit.GetComponent<Unit>().CurrPath = null;
 

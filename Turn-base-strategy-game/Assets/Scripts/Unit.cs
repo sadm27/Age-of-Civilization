@@ -7,11 +7,19 @@ public class Unit : MonoBehaviour {
     //lets the unit know its actual position on the map tiles regardless of its world positions
     public int Xtile;
     public int Ytile;
-    public TileMap map;
+    TileMap map;
 
     public List<Node> CurrPath = null;
+    private int moveSpeeds = 2;
 
-    int moveSpeed = 2;
+
+    void Start()
+    {
+        map = GameObject.Find("Map").GetComponent<TileMap>();
+        Xtile = (int)transform.position.x;
+        Ytile = (int)transform.position.y;
+    }
+
 
     void Update()
     {
@@ -22,7 +30,7 @@ public class Unit : MonoBehaviour {
             while (CurrNode < CurrPath.Count - 1)
             {
                 //x = NodeX y = NodeY
-                Vector3 start = map.TileCoordToWorldCoord( CurrPath[CurrNode].NodeX, CurrPath[CurrNode].NodeY) + new Vector3(0, 0, -1f);
+                Vector3 start = map.TileCoordToWorldCoord(CurrPath[CurrNode].NodeX, CurrPath[CurrNode].NodeY) + new Vector3(0, 0, -1f);
                 Vector3 end = map.TileCoordToWorldCoord(CurrPath[CurrNode + 1].NodeX, CurrPath[CurrNode + 1].NodeY) + new Vector3(0, 0, -1f);
 
 
@@ -33,9 +41,14 @@ public class Unit : MonoBehaviour {
         }
     }
 
+
+
+
     public void MoveNextTile()
     {
-        float remainingMovement = moveSpeed;
+        float remainingMovement = moveSpeeds;
+
+
 
         while (remainingMovement > 0)
         {
@@ -67,5 +80,7 @@ public class Unit : MonoBehaviour {
 
 
     }
+
+
 
 }

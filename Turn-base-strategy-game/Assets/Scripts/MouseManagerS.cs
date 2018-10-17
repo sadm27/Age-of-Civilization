@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseManager : MonoBehaviour {
+public class MouseManagerS : MonoBehaviour {
 
 
     public GameObject selectedUnit;
+    public GameObject UnitInfo;
+
+    public TileMap map;
 
     // Use this for initialization
     void Start () {
@@ -35,14 +38,17 @@ public class MouseManager : MonoBehaviour {
                 {
                     
                     GameObject hitObject = hitInfo.transform.root.gameObject;
+                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
+                    //map.SelectUnit(selectedUnit);
+                    UnitInfo.gameObject.SetActive(true);
 
-                    
                 }
-                else
+                else 
                 {
-                    ClearSelection();
+                   
+                    
                 }
 
 
@@ -50,9 +56,19 @@ public class MouseManager : MonoBehaviour {
 
             else
             {
-                ClearSelection();
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    ClearSelection();
+                    UnitInfo.gameObject.SetActive(false);
+                }
             }
 
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ClearSelection();
+            UnitInfo.gameObject.SetActive(false);
         }
     }
 
@@ -89,6 +105,24 @@ public class MouseManager : MonoBehaviour {
 
         selectedUnit = null;
 	}
+
+
+
+
+
+
+
+
+    public void RunMoveNext()
+    {
+        selectedUnit.GetComponent<Unit>().MoveNextTile();
+    }
+
+
+
+
+
+
 
 
 }

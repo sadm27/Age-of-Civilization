@@ -25,7 +25,7 @@ GameObject:
   - 114: {fileID: 114728869523011130}
   m_Layer: 0
   m_Name: tileMountain
-  m_TagString: Untagged
+  m_TagString: Mount_Un
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
