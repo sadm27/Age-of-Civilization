@@ -17,11 +17,14 @@ public class Tile
     {
         Wood,
         Stone,
-        Food
+        Food,
+        Nothing
     }
 
     public tileType type;
     public tileResource resource;
+    public int amountOfResource;
+    public bool isWalkable;
 
 }
 
@@ -31,7 +34,7 @@ public class TileMap : MonoBehaviour {
     public TileType[] tileTypes;
     public TileResource[] tileResource;
 
-    Tile[,] map;
+    public Tile[,] map;
 
 
     int[,] tiles;    //tile types
@@ -93,21 +96,25 @@ public class TileMap : MonoBehaviour {
                 {
                     map[x, y] = new Tile();
                     map[x, y].type = Tile.tileType.Water;
+                    map[x, y].isWalkable = false;
                 }
                 else if (height < .4)
                 {
                     map[x, y] = new Tile();
                     map[x, y].type = Tile.tileType.Marsh;
+                    map[x, y].isWalkable = true;
                 }
                 else if (height < .7)
                 {
                     map[x, y] = new Tile();
                     map[x, y].type = Tile.tileType.Grassland;
+                    map[x, y].isWalkable = true;
                 }
                 else
                 {
                     map[x, y] = new Tile();
                     map[x, y].type = Tile.tileType.Mountain;
+                    map[x, y].isWalkable = false;
                 }
             }
         }
@@ -122,24 +129,72 @@ public class TileMap : MonoBehaviour {
         {
             for (int y = 0; y < MapSizeY; y++)
             {
-                int rand = Random.Range((int)0, (int)3);
+                int rand = Random.Range((int)0, (int)15);
                 if (rand == 0)
                 {
                     map[x, y].resource = Tile.tileResource.Food;
+                    if (CheckIfNextToMountain(x, y))
+                    {
+                        map[x, y].resource = Tile.tileResource.Stone;
+                    }
+                    map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
                 else if (rand == 1)
                 {
                     map[x, y].resource = Tile.tileResource.Stone;
+                    map[x, y].amountOfResource = GenerateAmountOfResource();
+                }
+                else if (rand == 2)
+                {
+                    map[x, y].resource = Tile.tileResource.Wood;
+                    if (CheckIfNextToMountain(x, y))
+                    {
+                        map[x, y].resource = Tile.tileResource.Stone;
+                    }
+                    map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
                 else
                 {
-                    map[x, y].resource = Tile.tileResource.Wood;
+                    map[x, y].resource = Tile.tileResource.Nothing;
+                    map[x, y].amountOfResource = 0;
                 }
+
             }
         }
     }
 
+    int GenerateAmountOfResource()
+    {
+        return Random.Range((int)500, (int)1000);
 
+    }
+
+
+    bool CheckIfNextToMountain(int x, int y)
+    {
+        for (int i = x - 1; i < x + 1; i++)
+        {
+            for (int j = y - 1; j < y + 1; j++)
+            {
+                if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
+                {
+                    continue;
+                }
+                else
+                {
+                    if (map[i, j].type == Tile.tileType.Mountain)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
     float GetHeight(int x, int y)
     {
@@ -299,11 +354,15 @@ public class TileMap : MonoBehaviour {
                         tr = tileResource[2];
                         break;
 
+                    case Tile.tileResource.Nothing:
+                        tr = tileResource[3];
+                        break;
+
                     default:
                         break;
                 }
 
-                if (map[x, y].type != Tile.tileType.Water)
+                if (map[x, y].type != Tile.tileType.Water && map[x, y].resource != Tile.tileResource.Nothing && map[x, y].type != Tile.tileType.Mountain)
                 {
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
                 }
@@ -333,7 +392,7 @@ public class TileMap : MonoBehaviour {
     {
         //test unit type to trerrain
 
-        return tileTypes[ tiles[x,y] ].isWalkable;
+        return map[x,y].isWalkable;
     }
 
 

@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     TileMap map;
+    public bool isGathering = true;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
@@ -26,7 +27,7 @@ public class Unit : MonoBehaviour {
         if(CurrPath != null)
         {
             int CurrNode = 0;
-
+            isGathering = false;
             while (CurrNode < CurrPath.Count - 1)
             {
                 //x = NodeX y = NodeY
@@ -74,6 +75,10 @@ public class Unit : MonoBehaviour {
             if (CurrPath.Count == 1)
             {
                 CurrPath = null;
+                if (map.map[Xtile, Ytile].resource != Tile.tileResource.Nothing)
+                {
+                    isGathering = true;
+                }
             }
 
         }

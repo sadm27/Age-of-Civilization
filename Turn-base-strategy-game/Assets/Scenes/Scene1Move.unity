@@ -449,6 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
+  isGathering: 0
 --- !u!1 &422738470
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
+  isGathering: 0
 --- !u!4 &1078864731
 Transform:
   m_ObjectHideFlags: 0
@@ -1561,12 +1563,15 @@ MonoBehaviour:
     isWalkable: 0
   tileResource:
   - name: Food
-    ResourceVisualPrefab: {fileID: 0}
+    ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
+      type: 2}
   - name: Stone
-    ResourceVisualPrefab: {fileID: 0}
+    ResourceVisualPrefab: {fileID: 1968303927088900, guid: bfd64ef81e7ac9949aecca6502e1fdde,
+      type: 2}
   - name: Wood
-    ResourceVisualPrefab: {fileID: 0}
-  - name: 
+    ResourceVisualPrefab: {fileID: 1841384508222040, guid: be3e093c16981034f8e995570ef4c9b5,
+      type: 2}
+  - name: Nothing
     ResourceVisualPrefab: {fileID: 0}
 --- !u!4 &1807354109
 Transform:
