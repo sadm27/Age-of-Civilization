@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     TileMap map;
-    public bool isGathering = true;
+    public bool isGathering = false;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;

@@ -799,7 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedUnit: {fileID: 0}
   UnitInfo: {fileID: 0}
-  map: {fileID: 1807354108}
+  map: {fileID: 0}
 --- !u!4 &449481285
 Transform:
   m_ObjectHideFlags: 0
@@ -1544,23 +1544,23 @@ MonoBehaviour:
   - name: Grassland
     TileVisualPrefab: {fileID: 1648933689292672, guid: 36d693e0b5c9b24498eda6f6738e9b92,
       type: 2}
-    moveCost: 1
-    isWalkable: 1
+    moveCost: 2
+    isWalkable: 0
   - name: Marsh
     TileVisualPrefab: {fileID: 1522482761629902, guid: 2e97005d25d695c4b94b65e8ec06ec55,
       type: 2}
     moveCost: 2
-    isWalkable: 1
+    isWalkable: 0
   - name: Mountain
     TileVisualPrefab: {fileID: 1021012975500636, guid: 1346ec68f247a2941aa925f6020f47ee,
       type: 2}
-    moveCost: 1
-    isWalkable: 0
+    moveCost: 0
+    isWalkable: 1
   - name: Water
     TileVisualPrefab: {fileID: 1515343761520410, guid: f9481ae9da8f76b48af04d3d4a88d41b,
       type: 2}
-    moveCost: 1
-    isWalkable: 0
+    moveCost: 0
+    isWalkable: 1
   tileResource:
   - name: Food
     ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
@@ -1573,6 +1573,8 @@ MonoBehaviour:
       type: 2}
   - name: Nothing
     ResourceVisualPrefab: {fileID: 0}
+  MapSizeX: 20
+  MapSizeY: 20
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0

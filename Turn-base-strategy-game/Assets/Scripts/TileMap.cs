@@ -34,6 +34,7 @@ public class TileMap : MonoBehaviour {
     public TileType[] tileTypes;
     public TileResource[] tileResource;
 
+
     public Tile[,] map;
 
 
@@ -44,16 +45,8 @@ public class TileMap : MonoBehaviour {
     MouseManagerS mouseManagerS;
     
 
-<<<<<<< HEAD
     public int MapSizeX = 20;
     public int MapSizeY = 20;
-
-=======
-    int MapSizeX = 20;
-    int MapSizeY = 20;
-   
->>>>>>> 23bc0cef607de560307eaf9087d2ea58ac694b70
-    //200 by 200 test
 
     void Start()
     {
@@ -63,16 +56,8 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
-<<<<<<< HEAD
-    void Update()
-    {
-        selectedUnit.GetComponent<Unit>().Xtile = (int)selectedUnit.transform.position.x;
-        selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
-    }
 
-=======
     /*
->>>>>>> 23bc0cef607de560307eaf9087d2ea58ac694b70
     public void SelectUnit(GameObject unit)
     {
         this.selectedUnit = unit;
