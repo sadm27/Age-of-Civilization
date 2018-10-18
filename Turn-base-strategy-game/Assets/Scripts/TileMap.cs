@@ -17,8 +17,8 @@ public class TileMap : MonoBehaviour {
 
     
 
-    int MapSizeX = 20;
-    int MapSizeY = 20;
+    public int MapSizeX = 20;
+    public int MapSizeY = 20;
 
     //200 by 200 test
 
@@ -34,6 +34,11 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
+    void Update()
+    {
+        selectedUnit.GetComponent<Unit>().Xtile = (int)selectedUnit.transform.position.x;
+        selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
+    }
 
     public void SelectUnit(GameObject unit)
     {

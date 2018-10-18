@@ -9,6 +9,41 @@ public class tileClicker : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     public TileMap map;
+    public float distanceToAppear;
+
+    Renderer tileRenderer;
+    Transform mainCameraTransform;
+    bool isVisible;
+
+    private void Start()
+    {
+        mainCameraTransform = Camera.main.transform;
+        tileRenderer = this.GetComponent<Renderer>();
+    }
+
+    private void Update()
+    {
+        disappear();
+    }
+
+    void disappear()
+    {
+        float distance = Vector3.Distance(mainCameraTransform.position, transform.position);
+
+        if (distance < distanceToAppear)
+        {
+            if (!isVisible)
+            {
+                tileRenderer.enabled = true;
+                isVisible = true;
+            }
+            else
+            {
+                tileRenderer.enabled = false;
+                isVisible = false;
+            }
+        }
+    }
 
     void OnMouseUp()
     {
@@ -20,4 +55,11 @@ public class tileClicker : MonoBehaviour {
 
         map.MoveSelectedUnitTo(Xtile, Ytile);
     }
+
+
+
+
+
+
+
 }
