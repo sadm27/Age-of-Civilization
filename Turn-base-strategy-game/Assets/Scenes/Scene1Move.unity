@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -449,7 +449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
-  map: {fileID: 0}
+  isGathering: 0
 --- !u!1 &422738470
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedUnit: {fileID: 0}
+  UnitInfo: {fileID: 0}
   map: {fileID: 1807354108}
 --- !u!4 &449481285
 Transform:
@@ -959,7 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
-  map: {fileID: 0}
+  isGathering: 0
 --- !u!4 &1078864731
 Transform:
   m_ObjectHideFlags: 0
@@ -1539,7 +1540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4fe12115ab9f34b95e493d74a85d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUnit: {fileID: 306735074}
   tileTypes:
   - name: Grassland
     TileVisualPrefab: {fileID: 1648933689292672, guid: 36d693e0b5c9b24498eda6f6738e9b92,
@@ -1561,6 +1561,18 @@ MonoBehaviour:
       type: 2}
     moveCost: 1
     isWalkable: 0
+  tileResource:
+  - name: Food
+    ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
+      type: 2}
+  - name: Stone
+    ResourceVisualPrefab: {fileID: 1968303927088900, guid: bfd64ef81e7ac9949aecca6502e1fdde,
+      type: 2}
+  - name: Wood
+    ResourceVisualPrefab: {fileID: 1841384508222040, guid: be3e093c16981034f8e995570ef4c9b5,
+      type: 2}
+  - name: Nothing
+    ResourceVisualPrefab: {fileID: 0}
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0

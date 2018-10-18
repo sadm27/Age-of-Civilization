@@ -7,26 +7,31 @@ public class Unit : MonoBehaviour {
     //lets the unit know its actual position on the map tiles regardless of its world positions
     public int Xtile;
     public int Ytile;
-    public TileMap map;
+    TileMap map;
+    public bool isGathering = true;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
 
-   
-  
 
-    
+    void Start()
+    {
+        map = GameObject.Find("Map").GetComponent<TileMap>();
+        Xtile = (int)transform.position.x;
+        Ytile = (int)transform.position.y;
+    }
+
 
     void Update()
     {
         if(CurrPath != null)
         {
             int CurrNode = 0;
-
+            isGathering = false;
             while (CurrNode < CurrPath.Count - 1)
             {
                 //x = NodeX y = NodeY
-                Vector3 start = map.TileCoordToWorldCoord( CurrPath[CurrNode].NodeX, CurrPath[CurrNode].NodeY) + new Vector3(0, 0, -1f);
+                Vector3 start = map.TileCoordToWorldCoord(CurrPath[CurrNode].NodeX, CurrPath[CurrNode].NodeY) + new Vector3(0, 0, -1f);
                 Vector3 end = map.TileCoordToWorldCoord(CurrPath[CurrNode + 1].NodeX, CurrPath[CurrNode + 1].NodeY) + new Vector3(0, 0, -1f);
 
 
@@ -70,6 +75,10 @@ public class Unit : MonoBehaviour {
             if (CurrPath.Count == 1)
             {
                 CurrPath = null;
+                if (map.map[Xtile, Ytile].resource != Tile.tileResource.Nothing)
+                {
+                    isGathering = true;
+                }
             }
 
         }
