@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
 
@@ -9,6 +10,13 @@ public class Unit : MonoBehaviour {
     public int Ytile;
     TileMap map;
     public bool isGathering = false;
+
+    public Text UnitName;
+    public Text UnitHealth;
+    public Text OnTileFood;
+    public Text OnTileWood;
+    public Text OnTileStone;
+    public Text OnTileGold;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
