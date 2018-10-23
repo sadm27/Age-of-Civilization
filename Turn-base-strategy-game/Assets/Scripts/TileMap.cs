@@ -68,7 +68,29 @@ public class TileMap : MonoBehaviour {
 
 
 
-  
+    public string GetTileResName(int x, int y)
+    {
+        string ResorceNam = null;
+        Tile.tileResource ans = map[x, y].resource;
+
+        if(ans == Tile.tileResource.Wood)
+        {
+            ResorceNam = "Wood";
+        }
+        if (ans == Tile.tileResource.Stone)
+        {
+            ResorceNam = "Stone";
+        }
+        if (ans == Tile.tileResource.Food)
+        {
+            ResorceNam = "Food";
+        }else
+        {
+            ResorceNam = "Nothing";
+        }
+
+        return ResorceNam;
+    }
 
 
 

@@ -525,6 +525,12 @@ MonoBehaviour:
   Xtile: 0
   Ytile: 0
   isGathering: 0
+  UnitName: {fileID: 807553080}
+  UnitHealth: {fileID: 798623692}
+  OnTileFood: {fileID: 776260715}
+  OnTileWood: {fileID: 415658494}
+  OnTileStone: {fileID: 1481178596}
+  OnTileGold: {fileID: 131125740}
 --- !u!1 &326051530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1567,12 @@ MonoBehaviour:
   Xtile: 0
   Ytile: 0
   isGathering: 0
+  UnitName: {fileID: 807553080}
+  UnitHealth: {fileID: 798623692}
+  OnTileFood: {fileID: 776260715}
+  OnTileWood: {fileID: 415658494}
+  OnTileStone: {fileID: 1481178596}
+  OnTileGold: {fileID: 131125740}
 --- !u!4 &1078864731
 Transform:
   m_ObjectHideFlags: 0

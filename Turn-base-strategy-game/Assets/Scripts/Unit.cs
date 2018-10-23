@@ -20,6 +20,7 @@ public class Unit : MonoBehaviour {
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
+    
 
 
     void Start()
@@ -48,6 +49,10 @@ public class Unit : MonoBehaviour {
                 CurrNode++;
             }
         }
+       // UnitTile[Xtile, Ytile];
+       // UnitName.text = selectedUnit.name;
+       // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
+
     }
 
 

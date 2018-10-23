@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MouseManagerS : MonoBehaviour {
 
 
     public GameObject selectedUnit;
     public GameObject UnitInfo;
+
+
 
     public TileMap map;
 
@@ -43,6 +46,8 @@ public class MouseManagerS : MonoBehaviour {
                     SelectUnit(hitObject);
                     //map.SelectUnit(selectedUnit);
                     UnitInfo.gameObject.SetActive(true);
+                    
+
 
                 }
                 else 
