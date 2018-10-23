@@ -58,7 +58,7 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
     void Update()
     {
@@ -66,12 +66,9 @@ public class TileMap : MonoBehaviour {
         selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
     }
 =======
->>>>>>> parent of 7705d3a... public map size
+>>>>>>> parent of 7705d3a... public map size*/
 
-    public void SelectUnit(GameObject unit)
-    {
-        this.selectedUnit = unit;
-    }
+
     
 
 
