@@ -30,6 +30,31 @@ public class Unit : MonoBehaviour {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
+
+        UItileType = map.GetTileResName(Xtile, Ytile);
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+        }
+
     }
 
 

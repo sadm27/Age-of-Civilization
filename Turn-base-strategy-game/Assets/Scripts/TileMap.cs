@@ -84,7 +84,9 @@ public class TileMap : MonoBehaviour {
         if (ans == Tile.tileResource.Food)
         {
             ResorceNam = "Food";
-        }else
+        }
+
+        if (ans == Tile.tileResource.Nothing)
         {
             ResorceNam = "Nothing";
         }
