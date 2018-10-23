@@ -94,7 +94,13 @@ public class TileMap : MonoBehaviour {
 
 
 
+    public int GetTileResAmt(int x, int y)
+    {
+        
+        int ans = map[x, y].amountOfResource;
 
+        return ans;
+    }
 
 
 

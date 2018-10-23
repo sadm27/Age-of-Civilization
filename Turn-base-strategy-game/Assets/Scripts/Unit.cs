@@ -10,6 +10,8 @@ public class Unit : MonoBehaviour {
     public int Ytile;
     TileMap map;
     public bool isGathering = false;
+    string UItileType;
+    string UITileAmt;
 
     public Text UnitName;
     public Text UnitHealth;
@@ -49,9 +51,33 @@ public class Unit : MonoBehaviour {
                 CurrNode++;
             }
         }
-       // UnitTile[Xtile, Ytile];
-       // UnitName.text = selectedUnit.name;
-       // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
+        // UnitTile[Xtile, Ytile];
+        // UnitName.text = selectedUnit.name;
+        // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
+
+        UItileType = map.GetTileResName(Xtile, Ytile);
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+        }
 
     }
 
