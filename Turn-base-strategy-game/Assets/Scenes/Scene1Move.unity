@@ -1105,6 +1105,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedUnit: {fileID: 0}
   UnitInfo: {fileID: 1499415594}
+  UnitName: {fileID: 807553080}
+  UnitHealth: {fileID: 798623692}
+  OnTileFood: {fileID: 776260715}
+  OnTileWood: {fileID: 415658494}
+  OnTileStone: {fileID: 1481178596}
+  OnTileGold: {fileID: 131125740}
   map: {fileID: 0}
 --- !u!4 &449481285
 Transform:

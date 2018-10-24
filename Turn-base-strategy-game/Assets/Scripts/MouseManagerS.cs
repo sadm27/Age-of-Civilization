@@ -10,6 +10,12 @@ public class MouseManagerS : MonoBehaviour {
     public GameObject selectedUnit;
     public GameObject UnitInfo;
 
+    public Text UnitName;
+    public Text UnitHealth;
+    public Text OnTileFood;
+    public Text OnTileWood;
+    public Text OnTileStone;
+    public Text OnTileGold;
 
 
     public TileMap map;
@@ -44,21 +50,9 @@ public class MouseManagerS : MonoBehaviour {
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
-                    //map.SelectUnit(selectedUnit);
                     UnitInfo.gameObject.SetActive(true);
-                    
-
-
-                }
-                else 
-                {
-                   
-                    
-                }
-
-
+                }                
             }
-
             else
             {
                 if (Input.GetButtonDown("Cancel"))
@@ -69,7 +63,6 @@ public class MouseManagerS : MonoBehaviour {
             }
 
         }
-
         if (Input.GetButtonDown("Cancel"))
         {
             ClearSelection();
@@ -107,6 +100,10 @@ public class MouseManagerS : MonoBehaviour {
 			r.material = m;
 		}
 
+        OnTileWood.text = "0";
+        OnTileStone.text = "0";
+        OnTileFood.text = "0";
+        Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
 
         selectedUnit = null;
 	}
