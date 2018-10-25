@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+
 public class MouseManagerS : MonoBehaviour {
 
 
@@ -117,7 +118,13 @@ public class MouseManagerS : MonoBehaviour {
 
     public void RunMoveNext()
     {
-        selectedUnit.GetComponent<Unit>().MoveNextTile();
+        GameObject[] units;
+        units = GameObject.FindGameObjectsWithTag("UnitController");
+        foreach (GameObject unit in units)
+        {
+            SelectUnit(unit);
+            selectedUnit.GetComponent<Unit>().MoveNextTile();
+        }
         gatherResources();
     }
 
