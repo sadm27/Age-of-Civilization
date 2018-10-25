@@ -9,9 +9,13 @@ public class Unit : MonoBehaviour {
     public int Ytile;
     TileMap map;
     public bool isGathering = true;
+    public bool canSettleCity = false;
+    public GameObject cityPrefab;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
+
+    MouseManagerS mouseMan;
 
 
     void Start()
@@ -19,11 +23,18 @@ public class Unit : MonoBehaviour {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
+        mouseMan = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
     }
 
 
     void Update()
     {
+        if(canSettleCity && mouseMan.selectedUnit == this.gameObject && Input.GetKeyDown(KeyCode.F))
+        {
+            SettleCity();
+        }
+
+
         if(CurrPath != null)
         {
             int CurrNode = 0;
@@ -43,7 +54,11 @@ public class Unit : MonoBehaviour {
     }
 
 
-
+    void SettleCity()
+    {
+        Instantiate(cityPrefab, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -0.9f), Quaternion.Euler(90, 0, 0));
+        Destroy(gameObject);
+    }
 
     public void MoveNextTile()
     {
