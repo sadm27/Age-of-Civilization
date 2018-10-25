@@ -68,13 +68,53 @@ public class TileMap : MonoBehaviour {
 
 
 
-  
+    public string GetTileResName(int x, int y)
+    {
+        string ResorceNam = null;
+        Tile.tileResource ans = map[x, y].resource;
+
+        if(ans == Tile.tileResource.Wood)
+        {
+            ResorceNam = "Wood";
+        }
+        if (ans == Tile.tileResource.Stone)
+        {
+            ResorceNam = "Stone";
+        }
+        if (ans == Tile.tileResource.Food)
+        {
+            ResorceNam = "Food";
+        }
+
+        if (ans == Tile.tileResource.Nothing)
+        {
+            ResorceNam = "Nothing";
+        }
+
+        return ResorceNam;
+    }
 
 
 
+    public int GetTileResAmt(int x, int y)
+    {
+        
+        int ans = map[x, y].amountOfResource;
 
+        return ans;
+    }
 
+    public void gatherResource(int x, int y, int amount)
+    {
+        map[x, y].amountOfResource -= amount;
+    }
 
+    public void removeResource(int x, int y)
+    {
+        map[x, y].resource = Tile.tileResource.Nothing;
+        string name = "Resource" + x.ToString() + "," + y.ToString();
+        Destroy(GameObject.Find(name));
+    }
 
 
 
@@ -338,6 +378,7 @@ public class TileMap : MonoBehaviour {
                         //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
             GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
+                go.name = "Tile" + x.ToString() + "," + y.ToString();
                 //the game object is initalized and created at set coordinace
 
                 switch (map[x, y].resource)
@@ -365,6 +406,7 @@ public class TileMap : MonoBehaviour {
                 if (map[x, y].type != Tile.tileType.Water && map[x, y].resource != Tile.tileResource.Nothing && map[x, y].type != Tile.tileType.Mountain)
                 {
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
+                    rgo.name = "Resource" + x.ToString() + "," + y.ToString();
                 }
 
                 tileClicker CT = go.GetComponent<tileClicker>();

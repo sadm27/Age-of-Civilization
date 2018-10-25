@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MouseManagerS : MonoBehaviour {
 
 
     public GameObject selectedUnit;
     public GameObject UnitInfo;
+
+    public Text UnitName;
+    public Text UnitHealth;
+    public Text OnTileFood;
+    public Text OnTileWood;
+    public Text OnTileStone;
+    public Text OnTileGold;
+
 
     public TileMap map;
 
@@ -41,19 +50,9 @@ public class MouseManagerS : MonoBehaviour {
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
-                    //map.SelectUnit(selectedUnit);
                     UnitInfo.gameObject.SetActive(true);
-
-                }
-                else 
-                {
-                   
-                    
-                }
-
-
+                }                
             }
-
             else
             {
                 if (Input.GetButtonDown("Cancel"))
@@ -64,7 +63,6 @@ public class MouseManagerS : MonoBehaviour {
             }
 
         }
-
         if (Input.GetButtonDown("Cancel"))
         {
             ClearSelection();
@@ -102,6 +100,10 @@ public class MouseManagerS : MonoBehaviour {
 			r.material = m;
 		}
 
+        OnTileWood.text = "0";
+        OnTileStone.text = "0";
+        OnTileFood.text = "0";
+        Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
 
         selectedUnit = null;
 	}
@@ -116,6 +118,75 @@ public class MouseManagerS : MonoBehaviour {
     public void RunMoveNext()
     {
         selectedUnit.GetComponent<Unit>().MoveNextTile();
+        gatherResources();
+    }
+
+    public void gatherResources()
+    {
+        map = GameObject.Find("Map").GetComponent<TileMap>();
+        int Xtile;
+        int Ytile;
+
+
+        GameObject[] units;
+        GameObject playerOne;
+        units = GameObject.FindGameObjectsWithTag("Unit tag");
+        playerOne = GameObject.FindGameObjectWithTag("Player");
+        foreach (GameObject unit in units)
+        {
+            if (unit.GetComponent<Unit>().isGathering == true)
+            {
+                Xtile = (int)unit.transform.position.x;
+                Ytile = (int)unit.transform.position.y;
+
+                int amountOnTile = map.GetTileResAmt(Xtile, Ytile);
+                if(amountOnTile > unit.GetComponent<Unit>().amountGathered)
+                {
+                    map.gatherResource(Xtile, Ytile, unit.GetComponent<Unit>().amountGathered);
+                    string type = map.GetTileResName(Xtile, Ytile);
+                    switch (type)
+                    {
+                        case "Wood":
+                            playerOne.GetComponent<Player>().woodAmount += unit.GetComponent<Unit>().amountGathered;
+                            break;
+
+                        case "Food":
+                            playerOne.GetComponent<Player>().foodAmount += unit.GetComponent<Unit>().amountGathered;
+                            break;
+
+                        case "Stone":
+                            playerOne.GetComponent<Player>().stoneAmount += unit.GetComponent<Unit>().amountGathered;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    map.gatherResource(Xtile, Ytile, amountOnTile);
+                    string type = map.GetTileResName(Xtile, Ytile);
+                    switch (type)
+                    {
+                        case "Wood":
+                            playerOne.GetComponent<Player>().woodAmount += amountOnTile;
+                            break;
+
+                        case "Food":
+                            playerOne.GetComponent<Player>().foodAmount += amountOnTile;
+                            break;
+
+                        case "Stone":
+                            playerOne.GetComponent<Player>().stoneAmount += amountOnTile;
+                            break;
+
+                        default:
+                            break;
+                    }
+                    map.removeResource(Xtile, Ytile);
+                }
+            }
+        }
     }
 
 
