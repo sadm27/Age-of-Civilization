@@ -2402,8 +2402,8 @@ MonoBehaviour:
       type: 2}
   - name: Nothing
     ResourceVisualPrefab: {fileID: 0}
-  MapSizeX: 100
-  MapSizeY: 100
+  MapSizeX: 20
+  MapSizeY: 20
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0
