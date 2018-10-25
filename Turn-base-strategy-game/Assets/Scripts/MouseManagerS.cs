@@ -130,7 +130,7 @@ public class MouseManagerS : MonoBehaviour {
 
         GameObject[] units;
         GameObject playerOne;
-        units = GameObject.FindGameObjectsWithTag("Unit tag");
+        units = GameObject.FindGameObjectsWithTag("UnitController");
         playerOne = GameObject.FindGameObjectWithTag("Player");
         foreach (GameObject unit in units)
         {

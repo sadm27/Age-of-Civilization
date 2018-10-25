@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit tag
   - Mount_Un
+  - UnitController
   layers:
   - Default
   - TransparentFX

@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 306735076}
   m_Layer: 0
   m_Name: placeUnit
-  m_TagString: Unit tag
+  m_TagString: UnitController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1555,7 +1555,7 @@ GameObject:
   - component: {fileID: 1078864730}
   m_Layer: 0
   m_Name: placeUnit2
-  m_TagString: Unit tag
+  m_TagString: UnitController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
