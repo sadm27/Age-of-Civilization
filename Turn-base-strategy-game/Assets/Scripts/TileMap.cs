@@ -240,8 +240,9 @@ public class TileMap : MonoBehaviour {
     {
         float xCoords = (float)x / MapSizeX * 10;
         float yCoords = (float)y / MapSizeY * 10;
+        int rand = Random.Range(0,10000);
 
-        float sample = Mathf.PerlinNoise(xCoords, yCoords);
+        float sample = Mathf.PerlinNoise(xCoords + rand, yCoords + rand);
         return sample;
     }
 
