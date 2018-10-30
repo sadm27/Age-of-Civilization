@@ -43,11 +43,20 @@ public class TileMap : MonoBehaviour {
 
 
     MouseManagerS mouseManagerS;
-    
+    public GameObject selectedUnit;
 
+<<<<<<< HEAD
     public int MapSizeX = 20;
     public int MapSizeY = 20;
 
+=======
+
+    int MapSizeX = 20;
+    int MapSizeY = 20;
+
+    //200 by 200 test
+
+>>>>>>> Max-MenuandCities
     void Start()
     {
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
@@ -56,6 +65,7 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
+<<<<<<< HEAD
 
     /*
     public void SelectUnit(GameObject unit)
@@ -63,6 +73,20 @@ public class TileMap : MonoBehaviour {
         this.selectedUnit = unit;
     }
     */
+=======
+/*<<<<<<< HEAD
+
+    void Update()
+    {
+        selectedUnit.GetComponent<Unit>().Xtile = (int)selectedUnit.transform.position.x;
+        selectedUnit.GetComponent<Unit>().Ytile = (int)selectedUnit.transform.position.y;
+    }
+=======
+>>>>>>> parent of 7705d3a... public map size*/
+
+
+    
+>>>>>>> Max-MenuandCities
 
 
 
