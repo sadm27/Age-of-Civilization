@@ -72,7 +72,9 @@ public class Unit : MonoBehaviour {
                 Vector3 end = map.TileCoordToWorldCoord(CurrPath[CurrNode + 1].NodeX, CurrPath[CurrNode + 1].NodeY) + new Vector3(0, 0, -1f);
 
 
-                Debug.DrawLine(start, end, Color.red);
+                DrawLine(start, end, Color.red);
+
+                //Debug.DrawLine(start, end, Color.red);
 
                 CurrNode++;
             }
@@ -107,6 +109,20 @@ public class Unit : MonoBehaviour {
 
     }
 
+
+    void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+        lr.SetColors(color, color);
+        lr.SetWidth(0.1f, 0.1f);
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
+    }
 
 
 
