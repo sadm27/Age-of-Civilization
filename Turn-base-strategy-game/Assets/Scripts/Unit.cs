@@ -9,8 +9,7 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     TileMap map;
-<<<<<<< HEAD
-    public bool isGathering = false;
+    public bool isGathering;
     string UItileType;
     string UITileAmt;
     public int amountGathered = 50;
@@ -21,11 +20,10 @@ public class Unit : MonoBehaviour {
     public Text OnTileWood;
     public Text OnTileStone;
     public Text OnTileGold;
-=======
-    public bool isGathering = true;
+    //public bool isGathering = true;
     public bool canSettleCity = false;
     public GameObject cityPrefab;
->>>>>>> Max-MenuandCities
+
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
@@ -39,7 +37,7 @@ public class Unit : MonoBehaviour {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
-<<<<<<< HEAD
+
 
         UItileType = map.GetTileResName(Xtile, Ytile);
 
@@ -65,9 +63,9 @@ public class Unit : MonoBehaviour {
             OnTileFood.text = "0";
         }
 
-=======
+
         mouseMan = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
->>>>>>> Max-MenuandCities
+
     }
 
 
@@ -128,7 +126,6 @@ public class Unit : MonoBehaviour {
     }
 
 
-<<<<<<< HEAD
     void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
     {
         GameObject myLine = new GameObject();
@@ -144,13 +141,13 @@ public class Unit : MonoBehaviour {
     }
 
 
-=======
+
     void SettleCity()
     {
         Instantiate(cityPrefab, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -0.9f), Quaternion.Euler(90, 0, 0));
         Destroy(gameObject);
     }
->>>>>>> Max-MenuandCities
+
 
     public void MoveNextTile()
     {
