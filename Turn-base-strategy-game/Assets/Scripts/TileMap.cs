@@ -381,6 +381,7 @@ public class TileMap : MonoBehaviour {
 
             GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
+                go.tag = "MapTile";
                 //the game object is initalized and created at set coordinace
 
                 switch (map[x, y].resource)

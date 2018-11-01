@@ -30,6 +30,11 @@ public class MouseManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (Input.GetKeyDown("space"))
+        {
+            GameObject worker = (GameObject)Instantiate(Resources.Load("workerUnit"), new Vector3(Random.Range((int)0,(int)20), Random.Range((int)0, (int)20), 0), Quaternion.identity);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -49,6 +54,7 @@ public class MouseManagerS : MonoBehaviour {
                     
                     GameObject hitObject = hitInfo.transform.root.gameObject;
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
+                    
 
                     SelectUnit(hitObject);
                     UnitInfo.gameObject.SetActive(true);
@@ -126,6 +132,7 @@ public class MouseManagerS : MonoBehaviour {
             selectedUnit.GetComponent<Unit>().MoveNextTile();
         }
         gatherResources();
+        ClearSelection();
     }
 
     public void gatherResources()

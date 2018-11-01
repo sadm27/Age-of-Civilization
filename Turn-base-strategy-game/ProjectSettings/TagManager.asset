@@ -7,6 +7,7 @@ TagManager:
   - Unit tag
   - Mount_Un
   - UnitController
+  - MapTile
   layers:
   - Default
   - TransparentFX
