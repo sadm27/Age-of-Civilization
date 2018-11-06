@@ -17,6 +17,8 @@ public class MouseManagerS : MonoBehaviour {
     public Text OnTileWood;
     public Text OnTileStone;
     public Text OnTileGold;
+    public Text TurnCount;
+    public int turnCountNum;
 
 
     public TileMap map;
@@ -111,7 +113,11 @@ public class MouseManagerS : MonoBehaviour {
 
 
 
-
+    public void Turncounter()
+    {
+        turnCountNum++;
+        TurnCount.text = string.Concat("Turn: ", turnCountNum);
+    }
 
 
 
