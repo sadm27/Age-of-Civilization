@@ -11,6 +11,8 @@ TagManager:
   - UnitControllerP2
   - Player2
   - Player1
+  - UnitControllerP1
+  - Unit tag P1
   layers:
   - Default
   - TransparentFX

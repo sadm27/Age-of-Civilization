@@ -43,12 +43,14 @@ public class MouseManagerS : MonoBehaviour {
 
             RaycastHit hitInfo = new RaycastHit();
 
+            int trunCOU = getTurnCountNum();
+
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
 
             if (hit)
             {
                 
-                if (hitInfo.transform.gameObject.tag == "Unit tag")
+                if (hitInfo.transform.gameObject.tag == "Unit tag P1" && trunCOU % 2 == 1)
                 {
                     
                     GameObject hitObject = hitInfo.transform.root.gameObject;
@@ -56,7 +58,18 @@ public class MouseManagerS : MonoBehaviour {
 
                     SelectUnit(hitObject);
                     UnitInfo.gameObject.SetActive(true);
-                }                
+                }
+
+                if (hitInfo.transform.gameObject.tag == "Unit tag P2" && trunCOU % 2 == 0)
+                {
+
+                    GameObject hitObject = hitInfo.transform.root.gameObject;
+                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
+
+                    SelectUnit(hitObject);
+                    UnitInfo.gameObject.SetActive(true);
+                }
+
             }
             else
             {
@@ -126,8 +139,20 @@ public class MouseManagerS : MonoBehaviour {
 
     public void RunMoveNext()
     {
+        int trunCOU = getTurnCountNum();
         GameObject[] units;
-        units = GameObject.FindGameObjectsWithTag("UnitController");
+        //units = GameObject.FindGameObjectsWithTag("UnitController");
+
+        if (trunCOU % 2 == 1)
+        {
+            units = GameObject.FindGameObjectsWithTag("UnitControllerP1");
+        }
+        else
+        {
+            //if (trunCOU % 2 == 0)
+            units = GameObject.FindGameObjectsWithTag("UnitControllerP2");
+        }
+
         foreach (GameObject unit in units)
         {
             SelectUnit(unit);
@@ -164,7 +189,7 @@ public class MouseManagerS : MonoBehaviour {
         if (trunCOU % 2 == 1)
         {
             player = GameObject.FindGameObjectWithTag("Player1");
-            units = GameObject.FindGameObjectsWithTag("UnitControllerP!");
+            units = GameObject.FindGameObjectsWithTag("UnitControllerP1");
         }
         else
         {
