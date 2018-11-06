@@ -132,6 +132,7 @@ public class MouseManagerS : MonoBehaviour {
     {
         turnCountNum++;
         TurnCount.text = string.Concat("Turn: ", turnCountNum);
+        ClearSelection();
     }
 
 
