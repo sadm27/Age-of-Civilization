@@ -7,6 +7,10 @@ TagManager:
   - Unit tag
   - Mount_Un
   - UnitController
+  - Unit tag P2
+  - UnitControllerP2
+  - Player2
+  - Player1
   layers:
   - Default
   - TransparentFX

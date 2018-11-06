@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -134,6 +136,19 @@ public class MouseManagerS : MonoBehaviour {
         gatherResources();
     }
 
+
+
+    public int getTurnCountNum()
+    {
+        string buff = TurnCount.text;
+
+        //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
+        string result = Regex.Match(buff, @"\d+").Value;
+
+        return Int32.Parse(result);
+    }
+
+
     public void gatherResources()
     {
         map = GameObject.Find("Map").GetComponent<TileMap>();
@@ -142,9 +157,25 @@ public class MouseManagerS : MonoBehaviour {
 
 
         GameObject[] units;
-        GameObject playerOne;
-        units = GameObject.FindGameObjectsWithTag("UnitController");
-        playerOne = GameObject.FindGameObjectWithTag("Player");
+        GameObject player;
+        int trunCOU = getTurnCountNum();
+        
+
+        if (trunCOU % 2 == 1)
+        {
+            player = GameObject.FindGameObjectWithTag("Player1");
+            units = GameObject.FindGameObjectsWithTag("UnitControllerP!");
+        }
+        else
+        {
+            //if (trunCOU % 2 == 0)
+            player = GameObject.FindGameObjectWithTag("Player2");
+            units = GameObject.FindGameObjectsWithTag("UnitControllerP2");
+        }
+
+
+        //units = GameObject.FindGameObjectsWithTag("UnitController");
+        //player = GameObject.FindGameObjectWithTag("Player1");
         foreach (GameObject unit in units)
         {
             if (unit.GetComponent<Unit>().isGathering == true)
@@ -160,15 +191,15 @@ public class MouseManagerS : MonoBehaviour {
                     switch (type)
                     {
                         case "Wood":
-                            playerOne.GetComponent<Player>().woodAmount += unit.GetComponent<Unit>().amountGathered;
+                            player.GetComponent<Player>().woodAmount += unit.GetComponent<Unit>().amountGathered;
                             break;
 
                         case "Food":
-                            playerOne.GetComponent<Player>().foodAmount += unit.GetComponent<Unit>().amountGathered;
+                            player.GetComponent<Player>().foodAmount += unit.GetComponent<Unit>().amountGathered;
                             break;
 
                         case "Stone":
-                            playerOne.GetComponent<Player>().stoneAmount += unit.GetComponent<Unit>().amountGathered;
+                            player.GetComponent<Player>().stoneAmount += unit.GetComponent<Unit>().amountGathered;
                             break;
 
                         default:
@@ -182,15 +213,15 @@ public class MouseManagerS : MonoBehaviour {
                     switch (type)
                     {
                         case "Wood":
-                            playerOne.GetComponent<Player>().woodAmount += amountOnTile;
+                            player.GetComponent<Player>().woodAmount += amountOnTile;
                             break;
 
                         case "Food":
-                            playerOne.GetComponent<Player>().foodAmount += amountOnTile;
+                            player.GetComponent<Player>().foodAmount += amountOnTile;
                             break;
 
                         case "Stone":
-                            playerOne.GetComponent<Player>().stoneAmount += amountOnTile;
+                            player.GetComponent<Player>().stoneAmount += amountOnTile;
                             break;
 
                         default:

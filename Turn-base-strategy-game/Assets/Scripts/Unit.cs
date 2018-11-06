@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +22,7 @@ public class Unit : MonoBehaviour {
     public Text OnTileWood;
     public Text OnTileStone;
     public Text OnTileGold;
+    public Text TurnCount;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
@@ -121,6 +124,9 @@ public class Unit : MonoBehaviour {
         lr.SetPosition(1, end);
         GameObject.Destroy(myLine, duration);
     }
+
+
+    
 
 
     public void MoveNextTile()
