@@ -8,6 +8,7 @@ TagManager:
   - Mount_Un
   - UnitController
   - MapTile
+  - MapMesh
   layers:
   - Default
   - TransparentFX

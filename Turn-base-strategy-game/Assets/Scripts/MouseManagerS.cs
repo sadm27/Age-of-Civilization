@@ -30,11 +30,6 @@ public class MouseManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown("space"))
-        {
-            GameObject worker = (GameObject)Instantiate(Resources.Load("workerUnit"), new Vector3(Random.Range((int)0,(int)20), Random.Range((int)0, (int)20), 0), Quaternion.identity);
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
 
