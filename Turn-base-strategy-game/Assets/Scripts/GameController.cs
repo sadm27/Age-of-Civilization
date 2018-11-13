@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour {
     public Button nextTurnButton;
     public Text TurnCount;
     public int turnCountNum;
+    public MouseManagerS MMS;
 
     // Use this for initialization
     void Start () {
@@ -29,6 +30,18 @@ public class GameController : MonoBehaviour {
         nextTurnButton.onClick.AddListener(ChangePlayer);
 
     }
+
+
+    public int getTurnCountNum()
+    {
+        string buff = TurnCount.text;
+
+        //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
+        string result = Regex.Match(buff, @"\d+").Value;
+
+        return Int32.Parse(result);
+    }
+
 
     public void ChangePlayer()
     {
@@ -43,6 +56,9 @@ public class GameController : MonoBehaviour {
         if(playerNum >= playerCount)
         {
             CurrPlayer = player_1;
+            turnCountNum++;
+            TurnCount.text = string.Concat("Turn: ", turnCountNum);
+            MMS.ClearSelection();
         }
         else
         {
@@ -56,6 +72,7 @@ public class GameController : MonoBehaviour {
             if (playerGameObj != null)
             {
                 CurrPlayer = playerGameObj.GetComponent<Player>();
+                MMS.ClearSelection();
             }
                         
         }

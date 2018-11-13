@@ -1305,6 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f3272a2e97b5b48b6516acafc2da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 0}
+  GC: {fileID: 779655011}
   selectedUnit: {fileID: 0}
   UnitInfo: {fileID: 1499415594}
   UnitName: {fileID: 807553080}
@@ -1315,7 +1317,7 @@ MonoBehaviour:
   OnTileGold: {fileID: 131125740}
   TurnCount: {fileID: 1591454879}
   turnCountNum: 0
-  map: {fileID: 0}
+  MMCurrPlayer: 
 --- !u!4 &449481285
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,6 +1611,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6133b98982f6ef4d99f17886e73404a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCount: 2
+  player_1: {fileID: 1265605729}
+  player_2: {fileID: 844836267}
+  player_3: {fileID: 0}
+  player_4: {fileID: 0}
+  player_5: {fileID: 0}
+  player_6: {fileID: 0}
+  player_7: {fileID: 0}
+  player_8: {fileID: 0}
+  CurrPlayer: {fileID: 0}
+  nextTurnButton: {fileID: 422738472}
+  TurnCount: {fileID: 1591454879}
+  turnCountNum: 0
+  MMS: {fileID: 449481284}
 --- !u!1 &798623690
 GameObject:
   m_ObjectHideFlags: 0

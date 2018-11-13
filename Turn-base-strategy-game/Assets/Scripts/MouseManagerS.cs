@@ -33,10 +33,10 @@ public class MouseManagerS : MonoBehaviour {
     {
         MMCurrPlayer = GC.GetCurrPlayer();
     }
-	
 
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -47,9 +47,10 @@ public class MouseManagerS : MonoBehaviour {
 
             RaycastHit hitInfo = new RaycastHit();
 
-            int trunCOU = getTurnCountNum();
 
+            Debug.Log("Num1: " + MMCurrPlayer);
             string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+            Debug.Log("Num: " + result);
             int playerNum = Int32.Parse(result);
 
             string PlayerUT = "Unit tag P";
@@ -109,7 +110,7 @@ public class MouseManagerS : MonoBehaviour {
 		}
 	}
 
-	void ClearSelection() {
+	 public void ClearSelection() {
 		if(selectedUnit == null)
 			return;
 
@@ -130,15 +131,6 @@ public class MouseManagerS : MonoBehaviour {
 
 
 
-    public void Turncounter()
-    {
-        turnCountNum++;
-        TurnCount.text = string.Concat("Turn: ", turnCountNum);
-        ClearSelection();
-    }
-
-
-
 
     public void RunMoveNext()
     {
@@ -146,6 +138,7 @@ public class MouseManagerS : MonoBehaviour {
 
 
         string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+        Debug.Log("Num: " + result);
         int playerNum = Int32.Parse(result);
 
         string PlayerUC = "UnitControllerP";
@@ -163,15 +156,7 @@ public class MouseManagerS : MonoBehaviour {
 
 
 
-    public int getTurnCountNum()
-    {
-        string buff = TurnCount.text;
-
-        //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
-        string result = Regex.Match(buff, @"\d+").Value;
-
-        return Int32.Parse(result);
-    }
+    
 
 
     public void gatherResources()
@@ -186,6 +171,7 @@ public class MouseManagerS : MonoBehaviour {
 
         //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
         string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+        Debug.Log("Num: " + result);
         int playerNum = Int32.Parse(result);
 
         string PlayerUC = "UnitControllerP";
