@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class MouseManagerS : MonoBehaviour {
 
+    public TileMap map;
+    public GameController GC;
 
     public GameObject selectedUnit;
     public GameObject UnitInfo;
@@ -21,14 +23,16 @@ public class MouseManagerS : MonoBehaviour {
     public Text OnTileGold;
     public Text TurnCount;
     public int turnCountNum;
+    public string MMCurrPlayer;
 
 
-    public TileMap map;
+    
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start ()
+    {
+        MMCurrPlayer = GC.GetCurrPlayer();
+    }
 	
 
 	// Update is called once per frame
@@ -45,24 +49,22 @@ public class MouseManagerS : MonoBehaviour {
 
             int trunCOU = getTurnCountNum();
 
+            string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+            int playerNum = Int32.Parse(result);
+
+            string PlayerUT = "Unit tag P";
+            string UTag = string.Concat(PlayerUT, playerNum);
+
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
 
             if (hit)
             {
+
+
                 
-                if (hitInfo.transform.gameObject.tag == "Unit tag P1" && trunCOU % 2 == 1)
+                if (hitInfo.transform.gameObject.tag == UTag)
                 {
                     
-                    GameObject hitObject = hitInfo.transform.root.gameObject;
-                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
-
-                    SelectUnit(hitObject);
-                    UnitInfo.gameObject.SetActive(true);
-                }
-
-                if (hitInfo.transform.gameObject.tag == "Unit tag P2" && trunCOU % 2 == 0)
-                {
-
                     GameObject hitObject = hitInfo.transform.root.gameObject;
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
@@ -140,19 +142,16 @@ public class MouseManagerS : MonoBehaviour {
 
     public void RunMoveNext()
     {
-        int trunCOU = getTurnCountNum();
         GameObject[] units;
-        //units = GameObject.FindGameObjectsWithTag("UnitController");
 
-        if (trunCOU % 2 == 1)
-        {
-            units = GameObject.FindGameObjectsWithTag("UnitControllerP1");
-        }
-        else
-        {
-            //if (trunCOU % 2 == 0)
-            units = GameObject.FindGameObjectsWithTag("UnitControllerP2");
-        }
+
+        string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+        int playerNum = Int32.Parse(result);
+
+        string PlayerUC = "UnitControllerP";
+        string Ucont = string.Concat(PlayerUC, playerNum);
+
+        units = GameObject.FindGameObjectsWithTag(Ucont);
 
         foreach (GameObject unit in units)
         {
@@ -184,21 +183,17 @@ public class MouseManagerS : MonoBehaviour {
 
         GameObject[] units;
         GameObject player;
-        int trunCOU = getTurnCountNum();
+
+        //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
+        string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+        int playerNum = Int32.Parse(result);
+
+        string PlayerUC = "UnitControllerP";
+        string Ucont = string.Concat(PlayerUC, playerNum);
+
+        player = GameObject.FindGameObjectWithTag(MMCurrPlayer);
+        units = GameObject.FindGameObjectsWithTag(Ucont);
         
-
-        if (trunCOU % 2 == 1)
-        {
-            player = GameObject.FindGameObjectWithTag("Player1");
-            units = GameObject.FindGameObjectsWithTag("UnitControllerP1");
-        }
-        else
-        {
-            //if (trunCOU % 2 == 0)
-            player = GameObject.FindGameObjectWithTag("Player2");
-            units = GameObject.FindGameObjectsWithTag("UnitControllerP2");
-        }
-
 
         //units = GameObject.FindGameObjectsWithTag("UnitController");
         //player = GameObject.FindGameObjectWithTag("Player1");
