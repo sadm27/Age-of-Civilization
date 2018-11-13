@@ -11,14 +11,17 @@ public class Tile
         Grassland,
         Marsh,
         Mountain,
-        Water
+        Water,
+        Plains,
+        Desert
     }
     public enum tileResource
     {
         Wood,
         Stone,
         Food,
-        Nothing
+        Nothing,
+        Gold
     }
 
     public tileType type;
@@ -147,7 +150,15 @@ public class TileMap : MonoBehaviour {
                 else if (height < .7)
                 {
                     map[x, y] = new Tile();
-                    map[x, y].type = Tile.tileType.Grassland;
+                    if (GetMoisture(x,y) < .25) {
+                        map[x, y].type = Tile.tileType.Desert;
+                    }else if(GetMoisture(x,y) < .5){
+                        map[x, y].type = Tile.tileType.Plains;
+                    }
+                    else
+                    {
+                        map[x, y].type = Tile.tileType.Grassland;
+                    }
                     map[x, y].isWalkable = true;
                 }
                 else
@@ -191,6 +202,11 @@ public class TileMap : MonoBehaviour {
                     {
                         map[x, y].resource = Tile.tileResource.Stone;
                     }
+                    map[x, y].amountOfResource = GenerateAmountOfResource();
+                }
+                else if(rand == 3)
+                {
+                    map[x, y].resource = Tile.tileResource.Gold;
                     map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
                 else
@@ -244,6 +260,17 @@ public class TileMap : MonoBehaviour {
         //int rand = Random.Range(0,10000);
 
         float sample = Mathf.PerlinNoise(xCoords + rand, yCoords + rand);
+        return sample;
+    }
+
+    float GetMoisture(int x, int y)
+    {
+        float xCoords = (float)x / MapSizeX * 10;
+        float yCoords = (float)y / MapSizeY * 10;
+        int offset = 0;
+        //int offset = Random.Range(10,500);
+
+        float sample = Mathf.PerlinNoise(xCoords + offset, yCoords + offset);
         return sample;
     }
 
@@ -373,6 +400,14 @@ public class TileMap : MonoBehaviour {
                         tt = tileTypes[3];
                         break;
 
+                    case Tile.tileType.Plains:
+                        tt = tileTypes[4];
+                        break;
+
+                    case Tile.tileType.Desert:
+                        tt = tileTypes[5];
+                        break;
+
                     default:
                         break;
                 }
@@ -381,14 +416,13 @@ public class TileMap : MonoBehaviour {
 
             GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
-                go.tag = "MapTile";
 
-                if (tt.TileMesh != null)
+                if(tt.TileMesh != null)
                 {
-                    GameObject gm = (GameObject)Instantiate(tt.TileMesh, new Vector3(x, y, 0), Quaternion.identity, go.transform);
-                    gm.name = "Tile" + x.ToString() + "," + y.ToString() + " Mesh";
-                    gm.tag = "MapMesh";
+                    GameObject gomesh = (GameObject)Instantiate(tt.TileMesh, new Vector3(x, y, 0), Quaternion.identity, go.transform);
+                    gomesh.name = "TileMesh" + x.ToString() + "," + y.ToString();
                 }
+
                 //the game object is initalized and created at set coordinace
 
                 switch (map[x, y].resource)
@@ -409,6 +443,10 @@ public class TileMap : MonoBehaviour {
                         tr = tileResource[3];
                         break;
 
+                    case Tile.tileResource.Gold:
+                        tr = tileResource[4];
+                        break;
+
                     default:
                         break;
                 }
@@ -418,6 +456,7 @@ public class TileMap : MonoBehaviour {
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
                     rgo.name = "Resource" + x.ToString() + "," + y.ToString();
                 }
+
 
                 tileClicker CT = go.GetComponent<tileClicker>();
                 //gets components of the tile game object and sets them to the tile clicker to help that

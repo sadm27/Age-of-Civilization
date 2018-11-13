@@ -141,7 +141,6 @@ MonoBehaviour:
   Ytile: 2
   isGathering: 0
   amountGathered: 50
-  UnitPrefab: {fileID: 0}
   UnitName: {fileID: 0}
   UnitHealth: {fileID: 0}
   OnTileFood: {fileID: 0}

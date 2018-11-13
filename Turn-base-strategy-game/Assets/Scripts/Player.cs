@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public int stoneAmount = 500;
     public int woodAmount = 500;
     public int goldAmount = 500;
+    public bool canMoveUnits = false;
 
     public Text UIplayerFood;
     public Text UIplayerStone;

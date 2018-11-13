@@ -1201,6 +1201,34 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 465606239}
   m_CullTransparentMesh: 0
+--- !u!1 &534111098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 534111099}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &534111099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 534111098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.001493, y: 18.798378, z: -12.647774}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1897,7 @@ MonoBehaviour:
   stoneAmount: 500
   woodAmount: 500
   goldAmount: 500
+  canMoveUnits: 0
   UIplayerFood: {fileID: 1547282924}
   UIplayerStone: {fileID: 1732240759}
   UIplayerWood: {fileID: 2123845939}
@@ -2479,6 +2508,18 @@ MonoBehaviour:
     TileMesh: {fileID: 0}
     moveCost: 0
     isWalkable: 1
+  - name: Plains
+    TileVisualPrefab: {fileID: 1852724161668610, guid: 2f42c1fa7abdb6940bdffc17793e4cdb,
+      type: 2}
+    TileMesh: {fileID: 0}
+    moveCost: 0
+    isWalkable: 1
+  - name: Desert
+    TileVisualPrefab: {fileID: 1024946539071344, guid: cff6b6b5590a0cd4f9a238875203afce,
+      type: 2}
+    TileMesh: {fileID: 0}
+    moveCost: 0
+    isWalkable: 1
   tileResource:
   - name: Food
     ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
@@ -2491,8 +2532,11 @@ MonoBehaviour:
       type: 2}
   - name: Nothing
     ResourceVisualPrefab: {fileID: 0}
-  MapSizeX: 20
-  MapSizeY: 20
+  - name: Gold
+    ResourceVisualPrefab: {fileID: 1771969163632334, guid: 8b4e3c3e577ff4c46b61476fa06a351b,
+      type: 2}
+  MapSizeX: 100
+  MapSizeY: 100
 --- !u!4 &1807354109
 Transform:
   m_ObjectHideFlags: 0
