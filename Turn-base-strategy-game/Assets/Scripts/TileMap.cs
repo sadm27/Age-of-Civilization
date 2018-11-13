@@ -34,6 +34,7 @@ public class TileMap : MonoBehaviour {
     public TileType[] tileTypes;
     public TileResource[] tileResource;
 
+
     public Tile[,] map;
 
 
@@ -44,12 +45,18 @@ public class TileMap : MonoBehaviour {
     MouseManagerS mouseManagerS;
     public GameObject selectedUnit;
 
+<<<<<<< HEAD
 
     int MapSizeX = 20;
     int MapSizeY = 20;
 
     //200 by 200 test
 
+=======
+    public int MapSizeX = 20;
+    public int MapSizeY = 20;
+
+>>>>>>> 2nd-player-func
     void Start()
     {
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
@@ -58,6 +65,7 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
+<<<<<<< HEAD
 /*<<<<<<< HEAD
 
     void Update()
@@ -70,18 +78,67 @@ public class TileMap : MonoBehaviour {
 
 
     
+=======
+
+    /*
+    public void SelectUnit(GameObject unit)
+    {
+        this.selectedUnit = unit;
+    }
+    */
+>>>>>>> 2nd-player-func
 
 
 
 
 
-  
+    public string GetTileResName(int x, int y)
+    {
+        string ResorceNam = null;
+        Tile.tileResource ans = map[x, y].resource;
+
+        if(ans == Tile.tileResource.Wood)
+        {
+            ResorceNam = "Wood";
+        }
+        if (ans == Tile.tileResource.Stone)
+        {
+            ResorceNam = "Stone";
+        }
+        if (ans == Tile.tileResource.Food)
+        {
+            ResorceNam = "Food";
+        }
+
+        if (ans == Tile.tileResource.Nothing)
+        {
+            ResorceNam = "Nothing";
+        }
+
+        return ResorceNam;
+    }
 
 
 
+    public int GetTileResAmt(int x, int y)
+    {
+        
+        int ans = map[x, y].amountOfResource;
 
+        return ans;
+    }
 
+    public void gatherResource(int x, int y, int amount)
+    {
+        map[x, y].amountOfResource -= amount;
+    }
 
+    public void removeResource(int x, int y)
+    {
+        map[x, y].resource = Tile.tileResource.Nothing;
+        string name = "Resource" + x.ToString() + "," + y.ToString();
+        Destroy(GameObject.Find(name));
+    }
 
 
 
@@ -205,10 +262,12 @@ public class TileMap : MonoBehaviour {
 
     float GetHeight(int x, int y)
     {
-        float xCoords = (float)x / MapSizeX * 10;
-        float yCoords = (float)y / MapSizeY * 10;
+        float xCoords = (float)x / MapSizeX * 8;
+        float yCoords = (float)y / MapSizeY * 8;
+        int rand = 1;
+        //int rand = Random.Range(0,10000);
 
-        float sample = Mathf.PerlinNoise(xCoords, yCoords);
+        float sample = Mathf.PerlinNoise(xCoords + rand, yCoords + rand);
         return sample;
     }
 
@@ -345,6 +404,7 @@ public class TileMap : MonoBehaviour {
                         //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
             GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
+                go.name = "Tile" + x.ToString() + "," + y.ToString();
                 //the game object is initalized and created at set coordinace
 
                 switch (map[x, y].resource)
@@ -372,6 +432,7 @@ public class TileMap : MonoBehaviour {
                 if (map[x, y].type != Tile.tileType.Water && map[x, y].resource != Tile.tileResource.Nothing && map[x, y].type != Tile.tileType.Mountain)
                 {
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
+                    rgo.name = "Resource" + x.ToString() + "," + y.ToString();
                 }
 
                 tileClicker CT = go.GetComponent<tileClicker>();

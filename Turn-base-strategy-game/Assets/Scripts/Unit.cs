@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour {
 
@@ -8,12 +11,28 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     TileMap map;
+<<<<<<< HEAD
     public bool isGathering = true;
     public bool canSettleCity = false;
     public GameObject cityPrefab;
+=======
+    public bool isGathering = false;
+    string UItileType;
+    string UITileAmt;
+    public int amountGathered = 50;
+
+    public Text UnitName;
+    public Text UnitHealth;
+    public Text OnTileFood;
+    public Text OnTileWood;
+    public Text OnTileStone;
+    public Text OnTileGold;
+    public Text TurnCount;
+>>>>>>> 2nd-player-func
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
+    
 
     MouseManagerS mouseMan;
 
@@ -23,7 +42,35 @@ public class Unit : MonoBehaviour {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
+<<<<<<< HEAD
         mouseMan = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
+=======
+
+        UItileType = map.GetTileResName(Xtile, Ytile);
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+        }
+
+>>>>>>> 2nd-player-func
     }
 
 
@@ -45,20 +92,68 @@ public class Unit : MonoBehaviour {
                 Vector3 start = map.TileCoordToWorldCoord(CurrPath[CurrNode].NodeX, CurrPath[CurrNode].NodeY) + new Vector3(0, 0, -1f);
                 Vector3 end = map.TileCoordToWorldCoord(CurrPath[CurrNode + 1].NodeX, CurrPath[CurrNode + 1].NodeY) + new Vector3(0, 0, -1f);
 
-
-                Debug.DrawLine(start, end, Color.red);
+                DrawLine(start, end, Color.red);
+                //Debug.DrawLine(start, end, Color.red);
 
                 CurrNode++;
             }
         }
+        // UnitTile[Xtile, Ytile];
+        // UnitName.text = selectedUnit.name;
+        // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
+
+        UItileType = map.GetTileResName(Xtile, Ytile);
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+        }
+
     }
 
 
+    void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 0.2f)
+    {
+        GameObject myLine = new GameObject();
+        myLine.transform.position = start;
+        myLine.AddComponent<LineRenderer>();
+        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+        lr.material = new Material(Shader.Find("Particles/Alpha Blended Premultiply"));
+        lr.SetColors(color, color);
+        lr.SetWidth(0.1f, 0.1f);
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
+        GameObject.Destroy(myLine, duration);
+    }
+
+
+<<<<<<< HEAD
     void SettleCity()
     {
         Instantiate(cityPrefab, new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -0.9f), Quaternion.Euler(90, 0, 0));
         Destroy(gameObject);
     }
+=======
+    
+
+>>>>>>> 2nd-player-func
 
     public void MoveNextTile()
     {
