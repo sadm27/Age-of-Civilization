@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour {
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
     
-
+    public bool isSettler = false;
 
     void Start()
     {
@@ -107,6 +107,9 @@ public class Unit : MonoBehaviour {
             OnTileStone.text = "0";
             OnTileFood.text = "0";
         }
+
+
+    
 
     }
 
