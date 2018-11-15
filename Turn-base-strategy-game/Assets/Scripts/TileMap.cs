@@ -46,7 +46,11 @@ public class TileMap : MonoBehaviour {
 
 
     MouseManagerS mouseManagerS;
-    
+
+    int WoodOnMap = 0;
+    int FoodOnMap = 0;
+    int GoldOnMap = 0;
+    int StoneOnMap = 0;
 
     public int MapSizeX = 20;
     public int MapSizeY = 20;
@@ -57,6 +61,7 @@ public class TileMap : MonoBehaviour {
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
+        CountResourcesOnMap();
     }
 
 
@@ -186,7 +191,15 @@ public class TileMap : MonoBehaviour {
                     map[x, y].resource = Tile.tileResource.Food;
                     if (CheckIfNextToMountain(x, y))
                     {
-                        map[x, y].resource = Tile.tileResource.Stone;
+                        int r = Random.Range((int)0, (int)1);
+                        if (r == 0)
+                        {
+                            map[x, y].resource = Tile.tileResource.Stone;
+                        }
+                        else
+                        {
+                            map[x, y].resource = Tile.tileResource.Gold;
+                        }
                     }
                     map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
@@ -200,7 +213,15 @@ public class TileMap : MonoBehaviour {
                     map[x, y].resource = Tile.tileResource.Wood;
                     if (CheckIfNextToMountain(x, y))
                     {
-                        map[x, y].resource = Tile.tileResource.Stone;
+                        int r = Random.Range((int)0, (int)1);
+                        if (r == 0)
+                        {
+                            map[x, y].resource = Tile.tileResource.Stone;
+                        }
+                        else
+                        {
+                            map[x, y].resource = Tile.tileResource.Gold;
+                        }
                     }
                     map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
@@ -228,9 +249,9 @@ public class TileMap : MonoBehaviour {
 
     bool CheckIfNextToMountain(int x, int y)
     {
-        for (int i = x - 1; i < x + 1; i++)
+        for (int i = x - 1; i <= (x + 1); i++)
         {
-            for (int j = y - 1; j < y + 1; j++)
+            for (int j = y - 1; j <= (y + 1); j++)
             {
                 if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
                 {
@@ -592,4 +613,41 @@ public class TileMap : MonoBehaviour {
 
     }
 
+    void CountResourcesOnMap()
+    {
+        for (int i = 0; i < MapSizeX; i++){
+            for(int j = 0; j < MapSizeY; j++)
+            {
+                switch (map[i, j].resource)
+                {
+                    case Tile.tileResource.Food:
+                        FoodOnMap++;
+                        break;
+
+                    case Tile.tileResource.Stone:
+                        StoneOnMap++;
+                        break;
+
+                    case Tile.tileResource.Wood:
+                        WoodOnMap++;
+                        break;
+
+                    case Tile.tileResource.Nothing:
+                        
+                        break;
+
+                    case Tile.tileResource.Gold:
+                        GoldOnMap++;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+        Debug.Log("Food: " + FoodOnMap);
+        Debug.Log("Stone: " + StoneOnMap);
+        Debug.Log("Wood: " + WoodOnMap);
+        Debug.Log("Gold: " + GoldOnMap);
+    }
 }
