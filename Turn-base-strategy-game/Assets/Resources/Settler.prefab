@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityPrefab: {fileID: 1833132307434340, guid: 5c2d861cd29440e49a8819207c593c8a, type: 2}
   settleCityBtn: {fileID: 0}
+  cityNameChoice: {fileID: 0}

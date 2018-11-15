@@ -33,11 +33,18 @@ public class Settler : MonoBehaviour {
             newCity.transform.position = new Vector3(transform.position.x, transform.position.y, -0.5f);
             City cityScript = newCity.GetComponent<City>();
 
-            cityScript.cityName = cityNameChoice.text.ToString();
-
+            if(cityNameChoice.text.ToString() != "")
+            {
+                cityScript.cityName = cityNameChoice.text.ToString();
+            }
+            else
+            {
+                //TODO: random name generator
+            }
+                
             Destroy(this.gameObject);
         }
-    }
+    } 
 
 
 }

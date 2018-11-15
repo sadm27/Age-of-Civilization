@@ -822,23 +822,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 342720736}
   m_CullTransparentMesh: 0
---- !u!1 &380962928 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1833132307434340, guid: 5c2d861cd29440e49a8819207c593c8a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1885120793}
---- !u!114 &380962929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 380962928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4240f1709b03f46916da7cc2a92a1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cityName: New City
 --- !u!1 &384561027
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1572,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 599137176}
   m_CullTransparentMesh: 0
+--- !u!102 &721479224 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 102344537792125566, guid: 5c2d861cd29440e49a8819207c593c8a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1885120793}
 --- !u!1 &764455453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3049,6 +3037,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114474446957695738, guid: 87b1a04420e25f44c9a2fa66e024a1f7,
+        type: 2}
+      propertyPath: settleCityBtn
+      value: 
+      objectReference: {fileID: 1055461102}
+    - target: {fileID: 114474446957695738, guid: 87b1a04420e25f44c9a2fa66e024a1f7,
+        type: 2}
+      propertyPath: cityNameChoice
+      value: 
+      objectReference: {fileID: 1253481796}
     - target: {fileID: 114266887791018704, guid: 87b1a04420e25f44c9a2fa66e024a1f7,
         type: 2}
       propertyPath: UnitName
@@ -3079,11 +3077,6 @@ Prefab:
       propertyPath: OnTileGold
       value: 
       objectReference: {fileID: 131125740}
-    - target: {fileID: 114474446957695738, guid: 87b1a04420e25f44c9a2fa66e024a1f7,
-        type: 2}
-      propertyPath: settleCityBtn
-      value: 
-      objectReference: {fileID: 1055461102}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87b1a04420e25f44c9a2fa66e024a1f7, type: 2}
   m_IsPrefabAsset: 0
@@ -3736,6 +3729,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114951396615835242, guid: 5c2d861cd29440e49a8819207c593c8a,
+        type: 2}
+      propertyPath: CityNameLabel
+      value: 
+      objectReference: {fileID: 721479224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c2d861cd29440e49a8819207c593c8a, type: 2}
   m_IsPrefabAsset: 0
