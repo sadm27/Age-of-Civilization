@@ -31,7 +31,7 @@ public class MouseManagerS : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        MMCurrPlayer = GC.GetCurrPlayer();
+        
     }
 
 
@@ -40,6 +40,7 @@ public class MouseManagerS : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
+            MMCurrPlayer = GC.GetCurrPlayer();
 
             //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
             if (EventSystem.current.IsPointerOverGameObject())

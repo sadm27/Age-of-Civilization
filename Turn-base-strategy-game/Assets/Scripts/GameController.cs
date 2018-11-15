@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour {
 
     public string GetCurrPlayer()
     {
-        return CurrPlayer.tag;
+        return CurrPlayer.tag.ToString();
     }
 
 
