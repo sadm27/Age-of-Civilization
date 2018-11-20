@@ -57,8 +57,24 @@ public class TileMap : MonoBehaviour {
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
+        turnOffEnemyVisuals();
     }
 
+    void turnOffEnemyVisuals()
+    {
+        GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("EnemyUnit");
+        foreach (GameObject unit in enemyUnits)
+        {
+            Renderer render = unit.GetComponent<Renderer>();
+            render.enabled = false;
+        }
+        enemyUnits = GameObject.FindGameObjectsWithTag("EnemyVision");
+        foreach (GameObject unit in enemyUnits)
+        {
+            Renderer render = unit.GetComponent<Renderer>();
+            render.enabled = false;
+        }
+    }
 
     /*
     public void SelectUnit(GameObject unit)

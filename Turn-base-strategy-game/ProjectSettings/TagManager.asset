@@ -9,6 +9,9 @@ TagManager:
   - UnitController
   - MapTile
   - MapMesh
+  - EnemyUnitController
+  - EnemyUnit
+  - EnemyVision
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - 
   - PostProcessing
   - 
-  - 
+  - Enemy
   - 
   - 
   - 
