@@ -69,6 +69,7 @@ public class MouseManagerS : MonoBehaviour {
                     
                     GameObject hitObject = hitInfo.transform.root.gameObject;
                     Debug.Log("tile" + hitInfo.transform.gameObject.name);
+                    
 
                     SelectUnit(hitObject);
                     UnitInfo.gameObject.SetActive(true);
@@ -153,6 +154,7 @@ public class MouseManagerS : MonoBehaviour {
             selectedUnit.GetComponent<Unit>().MoveNextTile();
         }
         gatherResources();
+        ClearSelection();
     }
 
 

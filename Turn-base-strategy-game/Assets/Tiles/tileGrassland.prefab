@@ -111,3 +111,4 @@ MonoBehaviour:
   Xtile: 0
   Ytile: 0
   map: {fileID: 0}
+  distanceToAppear: 0
