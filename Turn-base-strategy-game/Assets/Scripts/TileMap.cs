@@ -21,7 +21,8 @@ public class Tile
         Stone,
         Food,
         Nothing,
-        Gold
+        Gold,
+        WatFood
     }
 
     public tileType type;
@@ -490,6 +491,7 @@ public class TileMap : MonoBehaviour {
 
                 if (map[x, y].type != Tile.tileType.Water && map[x, y].resource != Tile.tileResource.Nothing && map[x, y].type != Tile.tileType.Mountain)
                 {
+                
                     GameObject rgo = (GameObject)Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
                     rgo.name = "Resource" + x.ToString() + "," + y.ToString();
                 }
