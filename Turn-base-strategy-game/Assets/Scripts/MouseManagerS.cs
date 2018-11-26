@@ -13,6 +13,7 @@ public class MouseManagerS : MonoBehaviour {
     public GameController GC;
 
     public GameObject selectedUnit;
+    public GameObject enemySelectedUnit;
     public GameObject UnitInfo;
 
     public Text UnitName;
@@ -38,58 +39,10 @@ public class MouseManagerS : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            MMCurrPlayer = GC.GetCurrPlayer();
-
-            //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
-            if (EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            RaycastHit hitInfo = new RaycastHit();
+        PlayerSelectUnit();
+        selectEnemy();
 
 
-            Debug.Log("Num1: " + MMCurrPlayer);
-            string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-            Debug.Log("Num: " + result);
-            int playerNum = Int32.Parse(result);
-
-            string PlayerUT = "Unit tag P";
-            string UTag = string.Concat(PlayerUT, playerNum);
-
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
-
-            if (hit)
-            {
-
-
-                
-                if (hitInfo.transform.gameObject.tag == UTag)
-                {
-                    
-                    GameObject hitObject = hitInfo.transform.root.gameObject;
-                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
-
-                    SelectUnit(hitObject);
-                    UnitInfo.gameObject.SetActive(true);
-                }
-
-            }
-            else
-            {
-                if (Input.GetButtonDown("Cancel"))
-                {
-                    ClearSelection();
-                    UnitInfo.gameObject.SetActive(false);
-                }
-            }
-
-        }
-        if (Input.GetButtonDown("Cancel"))
-        {
-            ClearSelection();
-            UnitInfo.gameObject.SetActive(false);
-        }
     }
 
 
@@ -111,11 +64,59 @@ public class MouseManagerS : MonoBehaviour {
 		}
 	}
 
-	 public void ClearSelection() {
-		if(selectedUnit == null)
+
+
+    public void ClearSelection()
+    {
+        if (selectedUnit == null)
+            return;
+
+        Renderer[] rs = selectedUnit.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+        {
+            Material m = r.material;
+            m.color = Color.white;
+            r.material = m;
+        }
+
+        OnTileWood.text = "0";
+        OnTileStone.text = "0";
+        OnTileFood.text = "0";
+        Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
+
+        selectedUnit = null;
+    }
+
+
+
+    void SelectUnitEnemy(GameObject obj)
+    {
+        if (enemySelectedUnit != null)
+        {
+            if (obj == enemySelectedUnit)
+                return;
+
+            ClearSelectionEnemy();
+        }
+
+        enemySelectedUnit = obj;
+
+        Renderer[] rs = enemySelectedUnit.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+        {
+            Material m = r.material;
+            m.color = Color.red;
+            r.material = m;
+        }
+    }
+
+
+
+    public void ClearSelectionEnemy() {
+		if(enemySelectedUnit == null)
 			return;
 
-		Renderer[] rs = selectedUnit.GetComponentsInChildren<Renderer>();
+		Renderer[] rs = enemySelectedUnit.GetComponentsInChildren<Renderer>();
 		foreach(Renderer r in rs) {
 			Material m = r.material;
 			m.color = Color.white;
@@ -127,7 +128,7 @@ public class MouseManagerS : MonoBehaviour {
         OnTileFood.text = "0";
         Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
 
-        selectedUnit = null;
+        enemySelectedUnit = null;
 	}
 
 
@@ -157,7 +158,118 @@ public class MouseManagerS : MonoBehaviour {
 
 
 
-    
+    void PlayerSelectUnit()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MMCurrPlayer = GC.GetCurrPlayer();
+
+            //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            RaycastHit hitInfo = new RaycastHit();
+
+
+            Debug.Log("Num1: " + MMCurrPlayer);
+            string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+            Debug.Log("Num: " + result);
+            int playerNum = Int32.Parse(result);
+
+            string PlayerUT = "Unit tag P";
+            string UTag = string.Concat(PlayerUT, playerNum);
+
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+
+            if (hit)
+            {
+
+
+
+                if (hitInfo.transform.gameObject.tag == UTag)
+                {
+
+                    GameObject hitObject = hitInfo.transform.root.gameObject;
+                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
+
+                    SelectUnit(hitObject);
+                    UnitInfo.gameObject.SetActive(true);
+                }
+
+            }
+            else
+            {
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    ClearSelection();
+                    UnitInfo.gameObject.SetActive(false);
+                }
+            }
+
+        }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ClearSelection();
+            UnitInfo.gameObject.SetActive(false);
+        }
+    }
+
+
+    void selectEnemy()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MMCurrPlayer = GC.GetCurrPlayer();
+
+            //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            RaycastHit hitInfo = new RaycastHit();
+
+
+            Debug.Log("Num1: " + MMCurrPlayer);
+            string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+            Debug.Log("Num: " + result);
+            int playerNum = Int32.Parse(result);
+
+            string PlayerUT = "Unit tag P";
+            string UTag = string.Concat(PlayerUT, playerNum);
+
+            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+
+            if (hit)
+            {
+
+
+
+                if (hitInfo.transform.gameObject.tag != UTag && hitInfo.transform.gameObject.tag.Contains(PlayerUT))
+                {
+
+                    GameObject hitObject = hitInfo.transform.root.gameObject;
+                    Debug.Log("Etile" + hitInfo.transform.gameObject.name);
+
+                    SelectUnitEnemy(hitObject);
+                    UnitInfo.gameObject.SetActive(true);
+                }
+
+            }
+            else
+            {
+                if (Input.GetButtonDown("Cancel"))
+                {
+                    ClearSelectionEnemy();
+                    UnitInfo.gameObject.SetActive(false);
+                }
+            }
+
+        }
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ClearSelectionEnemy();
+            UnitInfo.gameObject.SetActive(false);
+        }
+    }
 
 
     public void gatherResources()

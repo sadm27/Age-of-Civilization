@@ -11,10 +11,12 @@ public class Unit : MonoBehaviour {
     public int Xtile;
     public int Ytile;
     TileMap map;
+    MouseManagerS MMS;
     public bool isGathering = false;
     string UItileType;
     string UITileAmt;
     public int amountGathered = 50;
+    public int HP = 100;
 
     public Text UnitName;
     public Text UnitHealth;
@@ -126,7 +128,23 @@ public class Unit : MonoBehaviour {
     }
 
 
-    
+    public void attack()
+    {
+        //THIS IS HOW YOU GET THE SCRIPT FROM A CERTAINT OBJECT
+        GameObject enemyUnit = MMS.enemySelectedUnit;
+        Unit Uscript = enemyUnit.GetComponent<Unit>();
+
+        int x = Uscript.Xtile;
+        int y = Uscript.Ytile;
+
+        if ( (Xtile == x - 1 && Ytile == y + 1) || (Xtile == x && Ytile == y + 1) || (Xtile == x + 1 && Ytile == y + 1) ||
+             (Xtile == x - 1 && Ytile == y) || (Xtile == x + 1 && Ytile == y) ||
+             (Xtile == x - 1 && Ytile == y - 1) || (Xtile == x && Ytile == y - 1) || (Xtile == x + 1 && Ytile == y - 1) )
+        {
+            Uscript.
+        }
+
+    }
 
 
     public void MoveNextTile()
