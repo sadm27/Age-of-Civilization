@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1628272571190706}
+  m_IsPrefabAsset: 1
+--- !u!1 &1628272571190706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4854688000056690}
+  - component: {fileID: 114129522629720602}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4854688000056690
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628272571190706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114129522629720602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628272571190706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4fe12115ab9f34b95e493d74a85d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileTypes:
+  - name: Grassland
+    TileVisualPrefab: {fileID: 1648933689292672, guid: 36d693e0b5c9b24498eda6f6738e9b92,
+      type: 2}
+    moveCost: 1
+    isWalkable: 0
+  - name: Marsh
+    TileVisualPrefab: {fileID: 1522482761629902, guid: 2e97005d25d695c4b94b65e8ec06ec55,
+      type: 2}
+    moveCost: 2
+    isWalkable: 0
+  - name: Mountain
+    TileVisualPrefab: {fileID: 1021012975500636, guid: 1346ec68f247a2941aa925f6020f47ee,
+      type: 2}
+    moveCost: 0
+    isWalkable: 1
+  - name: Water
+    TileVisualPrefab: {fileID: 1515343761520410, guid: f9481ae9da8f76b48af04d3d4a88d41b,
+      type: 2}
+    moveCost: 0
+    isWalkable: 1
+  tileResource:
+  - name: Food
+    ResourceVisualPrefab: {fileID: 1455675903469314, guid: 015c9b46051e8064094e354a8cd8529f,
+      type: 2}
+  - name: Stone
+    ResourceVisualPrefab: {fileID: 1968303927088900, guid: bfd64ef81e7ac9949aecca6502e1fdde,
+      type: 2}
+  - name: Wood
+    ResourceVisualPrefab: {fileID: 1841384508222040, guid: be3e093c16981034f8e995570ef4c9b5,
+      type: 2}
+  - name: Nothing
+    ResourceVisualPrefab: {fileID: 0}
+  MapSizeX: 20
+  MapSizeY: 20

@@ -59,6 +59,7 @@ public class GameController : MonoBehaviour {
             turnCountNum++;
             TurnCount.text = string.Concat("Turn: ", turnCountNum);
             MMS.ClearSelection();
+            MMS.ClearSelectionEnemy();
         }
         else
         {
@@ -73,6 +74,7 @@ public class GameController : MonoBehaviour {
             {
                 CurrPlayer = playerGameObj.GetComponent<Player>();
                 MMS.ClearSelection();
+                MMS.ClearSelectionEnemy();
             }
                         
         }
