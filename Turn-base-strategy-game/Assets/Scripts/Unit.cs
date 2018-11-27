@@ -12,11 +12,15 @@ public class Unit : MonoBehaviour {
     public int Ytile;
     TileMap map;
     MouseManagerS MMS;
+    /*
+
+    */
     public bool isGathering = false;
     string UItileType;
     string UITileAmt;
     public int amountGathered = 50;
     public int HP = 100;
+    public int attackPower = 25;
 
     public Text UnitName;
     public Text UnitHealth;
@@ -34,6 +38,7 @@ public class Unit : MonoBehaviour {
     void Start()
     {
         map = GameObject.Find("Map").GetComponent<TileMap>();
+        MMS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
@@ -141,7 +146,14 @@ public class Unit : MonoBehaviour {
              (Xtile == x - 1 && Ytile == y) || (Xtile == x + 1 && Ytile == y) ||
              (Xtile == x - 1 && Ytile == y - 1) || (Xtile == x && Ytile == y - 1) || (Xtile == x + 1 && Ytile == y - 1) )
         {
-            Uscript.
+
+            Uscript.HP = Uscript.HP - attackPower;
+
+            if(Uscript.HP <= 0)
+            {
+                enemyUnit.SetActive(false);
+            }
+
         }
 
     }

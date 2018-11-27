@@ -251,6 +251,11 @@ public class MouseManagerS : MonoBehaviour {
 
                     SelectUnitEnemy(hitObject);
                     UnitInfo.gameObject.SetActive(true);
+
+                    Unit Uscript = selectedUnit.GetComponent<Unit>();
+
+                    Uscript.attack();
+
                 }
 
             }
