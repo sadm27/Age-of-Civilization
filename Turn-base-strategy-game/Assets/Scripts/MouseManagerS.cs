@@ -150,6 +150,9 @@ public class MouseManagerS : MonoBehaviour {
 
         foreach (GameObject unit in units)
         {
+            Unit Uscript = unit.GetComponent<Unit>();
+            Uscript.NumOfAttacksThisTurn = 0;
+
             SelectUnit(unit);
             selectedUnit.GetComponent<Unit>().MoveNextTile();
         }

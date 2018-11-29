@@ -21,6 +21,8 @@ public class Unit : MonoBehaviour {
     public int amountGathered = 50;
     public int HP = 100;
     public int attackPower = 25;
+    public int attacksPerTurn = 1;
+    public int NumOfAttacksThisTurn = 0;
 
     public Text UnitName;
     public Text UnitHealth;
@@ -139,6 +141,8 @@ public class Unit : MonoBehaviour {
         GameObject enemyUnit = MMS.enemySelectedUnit;
         Unit Uscript = enemyUnit.GetComponent<Unit>();
 
+        
+
         int x = Uscript.Xtile;
         int y = Uscript.Ytile;
 
@@ -146,8 +150,10 @@ public class Unit : MonoBehaviour {
              (Xtile == x - 1 && Ytile == y) || (Xtile == x + 1 && Ytile == y) ||
              (Xtile == x - 1 && Ytile == y - 1) || (Xtile == x && Ytile == y - 1) || (Xtile == x + 1 && Ytile == y - 1) )
         {
-
-            Uscript.HP = Uscript.HP - attackPower;
+            if(NumOfAttacksThisTurn < attacksPerTurn)
+            {
+                Uscript.HP = Uscript.HP - attackPower;
+            }
 
             if(Uscript.HP <= 0)
             {
