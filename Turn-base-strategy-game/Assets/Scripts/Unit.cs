@@ -44,6 +44,8 @@ public class Unit : MonoBehaviour {
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
+        UnitHealth.text = HP.ToString();
+
         UItileType = map.GetTileResName(Xtile, Ytile);
 
         if (UItileType == "Wood")
@@ -153,6 +155,7 @@ public class Unit : MonoBehaviour {
             if(NumOfAttacksThisTurn < attacksPerTurn)
             {
                 Uscript.HP = Uscript.HP - attackPower;
+                NumOfAttacksThisTurn++;
             }
 
             if(Uscript.HP <= 0)
