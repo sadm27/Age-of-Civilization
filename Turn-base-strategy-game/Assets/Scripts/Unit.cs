@@ -13,6 +13,14 @@ public class Unit : MonoBehaviour {
     string UItileType;
     string UITileAmt;
     public int amountGathered = 50;
+    public enum unitType
+    {
+        Worker,
+        Melee,
+        Range
+    }
+
+
 
     public Text UnitName;
     public Text UnitHealth;
@@ -24,6 +32,8 @@ public class Unit : MonoBehaviour {
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
     
+
+
 
 
     void Start()

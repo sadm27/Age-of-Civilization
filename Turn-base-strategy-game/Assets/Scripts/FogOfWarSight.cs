@@ -15,7 +15,6 @@ public class FogOfWarSight : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        Physics.OverlapBox()
 		foreach(Collider col in Physics.OverlapSphere(transform.position,radius,layerMask))
 		{
 			col.SendMessage("Observed",SendMessageOptions.DontRequireReceiver);

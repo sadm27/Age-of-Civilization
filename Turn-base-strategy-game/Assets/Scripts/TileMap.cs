@@ -64,6 +64,41 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
         turnOffEnemyVisuals();
         CountResourcesOnMap();
+        createUnit("Worker", 0, 1, 1);
+    }
+
+    void createUnit(string type, int player, int mapX, int mapY)
+    {
+        GameObject unitgo;
+
+        switch (type)
+        {
+            case "Worker":
+                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
+                assignTags(player, unitgo);
+                break;
+
+            case "Melee":
+                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
+                assignTags(player, unitgo);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void assignTags(int player, GameObject unit)
+    {
+        if (player == 1)
+        {
+            unit.tag = "UnitController";
+            unit.GetComponent<>
+        }
+        if (player == 0)
+        {
+            unit.tag = "EnemyUnitController";
+        }
     }
 
     void turnOffEnemyVisuals()
