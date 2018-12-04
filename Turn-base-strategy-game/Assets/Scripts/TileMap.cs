@@ -446,7 +446,11 @@ public class TileMap : MonoBehaviour {
     //Dijkstra's was used because I did just under a year ago in COMP250
     public void MoveSelectedUnitTo(int x, int y)
     {
+
         GameObject selectedUnit = mouseManagerS.selectedUnit; //get the selected unit from Mouse Manager
+
+        if (selectedUnit == null)
+            return;
 
         //clear path
         selectedUnit.GetComponent<Unit>().CurrPath = null;

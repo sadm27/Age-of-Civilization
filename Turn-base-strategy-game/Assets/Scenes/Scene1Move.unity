@@ -1171,6 +1171,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 627053075}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1820341962 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114129522629720602, guid: deac24ec0d4cd784481bf9165d25f26d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1574580183}
+  m_Script: {fileID: 11500000, guid: ef4fe12115ab9f34b95e493d74a85d85, type: 3}
 --- !u!1 &2086119401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1204,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6418fe4da2767b438713fd6df463dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AiPlayerScript: {fileID: 844836267}
+  GCScript: {fileID: 779655011}
+  MMS: {fileID: 449481284}
+  map: {fileID: 1820341962}
+  units: []
+  unit: {fileID: 0}
+  CurrPlayerCheck: 
+  AIPlayerStr: 
 --- !u!4 &2086119403
 Transform:
   m_ObjectHideFlags: 0

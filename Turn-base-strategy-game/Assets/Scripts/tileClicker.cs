@@ -47,11 +47,16 @@ public class tileClicker : MonoBehaviour {
 
     void OnMouseUp()
     {
+        CallToMakePath();
+    }
+
+    void CallToMakePath()
+    {
         //if you are having issues with clicking through the UI use this check on you mouse click / or selection functions
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        Debug.Log("click!");
+        Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
 
         map.MoveSelectedUnitTo(Xtile, Ytile);
     }

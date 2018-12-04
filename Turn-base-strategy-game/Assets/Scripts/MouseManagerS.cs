@@ -46,7 +46,7 @@ public class MouseManagerS : MonoBehaviour {
     }
 
 
-    void SelectUnit(GameObject obj) {
+     public void SelectUnit(GameObject obj) {
 		if(selectedUnit != null) {
 			if(obj == selectedUnit)
 				return;
