@@ -1292,78 +1292,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 543971317}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &576744418
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: UnitName
-      value: 
-      objectReference: {fileID: 807553080}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: UnitHealth
-      value: 
-      objectReference: {fileID: 798623692}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: OnTileFood
-      value: 
-      objectReference: {fileID: 776260715}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: OnTileWood
-      value: 
-      objectReference: {fileID: 415658494}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: OnTileStone
-      value: 
-      objectReference: {fileID: 1481178596}
-    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: OnTileGold
-      value: 
-      objectReference: {fileID: 131125740}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &582785783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1328,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 582785783}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1959,6 +1887,78 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1180381283
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: UnitName
+      value: 
+      objectReference: {fileID: 807553080}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: UnitHealth
+      value: 
+      objectReference: {fileID: 798623692}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: OnTileFood
+      value: 
+      objectReference: {fileID: 776260715}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: OnTileWood
+      value: 
+      objectReference: {fileID: 415658494}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: OnTileStone
+      value: 
+      objectReference: {fileID: 1481178596}
+    - target: {fileID: 114748681875384162, guid: 77df2b3a6cb9772498a75b359b7f4038,
+        type: 2}
+      propertyPath: OnTileGold
+      value: 
+      objectReference: {fileID: 131125740}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1182987428
 GameObject:
   m_ObjectHideFlags: 0

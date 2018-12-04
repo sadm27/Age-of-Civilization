@@ -93,7 +93,7 @@ public class TileMap : MonoBehaviour {
         if (player == 1)
         {
             unit.tag = "UnitController";
-            unit.GetComponent<>
+            //unit.GetComponent<>
         }
         if (player == 0)
         {
