@@ -217,6 +217,8 @@ MonoBehaviour:
   amountGathered: 50
   HP: 100
   attackPower: 25
+  attacksPerTurn: 1
+  NumOfAttacksThisTurn: 0
   UnitName: {fileID: 807553080}
   UnitHealth: {fileID: 798623692}
   OnTileFood: {fileID: 776260715}
@@ -1169,6 +1171,46 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 627053075}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &2086119401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086119403}
+  - component: {fileID: 2086119402}
+  m_Layer: 0
+  m_Name: AI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2086119402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086119401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6418fe4da2767b438713fd6df463dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2086119403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086119401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 215.10414, y: 43.942383, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2123845939 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114516787736057038, guid: ca46e210588fba64e8aa3f1d062de43e,
