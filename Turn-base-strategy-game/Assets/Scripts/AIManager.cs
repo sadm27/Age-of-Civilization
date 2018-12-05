@@ -12,7 +12,7 @@ public class AIManager : MonoBehaviour {
     public TileMap map;
     System.Random r = new System.Random();
 
-
+    //AI just needs to build units
 
     public GameObject[] units;
     public GameObject unit;
