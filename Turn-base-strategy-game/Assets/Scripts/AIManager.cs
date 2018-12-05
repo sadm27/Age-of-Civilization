@@ -17,6 +17,8 @@ public class AIManager : MonoBehaviour {
     public GameObject unit;
     //Unit[] Uscripts;
     //Unit Uscript;
+    public GameObject[] EnemyUnits;
+    public GameObject EnemyUnit;
 
     public string CurrPlayerCheck;
     public string AIPlayerStr;
@@ -26,6 +28,7 @@ public class AIManager : MonoBehaviour {
 
         CurrPlayerCheck = GCScript.GetCurrPlayer();
         seltectAIPlayerUnits();
+        seltectAIEnemyUnits();
 
 
     }
@@ -38,6 +41,17 @@ public class AIManager : MonoBehaviour {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
     void AiMoveUnit()
     {
         Debug.Log("CurrPlayer: " + CurrPlayerCheck);
@@ -47,26 +61,60 @@ public class AIManager : MonoBehaviour {
             foreach (GameObject unit in units)
             {
                 MMS.SelectUnit(unit);
+                Debug.Log("CurrPlayer: " + unit.tag);
                 Unit Uscript1 = unit.GetComponent<Unit>();
                 int x = Uscript1.Xtile;
                 int y = Uscript1.Xtile;
 
+                //check for adjacent tileType to see if it can move there
+                AIAttack(Uscript1, x, y);
                 map.MoveSelectedUnitTo(x + 1, y);
 
                 Uscript1.MoveNextTile();
 
                 MMS.ClearSelection();
             }
+            GCScript.ChangePlayer();
 
         }
 
     }
 
 
+
+    void AIAttack(Unit Uscript1, int x, int y)
+    {
+
+        if (CurrPlayerCheck == AiPlayerScript.tag.ToString())
+        {
+
+            foreach (GameObject EnemyUnit in EnemyUnits)
+            {
+                MMS.SelectUnitEnemy(EnemyUnit);
+
+                //check for adjacent tileType to see if it can move there
+                map.MoveSelectedUnitTo(x + 1, y);
+
+                Uscript1.attack();
+
+                MMS.ClearSelectionEnemy();
+            }
+
+        }
+        //check for adjacent tileType to see if it can move there
+        map.MoveSelectedUnitTo(x + 1, y);
+
+
+        
+
+    }
+
+
+
     void seltectAIPlayerUnits()
     {
 
-        string result = Regex.Match(CurrPlayerCheck, @"\d+").Value;
+        string result = Regex.Match(AiPlayerScript.tag, @"\d+").Value;
         Debug.Log("AINum: " + result);
         int playerNum = Int32.Parse(result);
 
@@ -75,6 +123,23 @@ public class AIManager : MonoBehaviour {
         units = GameObject.FindGameObjectsWithTag(Ucont);
 
     }
+
+
+
+
+    void seltectAIEnemyUnits()
+    {
+
+        //string result = Regex.Match(AiPlayerScript.tag, @"\d+").Value;
+        //Debug.Log("AINum: " + result);
+        int playerNum = 1; //Int32.Parse(result)
+
+        string PlayerUC = "UnitControllerP";
+        string Ucont = string.Concat(PlayerUC, playerNum);
+        EnemyUnits = GameObject.FindGameObjectsWithTag(Ucont);
+
+    }
+
 
 
 }

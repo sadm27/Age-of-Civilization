@@ -89,7 +89,7 @@ public class MouseManagerS : MonoBehaviour {
 
 
 
-    void SelectUnitEnemy(GameObject obj)
+    public void SelectUnitEnemy(GameObject obj)
     {
         if (enemySelectedUnit != null)
         {
