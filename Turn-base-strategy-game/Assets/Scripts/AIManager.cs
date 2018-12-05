@@ -10,6 +10,7 @@ public class AIManager : MonoBehaviour {
     public GameController GCScript;
     public MouseManagerS MMS;
     public TileMap map;
+    System.Random r = new System.Random();
 
 
 
@@ -68,7 +69,8 @@ public class AIManager : MonoBehaviour {
 
                 //check for adjacent tileType to see if it can move there
                 AIAttack(Uscript1, x, y);
-                map.MoveSelectedUnitTo(x + 1, y);
+                
+                map.MoveSelectedUnitTo(x + r.Next(-2, 2), y + r.Next(-2, 2));
 
                 Uscript1.MoveNextTile();
 
@@ -91,9 +93,6 @@ public class AIManager : MonoBehaviour {
             foreach (GameObject EnemyUnit in EnemyUnits)
             {
                 MMS.SelectUnitEnemy(EnemyUnit);
-
-                //check for adjacent tileType to see if it can move there
-                map.MoveSelectedUnitTo(x + 1, y);
 
                 Uscript1.attack();
 
