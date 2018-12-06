@@ -11,14 +11,18 @@ public class Tile
         Grassland,
         Marsh,
         Mountain,
-        Water
+        Water,
+        Plains,
+        Desert
     }
     public enum tileResource
     {
         Wood,
         Stone,
         Food,
-        Nothing
+        Nothing,
+        Gold,
+        WatFood
     }
 
     public tileType type;
@@ -56,6 +60,55 @@ public class TileMap : MonoBehaviour {
         generateMapVisuals();
     }
 
+    void createUnit(string type, int player, int mapX, int mapY)
+    {
+        GameObject unitgo;
+
+        switch (type)
+        {
+            case "Worker":
+                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
+                assignTags(player, unitgo);
+                break;
+
+            case "Melee":
+                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
+                assignTags(player, unitgo);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    void assignTags(int player, GameObject unit)
+    {
+        if (player == 1)
+        {
+            unit.tag = "UnitController";
+            //unit.GetComponent<>
+        }
+        if (player == 0)
+        {
+            unit.tag = "EnemyUnitController";
+        }
+    }
+
+    void turnOffEnemyVisuals()
+    {
+        GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("EnemyUnit");
+        foreach (GameObject unit in enemyUnits)
+        {
+            Renderer render = unit.GetComponent<Renderer>();
+            render.enabled = false;
+        }
+        enemyUnits = GameObject.FindGameObjectsWithTag("EnemyVision");
+        foreach (GameObject unit in enemyUnits)
+        {
+            Renderer render = unit.GetComponent<Renderer>();
+            render.enabled = false;
+        }
+    }
 
     /*
     public void SelectUnit(GameObject unit)
@@ -147,7 +200,15 @@ public class TileMap : MonoBehaviour {
                 else if (height < .7)
                 {
                     map[x, y] = new Tile();
-                    map[x, y].type = Tile.tileType.Grassland;
+                    if (GetMoisture(x,y) < .25) {
+                        map[x, y].type = Tile.tileType.Desert;
+                    }else if(GetMoisture(x,y) < .5){
+                        map[x, y].type = Tile.tileType.Plains;
+                    }
+                    else
+                    {
+                        map[x, y].type = Tile.tileType.Grassland;
+                    }
                     map[x, y].isWalkable = true;
                 }
                 else
@@ -175,7 +236,15 @@ public class TileMap : MonoBehaviour {
                     map[x, y].resource = Tile.tileResource.Food;
                     if (CheckIfNextToMountain(x, y))
                     {
-                        map[x, y].resource = Tile.tileResource.Stone;
+                        int r = Random.Range((int)0, (int)1);
+                        if (r == 0)
+                        {
+                            map[x, y].resource = Tile.tileResource.Stone;
+                        }
+                        else
+                        {
+                            map[x, y].resource = Tile.tileResource.Gold;
+                        }
                     }
                     map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
@@ -189,8 +258,21 @@ public class TileMap : MonoBehaviour {
                     map[x, y].resource = Tile.tileResource.Wood;
                     if (CheckIfNextToMountain(x, y))
                     {
-                        map[x, y].resource = Tile.tileResource.Stone;
+                        int r = Random.Range((int)0, (int)1);
+                        if (r == 0)
+                        {
+                            map[x, y].resource = Tile.tileResource.Stone;
+                        }
+                        else
+                        {
+                            map[x, y].resource = Tile.tileResource.Gold;
+                        }
                     }
+                    map[x, y].amountOfResource = GenerateAmountOfResource();
+                }
+                else if(rand == 3)
+                {
+                    map[x, y].resource = Tile.tileResource.Gold;
                     map[x, y].amountOfResource = GenerateAmountOfResource();
                 }
                 else
@@ -212,9 +294,9 @@ public class TileMap : MonoBehaviour {
 
     bool CheckIfNextToMountain(int x, int y)
     {
-        for (int i = x - 1; i < x + 1; i++)
+        for (int i = x - 1; i <= (x + 1); i++)
         {
-            for (int j = y - 1; j < y + 1; j++)
+            for (int j = y - 1; j <= (y + 1); j++)
             {
                 if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
                 {
@@ -247,7 +329,18 @@ public class TileMap : MonoBehaviour {
         return sample;
     }
 
-    
+    float GetMoisture(int x, int y)
+    {
+        float xCoords = (float)x / MapSizeX * 10;
+        float yCoords = (float)y / MapSizeY * 10;
+        int offset = 0;
+        //int offset = Random.Range(10,500);
+
+        float sample = Mathf.PerlinNoise(xCoords + offset, yCoords + offset);
+        return sample;
+    }
+
+
 
 
 
@@ -373,6 +466,14 @@ public class TileMap : MonoBehaviour {
                         tt = tileTypes[3];
                         break;
 
+                    case Tile.tileType.Plains:
+                        tt = tileTypes[4];
+                        break;
+
+                    case Tile.tileType.Desert:
+                        tt = tileTypes[5];
+                        break;
+
                     default:
                         break;
                 }
@@ -381,6 +482,13 @@ public class TileMap : MonoBehaviour {
 
             GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
+
+                if(tt.TileMesh != null)
+                {
+                    GameObject gomesh = (GameObject)Instantiate(tt.TileMesh, new Vector3(x, y, 0), Quaternion.identity, go.transform);
+                    gomesh.name = "TileMesh" + x.ToString() + "," + y.ToString();
+                }
+
                 //the game object is initalized and created at set coordinace
 
                 switch (map[x, y].resource)
@@ -399,6 +507,10 @@ public class TileMap : MonoBehaviour {
 
                     case Tile.tileResource.Nothing:
                         tr = tileResource[3];
+                        break;
+
+                    case Tile.tileResource.Gold:
+                        tr = tileResource[4];
                         break;
 
                     default:
