@@ -366,6 +366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4666271464854988}
   - component: {fileID: 137730351627185762}
+  - component: {fileID: 65535967508167062}
+  - component: {fileID: 114074222078796404}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -1788,6 +1790,18 @@ Transform:
   m_Father: {fileID: 4415540313464128}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65535967508167062
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414240996698202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: -0.01, y: 0.01, z: 0.01}
+  m_Center: {x: -0.00000005587935, y: 0.0025094154, z: -0.0017930083}
 --- !u!95 &95734043269946228
 Animator:
   serializedVersion: 3
@@ -1806,6 +1820,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114074222078796404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414240996698202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfa85dc27145304a9078d661cf47ffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137138654652021062
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
