@@ -480,7 +480,7 @@ public class TileMap : MonoBehaviour {
 
                         //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
-            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.identity, this.transform);
+            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(-90f,0f,0f), this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
 
                 if(tt.TileMesh != null)
