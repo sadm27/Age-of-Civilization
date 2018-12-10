@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public static class StaticClass { //so game settings can be carried over to the main scene
+    public static int chosenMapSizeX {get; set;}
+    public static int chosenMapSizeY {get; set;}
+
+}
 
 public class Tile
 {
@@ -49,17 +54,20 @@ public class TileMap : MonoBehaviour {
     MouseManagerS mouseManagerS;
     
 
-    public int MapSizeX = 20;
-    public int MapSizeY = 20;
+    public int MapSizeX;
+    public int MapSizeY;
 
     void Start()
     {
+        MapSizeX = StaticClass.chosenMapSizeX;
+        MapSizeY = StaticClass.chosenMapSizeY;
+
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
     }
-
+    /*
     void createUnit(string type, int player, int mapX, int mapY)
     {
         GameObject unitgo;
@@ -93,6 +101,7 @@ public class TileMap : MonoBehaviour {
             unit.tag = "EnemyUnitController";
         }
     }
+    */
 
     void turnOffEnemyVisuals()
     {
@@ -480,7 +489,7 @@ public class TileMap : MonoBehaviour {
 
                         //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
-            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(-90f,0f,0f), this.transform);
+            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.Euler(-90f,0f,0f), this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
 
                 if(tt.TileMesh != null)
