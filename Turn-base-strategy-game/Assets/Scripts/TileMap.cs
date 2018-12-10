@@ -59,8 +59,13 @@ public class TileMap : MonoBehaviour {
 
     void Start()
     {
-        MapSizeX = StaticClass.chosenMapSizeX;
-        MapSizeY = StaticClass.chosenMapSizeY;
+        if(StaticClass.chosenMapSizeX != 0 && StaticClass.chosenMapSizeY != 0)
+        {
+            MapSizeX = StaticClass.chosenMapSizeX;
+            MapSizeY = StaticClass.chosenMapSizeY;
+        }
+      
+
 
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         generateMap();
