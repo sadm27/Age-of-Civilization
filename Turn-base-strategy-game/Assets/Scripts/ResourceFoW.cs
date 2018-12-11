@@ -27,6 +27,6 @@ public class ResourceFoW : MonoBehaviour
 	void Observed()
 	{
 		observed = true;
-        Debug.Log("Chicken Seen!");
+        //Debug.Log("Chicken Seen!");
 	}
 }

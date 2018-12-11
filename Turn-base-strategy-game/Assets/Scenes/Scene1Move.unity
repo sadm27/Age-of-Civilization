@@ -766,6 +766,11 @@ Prefab:
       propertyPath: TurnCount
       value: 
       objectReference: {fileID: 1591454879}
+    - target: {fileID: 114302336785432062, guid: 66012e107b4b8404fb8f66d8a4233280,
+        type: 2}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1820341962}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66012e107b4b8404fb8f66d8a4233280, type: 2}
   m_IsPrefabAsset: 0
@@ -1913,7 +1918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1499415595
 RectTransform:
   m_ObjectHideFlags: 0
