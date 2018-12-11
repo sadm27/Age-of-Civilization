@@ -16,6 +16,9 @@ public class MouseManagerS : MonoBehaviour {
     public GameObject enemySelectedUnit;
     public GameObject UnitInfo;
 
+    string UItileType;
+    string UITileAmt;
+
     public Text UnitName;
     public Text UnitHealth;
     public Text OnTileFood;
@@ -32,17 +35,51 @@ public class MouseManagerS : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        
+        UIAssingment();
     }
 
 
     // Update is called once per frame
     void Update () {
-
+        UIAssingment();
         PlayerSelectUnit();
         selectEnemy();
 
 
+    }
+
+
+    void UIAssingment()
+    {
+        Unit CurrUnitS = selectedUnit.GetComponent<Unit>();
+
+        UnitName.text = CurrUnitS.UnitName;
+
+        UnitHealth.text = CurrUnitS.HP.ToString();
+
+        string UItileType = map.GetTileResName(CurrUnitS.Xtile, CurrUnitS.Ytile);
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+        }
     }
 
 

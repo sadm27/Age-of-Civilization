@@ -16,20 +16,15 @@ public class Unit : MonoBehaviour {
 
     */
     public bool isGathering = false;
-    string UItileType;
-    string UITileAmt;
+    //string UItileType;
+    //string UITileAmt;
     public int amountGathered = 50;
+    public string UnitName = "null";
     public int HP = 100;
     public int attackPower = 25;
     public int attacksPerTurn = 1;
     public int NumOfAttacksThisTurn = 0;
 
-    public Text UnitName;
-    public Text UnitHealth;
-    public Text OnTileFood;
-    public Text OnTileWood;
-    public Text OnTileStone;
-    public Text OnTileGold;
     public Text TurnCount;
 
     public List<Node> CurrPath = null;
@@ -44,31 +39,7 @@ public class Unit : MonoBehaviour {
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
-        UnitHealth.text = HP.ToString();
-
-        UItileType = map.GetTileResName(Xtile, Ytile);
-
-        if (UItileType == "Wood")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileWood.text = UITileAmt;
-        }
-        if (UItileType == "Stone")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileStone.text = UITileAmt;
-        }
-        if (UItileType == "Food")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileFood.text = UITileAmt;
-        }
-        if (UItileType == "Nothing")
-        {
-            OnTileWood.text = "0";
-            OnTileStone.text = "0";
-            OnTileFood.text = "0";
-        }
+        
 
     }
 
@@ -91,33 +62,7 @@ public class Unit : MonoBehaviour {
                 CurrNode++;
             }
         }
-        // UnitTile[Xtile, Ytile];
-        // UnitName.text = selectedUnit.name;
-        // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
 
-        UItileType = map.GetTileResName(Xtile, Ytile);
-
-        if (UItileType == "Wood")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileWood.text = UITileAmt;
-        }
-        if (UItileType == "Stone")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileStone.text = UITileAmt;
-        }
-        if (UItileType == "Food")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileFood.text = UITileAmt;
-        }
-        if (UItileType == "Nothing")
-        {
-            OnTileWood.text = "0";
-            OnTileStone.text = "0";
-            OnTileFood.text = "0";
-        }
 
     }
 
