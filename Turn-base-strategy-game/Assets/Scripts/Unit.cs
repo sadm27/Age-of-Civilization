@@ -44,7 +44,7 @@ public class Unit : MonoBehaviour {
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
-        UnitHealth.text = HP.ToString();
+        //UnitHealth.text = HP.ToString();
 
         UItileType = map.GetTileResName(Xtile, Ytile);
 
@@ -114,9 +114,9 @@ public class Unit : MonoBehaviour {
         }
         if (UItileType == "Nothing")
         {
-            OnTileWood.text = "0";
-            OnTileStone.text = "0";
-            OnTileFood.text = "0";
+            //OnTileWood.text = "0";
+            //OnTileStone.text = "0";
+            //OnTileFood.text = "0";
         }
 
     }
@@ -172,7 +172,7 @@ public class Unit : MonoBehaviour {
     {
         float remainingMovement = moveSpeeds;
 
-
+        float speed = 50;
 
         while (remainingMovement > 0)
         {
@@ -186,10 +186,10 @@ public class Unit : MonoBehaviour {
 
 
             //gets first node and moves us to that position and updates our units world position
-
+            float step = speed * Time.deltaTime;
             Xtile = CurrPath[1].NodeX;
             Ytile = CurrPath[1].NodeY;
-            transform.position = map.TileCoordToWorldCoord(Xtile, Ytile);   //this line can change from transform with animation
+            transform.position = Vector3.MoveTowards(transform.position, map.TileCoordToWorldCoord(Xtile, Ytile), step);   //this line can change from transform with animation
 
             //removing the old current/first node from the path
             CurrPath.RemoveAt(0);
