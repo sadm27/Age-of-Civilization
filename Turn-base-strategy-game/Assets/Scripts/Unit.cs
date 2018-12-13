@@ -15,6 +15,9 @@ public class Unit : MonoBehaviour {
     /*
 
     */
+    public Player UnitPlayerScript;
+    public GameController GCScript;
+    public string CurrPlayerCheck;
     public bool isGathering = false;
     //string UItileType;
     //string UITileAmt;
@@ -29,7 +32,13 @@ public class Unit : MonoBehaviour {
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
-    
+    private int remainingMovement = 2;
+    public string player;
+    public int playerNum;
+    public string result1;
+
+
+
 
 
     void Start()
@@ -39,13 +48,31 @@ public class Unit : MonoBehaviour {
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
-        
+        player = UnitPlayerScript.tag.ToString();
+        result1 = Regex.Match(player, @"\d+").Value;
+
+        playerNum = Int32.Parse(result1);
 
     }
 
 
     void Update()
     {
+
+        CurrPlayerCheck = GCScript.GetCurrPlayer();
+
+        string result = Regex.Match(CurrPlayerCheck, @"\d+").Value;
+
+        int CurrplayerNum = Int32.Parse(result);
+
+
+
+        if (playerNum == CurrplayerNum)
+        {
+            remainingMovement = moveSpeeds;
+            playerNum = playerNum
+        }
+
         if(CurrPath != null)
         {
             int CurrNode = 0;
@@ -61,6 +88,13 @@ public class Unit : MonoBehaviour {
 
                 CurrNode++;
             }
+
+            if(remainingMovement > 0)
+            {
+                MoveNextTile(remainingMovement);
+            }
+
+            
         }
 
 
@@ -113,9 +147,9 @@ public class Unit : MonoBehaviour {
     }
 
 
-    public void MoveNextTile()
+    public void MoveNextTile(float remainingMovement)
     {
-        float remainingMovement = moveSpeeds;
+        
 
 
 
