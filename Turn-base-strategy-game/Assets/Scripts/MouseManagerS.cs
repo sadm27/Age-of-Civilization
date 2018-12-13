@@ -35,13 +35,27 @@ public class MouseManagerS : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        UIAssingment();
+        
+
+            UIAssingment(selectedUnit);
+ 
+
     }
 
 
     // Update is called once per frame
     void Update () {
-        UIAssingment();
+
+        if(enemySelectedUnit != null)
+        {
+            UIAssingment(enemySelectedUnit);
+    
+        } else if (selectedUnit != null)
+        {
+            UIAssingment(selectedUnit);
+        }
+
+        
         PlayerSelectUnit();
         selectEnemy();
 
@@ -49,11 +63,12 @@ public class MouseManagerS : MonoBehaviour {
     }
 
 
-    void UIAssingment()
+    void UIAssingment(GameObject UIUnit)
     {
-        if(selectedUnit != null){ 
 
-        Unit CurrUnitS = selectedUnit.GetComponent<Unit>();
+        if(UIUnit != null){ 
+
+        Unit CurrUnitS = UIUnit.GetComponent<Unit>();
 
         UnitName.text = CurrUnitS.UnitName;
 
