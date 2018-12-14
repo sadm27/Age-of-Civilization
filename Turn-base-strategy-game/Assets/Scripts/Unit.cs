@@ -31,8 +31,8 @@ public class Unit : MonoBehaviour {
     public Text TurnCount;
 
     public List<Node> CurrPath = null;
-    private int moveSpeeds = 2;
-    private int remainingMovement = 2;
+    public float moveSpeeds = 2;
+    public float remainingMovement = 2;
     public string player;
     public int playerNum;
     public string result1;
@@ -48,30 +48,13 @@ public class Unit : MonoBehaviour {
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
-        player = UnitPlayerScript.tag.ToString();
-        result1 = Regex.Match(player, @"\d+").Value;
-
-        playerNum = Int32.Parse(result1);
-
     }
 
 
     void Update()
     {
 
-        CurrPlayerCheck = GCScript.GetCurrPlayer();
-
-        string result = Regex.Match(CurrPlayerCheck, @"\d+").Value;
-
-        int CurrplayerNum = Int32.Parse(result);
-
-
-
-        if (playerNum == CurrplayerNum)
-        {
-            remainingMovement = moveSpeeds;
-            playerNum = playerNum
-        }
+        
 
         if(CurrPath != null)
         {
@@ -88,12 +71,7 @@ public class Unit : MonoBehaviour {
 
                 CurrNode++;
             }
-
-            if(remainingMovement > 0)
-            {
-                MoveNextTile(remainingMovement);
-            }
-
+                MoveNextTile();
             
         }
 
@@ -147,7 +125,7 @@ public class Unit : MonoBehaviour {
     }
 
 
-    public void MoveNextTile(float remainingMovement)
+    public void MoveNextTile()
     {
         
 

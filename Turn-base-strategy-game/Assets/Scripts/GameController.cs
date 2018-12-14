@@ -56,8 +56,24 @@ public class GameController : MonoBehaviour {
         if(playerNum >= playerCount)
         {
             CurrPlayer = player_1;
+            playerNum = 1;
             turnCountNum++;
             TurnCount.text = string.Concat("Turn: ", turnCountNum);
+
+            GameObject[] units;
+
+            string PlayerUC = "UnitControllerP";
+            string Ucont = string.Concat(PlayerUC, playerNum);
+
+            units = GameObject.FindGameObjectsWithTag(Ucont);
+
+            foreach (GameObject unit in units)
+            {
+                Unit Uscript = unit.GetComponent<Unit>();
+                Uscript.NumOfAttacksThisTurn = 0;
+                Uscript.remainingMovement = Uscript.moveSpeeds;
+            }
+
             MMS.ClearSelection();
             MMS.ClearSelectionEnemy();
         }
@@ -66,6 +82,21 @@ public class GameController : MonoBehaviour {
             playerNum++;
             string playerString = "Player";
             string NewPlayerString = string.Concat(playerString, playerNum); // This is the line which was changed.
+
+            GameObject[] units;
+
+            string PlayerUC = "UnitControllerP";
+            string Ucont = string.Concat(PlayerUC, playerNum);
+
+            units = GameObject.FindGameObjectsWithTag(Ucont);
+
+            foreach (GameObject unit in units)
+            {
+                Unit Uscript = unit.GetComponent<Unit>();
+                Uscript.NumOfAttacksThisTurn = 0;
+                Uscript.remainingMovement = Uscript.moveSpeeds;
+            }
+
             Console.WriteLine(NewPlayerString);
 
             GameObject playerGameObj = GameObject.FindGameObjectWithTag(NewPlayerString);
