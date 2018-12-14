@@ -116,6 +116,7 @@ public class GameController : MonoBehaviour {
 
     public string GetCurrPlayer()
     {
+        //Debug.Log(CurrPlayer.tag.ToString());
         return CurrPlayer.tag.ToString();
     }
 
