@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour {
             {
                 Unit Uscript = unit.GetComponent<Unit>();
                 Uscript.NumOfAttacksThisTurn = 0;
-                Uscript.remainingMovement = Uscript.moveSpeeds;
+                //Uscript.remainingMovement = Uscript.moveSpeeds;
             }
 
             Console.WriteLine(NewPlayerString);

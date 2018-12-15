@@ -62,7 +62,7 @@ public class AIManager : MonoBehaviour {
             foreach (GameObject unit in units)
             {
                 MMS.SelectUnit(unit);
-                //Debug.Log("CurrPlayer: " + unit.tag);
+                Debug.Log("CurrPlayer: " + unit.tag);
                 Unit Uscript1 = unit.GetComponent<Unit>();
                 int x = Uscript1.Xtile;
                 int y = Uscript1.Xtile;

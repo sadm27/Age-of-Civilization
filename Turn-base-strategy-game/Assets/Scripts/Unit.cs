@@ -37,6 +37,7 @@ public class Unit : MonoBehaviour {
     public int playerNum;
     public string result1;
 
+    Animator anim;
 
 
 
@@ -45,6 +46,7 @@ public class Unit : MonoBehaviour {
     {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         MMS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
+        anim = GetComponent<Animator>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
@@ -112,6 +114,7 @@ public class Unit : MonoBehaviour {
             if(NumOfAttacksThisTurn < attacksPerTurn)
             {
                 Uscript.HP = Uscript.HP - attackPower;
+                anim.Play("attack");
                 NumOfAttacksThisTurn++;
             }
 
@@ -127,8 +130,8 @@ public class Unit : MonoBehaviour {
 
     public void MoveNextTile()
     {
-        
 
+        Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
 
 
         while (remainingMovement > 0)

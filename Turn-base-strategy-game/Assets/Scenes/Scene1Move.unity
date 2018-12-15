@@ -3543,6 +3543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Xtile: 0
   Ytile: 0
+  UnitPlayerScript: {fileID: 0}
+  GCScript: {fileID: 0}
+  CurrPlayerCheck: 
   isGathering: 0
   amountGathered: 50
   UnitName: null
@@ -3551,6 +3554,11 @@ MonoBehaviour:
   attacksPerTurn: 1
   NumOfAttacksThisTurn: 0
   TurnCount: {fileID: 0}
+  moveSpeeds: 2
+  remainingMovement: 2
+  player: 
+  playerNum: 0
+  result1: 
 --- !u!111 &1553007703
 Animation:
   m_ObjectHideFlags: 0
