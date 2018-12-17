@@ -66,12 +66,168 @@ public class TileMap : MonoBehaviour {
         }
 
 
-
+        
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
         generateSplat(map, MapSizeX, MapSizeY);
+        spawnStartingCities();
+    }
+
+    void spawnStartingCities()
+    {
+        if(MapSizeX <= 20)
+        {
+            smallCitySpawn();
+        }
+        else
+        {
+            bigCitySpawn();
+        }
+    }
+
+    void smallCitySpawn()
+    {
+        int firstCityX = 0;
+        int firstCityY = 0;
+        while (true)
+        {
+            int randX = Random.Range(0, MapSizeX - 1);
+            int randY = Random.Range(0, MapSizeY - 1);
+            if(pointsForArea(randX, randY) >= 7)
+            {
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                assignTags(1, cityGO);
+                firstCityX = randX;
+                firstCityY = randY;
+                break;
+            }
+        }
+        while (true)
+        {
+            int randX = Random.Range(0, MapSizeX - 1);
+            int randY = Random.Range(0, MapSizeY - 1);
+            if(tooClose(firstCityX, firstCityY, randX, randY, 5))
+            {
+                continue;
+            }
+            if (pointsForArea(randX, randY) >= 7)
+            {
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                assignTags(0, cityGO);
+                GameObject FoW = cityGO.transform.Find("FoW").gameObject;
+                GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
+                mesh.GetComponent<Renderer>().enabled = false;
+                FoW.GetComponent<Renderer>().enabled = false;
+                mesh.GetComponent<FogOfWarSight>().enabled = false;
+                mesh.GetComponent<FogOfWarVisibility>().enabled = true;
+                break;
+            }
+        }
+    }
+
+
+    void bigCitySpawn()
+    {
+        int firstCityX = 0;
+        int firstCityY = 0;
+        while (true)
+        {
+            int randX = Random.Range(0, MapSizeX - 1);
+            int randY = Random.Range(0, MapSizeY - 1);
+            if (pointsForArea(randX, randY) >= 20)
+            {
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                assignTags(1, cityGO);
+                firstCityX = randX;
+                firstCityY = randY;
+                break;
+            }
+        }
+        while (true)
+        {
+            int randX = Random.Range(0, MapSizeX - 1);
+            int randY = Random.Range(0, MapSizeY - 1);
+            if (tooClose(firstCityX, firstCityY, randX, randY, 9))
+            {
+                continue;
+            }
+            if (pointsForArea(randX, randY) >= 20)
+            {
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                assignTags(0, cityGO);
+                GameObject FoW = cityGO.transform.Find("FoW").gameObject;
+                GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
+                mesh.GetComponent<Renderer>().enabled = false;
+                FoW.GetComponent<Renderer>().enabled = false;
+                mesh.GetComponent<FogOfWarSight>().enabled = false;
+                mesh.GetComponent<FogOfWarVisibility>().enabled = true;
+                break;
+            }
+        }
+    }
+
+    int pointsForArea(int mapX, int mapY)
+    {
+        int pointscore = 0;
+        if(map[mapX,mapY].type == Tile.tileType.Mountain || map[mapX, mapY].type == Tile.tileType.Water || map[mapX, mapY].type == Tile.tileType.Marsh)
+        {
+            return 0;
+        }
+        if(MapSizeX <= 20)
+        {
+            for (int i = mapX - 1; i <= (mapX + 1); i++)
+            {
+                for (int j = mapY - 1; j <= (mapY + 1); j++)
+                {
+                    if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (map[i, j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Desert || map[i, j].type == Tile.tileType.Plains)
+                        {
+                            pointscore += 1;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = mapX - 2; i <= (mapX + 2); i++)
+            {
+                for (int j = mapY - 2; j <= (mapY + 2); j++)
+                {
+                    if (i == -1 || i == MapSizeX || j == -1 || j == MapSizeY)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (map[i, j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Desert || map[i, j].type == Tile.tileType.Plains)
+                        {
+                            pointscore += 1;
+                        }
+                    }
+                }
+            }
+        }
+        return pointscore;
+    }
+
+    bool tooClose(int firstX, int firstY, int secondX, int secondY, int perimeter)
+    {
+        if(secondX <= (firstX+perimeter) && secondX >= (firstX - perimeter))
+        {
+            if (secondY <= (firstY + perimeter) && secondY >= (firstY - perimeter))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     Texture whichSplat(int texture)
@@ -212,6 +368,8 @@ public class TileMap : MonoBehaviour {
                 return 6;
         }
     }
+
+
     /*
     void createUnit(string type, int player, int mapX, int mapY)
     {
@@ -233,20 +391,26 @@ public class TileMap : MonoBehaviour {
                 break;
         }
     }
-
+    */
     void assignTags(int player, GameObject unit)
     {
         if (player == 1)
         {
-            unit.tag = "UnitController";
-            //unit.GetComponent<>
+            unit.tag = "UnitControllerP1";
+            foreach(Transform t in unit.transform)
+            {
+                t.tag = "Unit tag P1";
+            }
         }
         if (player == 0)
         {
-            unit.tag = "EnemyUnitController";
+            unit.tag = "UnitControllerP2";
+            foreach (Transform t in unit.transform)
+            {
+                t.tag = "Unit tag P2";
+            }
         }
     }
-    */
 
     void turnOffEnemyVisuals()
     {
