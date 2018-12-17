@@ -37,7 +37,7 @@ public class Unit : MonoBehaviour {
     public int playerNum;
     public string result1;
 
-    Animator anim;
+    Animation anim;
 
 
 
@@ -46,7 +46,7 @@ public class Unit : MonoBehaviour {
     {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         MMS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animation>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
