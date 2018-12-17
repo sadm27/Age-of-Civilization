@@ -64,13 +64,153 @@ public class TileMap : MonoBehaviour {
             MapSizeX = StaticClass.chosenMapSizeX;
             MapSizeY = StaticClass.chosenMapSizeY;
         }
-      
+
 
 
         mouseManagerS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
         generateMap();
         generateGraphHelp();
         generateMapVisuals();
+        generateSplat(map, MapSizeX, MapSizeY);
+    }
+
+    Texture whichSplat(int texture)
+    {
+        switch (texture)
+        {
+            case 5:
+                return Resources.Load<Texture>("Tiles/MountainText");
+
+            case 4:
+                return Resources.Load<Texture>("Tiles/GrassText");
+
+            case 3:
+                return Resources.Load<Texture>("Tiles/PlainsText");
+
+            case 2:
+                return Resources.Load<Texture>("Tiles/SandText");
+
+            case 1:
+                return Resources.Load<Texture>("Tiles/DeepText");
+
+            default:
+                return null;
+        }
+    }
+
+    void generateSplat(Tile[,] map, int sizeX, int sizeY)
+    {
+        int rightSide;
+        int leftSide;
+        int upSide;
+        int downSide;
+        int currentTile;
+
+        //0 = shallow, 1 = deep, 2 = desert, 3 = plains, 4 = grassland, 5 = mountain, 6 = nothing
+
+        for (int x = 0; x < sizeX; x++)
+        {
+            for (int y = 0; y < sizeY; y++)
+            {
+                rightSide = getTileType(x + 1, y);
+                leftSide = getTileType(x - 1, y);
+                upSide = getTileType(x, y+1);
+                downSide = getTileType(x, y-1);
+                currentTile = getTileType(x, y);
+
+                if(rightSide < 6)
+                {
+                    if (currentTile < rightSide)
+                    {
+                        GameObject splat1 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(x, y, -0.0001f), Quaternion.identity, this.transform);//right        
+                        Renderer splat1shader = splat1.GetComponentInChildren<Renderer>();
+                        splat1shader.material.SetTexture("_MainTex", whichSplat(rightSide));
+                        splat1shader.material.SetTexture("_AlphaTex", Resources.Load<Texture>("Tiles/RightBlend"));
+                    }
+                }
+
+                if (leftSide < 6)
+                {
+                    if (currentTile < leftSide)
+                    {
+                        GameObject splat1 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(x, y, -0.0002f), Quaternion.Euler(0f, 0f, 0f), this.transform);//left        
+                        Renderer splat1shader = splat1.GetComponentInChildren<Renderer>();
+                        splat1shader.material.SetTexture("_MainTex", whichSplat(leftSide));
+                        splat1shader.material.SetTexture("_AlphaTex", Resources.Load<Texture>("Tiles/LeftBlend"));
+                    }
+                }
+
+                if (downSide < 6)
+                {
+                    if (currentTile < downSide)
+                    {
+                        GameObject splat1 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(x, y, -0.0004f), Quaternion.Euler(0f, 0f, 0f), this.transform);//down     
+                        Renderer splat1shader = splat1.GetComponentInChildren<Renderer>();
+                        splat1shader.material.SetTexture("_MainTex", whichSplat(downSide));
+                        splat1shader.material.SetTexture("_AlphaTex", Resources.Load<Texture>("Tiles/BottomBlend"));
+                    }
+                }
+
+                if (upSide < 6)
+                {
+                    if (currentTile < upSide)
+                    {
+                        GameObject splat1 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(x, y, -0.0003f), Quaternion.Euler(0f, 0f, 0f), this.transform);//above        
+                        Renderer splat1shader = splat1.GetComponentInChildren<Renderer>();
+                        splat1shader.material.SetTexture("_MainTex", whichSplat(upSide));
+                        splat1shader.material.SetTexture("_AlphaTex", Resources.Load<Texture>("Tiles/UpBlend"));
+                    }
+                }
+            }
+        }
+
+        
+
+
+
+        /*GameObject splat2 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0001f), Quaternion.Euler(0f, 0f,-90f));//down
+        Renderer splat2shader = splat2.GetComponentInChildren<Renderer>();
+        splat2shader.material.SetTexture("_MainTex", shallow);
+
+        GameObject splat3 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0002f), Quaternion.Euler(0f, 0f, -180f));//left
+        Renderer splat3shader = splat3.GetComponentInChildren<Renderer>();
+        splat3shader.material.SetTexture("_MainTex", plains);
+
+        GameObject splat4 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0003f), Quaternion.Euler(0f, 0f, 90f));//above
+        Renderer splat4shader = splat4.GetComponentInChildren<Renderer>();
+        splat4shader.material.SetTexture("_MainTex", deep);*/
+    }
+
+    int getTileType(int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= MapSizeX || y >= MapSizeY)
+        {
+            return 6;
+        }
+
+        switch (map[x,y].type)
+        {
+            case Tile.tileType.Grassland:
+                return 4;
+
+            case Tile.tileType.Marsh:
+                return 0;
+
+            case Tile.tileType.Mountain:
+                return 5;
+
+            case Tile.tileType.Water:
+                return 1;
+
+            case Tile.tileType.Plains:
+                return 3;
+
+            case Tile.tileType.Desert:
+                return 2;
+
+            default:
+                return 6;
+        }
     }
     /*
     void createUnit(string type, int player, int mapX, int mapY)
@@ -138,7 +278,7 @@ public class TileMap : MonoBehaviour {
     public string GetTileResName(int x, int y)
     {
         string ResorceNam = null;
-      //  Tile.tileResource ans = map[x, y].resource;
+        Tile.tileResource ans = map[x, y].resource;
 
         if(ans == Tile.tileResource.Wood)
         {
@@ -494,12 +634,12 @@ public class TileMap : MonoBehaviour {
 
                         //tile type of the tiles coordinace is set so the tile can call the correct visual prefab
 
-            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, 0), Quaternion.Euler(-90f,0f,0f), this.transform);
+            GameObject go = (GameObject)Instantiate(tt.TileVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(-90f,0f,0f), this.transform);
                 go.name = "Tile" + x.ToString() + "," + y.ToString();
 
                 if(tt.TileMesh != null)
                 {
-                    GameObject gomesh = (GameObject)Instantiate(tt.TileMesh, new Vector3(x, y, 0), Quaternion.identity, go.transform);
+                    GameObject gomesh = (GameObject)Instantiate(tt.TileMesh, new Vector3(x, y, 0f), Quaternion.identity, go.transform);
                     gomesh.name = "TileMesh" + x.ToString() + "," + y.ToString();
                 }
 

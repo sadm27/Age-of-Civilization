@@ -97,7 +97,7 @@ public class Unit : MonoBehaviour {
 
         UItileType = map.GetTileResName(Xtile, Ytile);
 
-        if (UItileType == "Wood")
+        /*if (UItileType == "Wood")
         {
             UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
             OnTileWood.text = UITileAmt;
@@ -117,7 +117,7 @@ public class Unit : MonoBehaviour {
             //OnTileWood.text = "0";
             //OnTileStone.text = "0";
             //OnTileFood.text = "0";
-        }
+        }*/
 
     }
 
@@ -189,7 +189,7 @@ public class Unit : MonoBehaviour {
             float step = speed * Time.deltaTime;
             Xtile = CurrPath[1].NodeX;
             Ytile = CurrPath[1].NodeY;
-            transform.position = Vector3.MoveTowards(transform.position, map.TileCoordToWorldCoord(Xtile, Ytile), step);   //this line can change from transform with animation
+            transform.position = map.TileCoordToWorldCoord(Xtile, Ytile);   //this line can change from transform with animation
 
             //removing the old current/first node from the path
             CurrPath.RemoveAt(0);
