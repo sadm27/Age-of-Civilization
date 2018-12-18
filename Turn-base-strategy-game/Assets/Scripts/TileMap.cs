@@ -180,9 +180,48 @@ public class TileMap : MonoBehaviour {
 
     void spawnENStartingUnits(int mapx, int mapy)
     {
-    GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnSpartanWarrior"), new Vector3(mapx-1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+        bool spawned = false;
+        for (int i = mapx - 1; i <= (mapx + 1); i++)
+        {
+            for (int j = mapy - 1; j <= (mapy + 1); j++)
+            {
+                if (map[i, j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Plains || map[i, j].type == Tile.tileType.Desert)
+                {
+                    GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnSpartanWarrior"), new Vector3(mapx - 1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+
+                    spawned = true;
+                    break;
+                }
+            }
+            if (spawned)
+            {
+                spawned = false;
+                break;
+
+            }
+
+        }
+
+        for (int i = mapx; i <= (mapx + 1); i++)
+        {
+            for (int j = mapy - 1; j <= (mapy + 1); j++)
+            {
+                if (map[i, j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Plains || map[i, j].type == Tile.tileType.Desert)
+                {
+                    GameObject warGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnPezzWorkerFBX 1"), new Vector3(mapx + 1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+
+                    spawned = true;
+                    break;
+                }
+            }
+            if (spawned)
+            {
+                spawned = false;
+                break;
+
+            }
+        }
     
-    GameObject warGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnPezzWorkerFBX 1"), new Vector3(mapx+1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
 
     }
 
@@ -201,6 +240,7 @@ public class TileMap : MonoBehaviour {
                 assignTags(1, cityGO);
                 firstCityX = randX;
                 firstCityY = randY;
+                spawnStartingUnits(randX, randY);
                 break;
             }
         }
@@ -216,12 +256,16 @@ public class TileMap : MonoBehaviour {
             {
                 GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(0, cityGO);
+                spawnENStartingUnits(randX, randY);
                 GameObject FoW = cityGO.transform.Find("FoW").gameObject;
-                GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
+                GameObject mesh = cityGO.transform.Find("City").gameObject;
+                GameObject name = cityGO.transform.Find("CityName").gameObject;
+                cityGO.GetComponent<Renderer>().enabled = false;
+                name.GetComponent<Renderer>().enabled = false;
                 mesh.GetComponent<Renderer>().enabled = false;
                 FoW.GetComponent<Renderer>().enabled = false;
-                mesh.GetComponent<FogOfWarSight>().enabled = false;
-                mesh.GetComponent<FogOfWarVisibility>().enabled = true;
+                cityGO.GetComponent<FogOfWarSight>().enabled = false;
+                cityGO.GetComponent<FogOfWarVisibility>().enabled = true;
                 break;
             }
         }
@@ -379,21 +423,6 @@ public class TileMap : MonoBehaviour {
             }
         }
 
-        
-
-
-
-        /*GameObject splat2 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0001f), Quaternion.Euler(0f, 0f,-90f));//down
-        Renderer splat2shader = splat2.GetComponentInChildren<Renderer>();
-        splat2shader.material.SetTexture("_MainTex", shallow);
-
-        GameObject splat3 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0002f), Quaternion.Euler(0f, 0f, -180f));//left
-        Renderer splat3shader = splat3.GetComponentInChildren<Renderer>();
-        splat3shader.material.SetTexture("_MainTex", plains);
-
-        GameObject splat4 = (GameObject)Instantiate(Resources.Load<GameObject>("Tiles/SplatPrefab"), new Vector3(-1f, 0, 0.0003f), Quaternion.Euler(0f, 0f, 90f));//above
-        Renderer splat4shader = splat4.GetComponentInChildren<Renderer>();
-        splat4shader.material.SetTexture("_MainTex", deep);*/
     }
 
     int getTileType(int x, int y)
@@ -429,28 +458,6 @@ public class TileMap : MonoBehaviour {
     }
 
 
-    /*
-    void createUnit(string type, int player, int mapX, int mapY)
-    {
-        GameObject unitgo;
-
-        switch (type)
-        {
-            case "Worker":
-                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
-                assignTags(player, unitgo);
-                break;
-
-            case "Melee":
-                unitgo = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/Worker"), new Vector3(mapX, mapY, 0), Quaternion.identity);
-                assignTags(player, unitgo);
-                break;
-
-            default:
-                break;
-        }
-    }
-    */
     void assignTags(int player, GameObject unit)
     {
         if (player == 1)
@@ -704,8 +711,8 @@ public class TileMap : MonoBehaviour {
     {
         float xCoords = (float)x / MapSizeX * 8;
         float yCoords = (float)y / MapSizeY * 8;
-        int rand = 1;
-        //int rand = Random.Range(0,10000);
+        //int rand = 1;
+        int rand = Random.Range(0,10000);
 
         float sample = Mathf.PerlinNoise(xCoords + rand, yCoords + rand);
         return sample;
@@ -715,8 +722,8 @@ public class TileMap : MonoBehaviour {
     {
         float xCoords = (float)x / MapSizeX * 10;
         float yCoords = (float)y / MapSizeY * 10;
-        int offset = 0;
-        //int offset = Random.Range(10,500);
+        //int offset = 0;
+        int offset = Random.Range(10,500);
 
         float sample = Mathf.PerlinNoise(xCoords + offset, yCoords + offset);
         return sample;
