@@ -16,6 +16,9 @@ public class MouseManagerS : MonoBehaviour {
     public GameObject enemySelectedUnit;
     public GameObject UnitInfo;
 
+    string UItileType;
+    string UITileAmt;
+
     public Text UnitName;
     public Text UnitHealth;
     public Text OnTileFood;
@@ -33,16 +36,88 @@ public class MouseManagerS : MonoBehaviour {
     void Start ()
     {
         
+
+            UIAssingment(selectedUnit);
+ 
+
     }
 
 
     // Update is called once per frame
     void Update () {
 
+        if(enemySelectedUnit != null)
+        {
+            UIAssingment(enemySelectedUnit);
+    
+        } else if (selectedUnit != null)
+        {
+            UIAssingment(selectedUnit);
+        }
+
+        
         PlayerSelectUnit();
         selectEnemy();
 
 
+    }
+
+
+    void UIAssingment(GameObject UIUnit)
+    {
+
+        if(UIUnit != null){ 
+
+        Unit CurrUnitS = UIUnit.GetComponent<Unit>();
+
+        UnitName.text = CurrUnitS.UnitName;
+
+        UnitHealth.text = CurrUnitS.HP.ToString();
+
+        string UItileType = map.GetTileResName(CurrUnitS.Xtile, CurrUnitS.Ytile);
+
+
+        if (UItileType == "Wood")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileStone.text = "0";
+            OnTileGold.text = "0";
+            OnTileFood.text = "0";
+            OnTileWood.text = UITileAmt;
+        }
+        if (UItileType == "Stone")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileStone.text = UITileAmt;
+            OnTileGold.text = "0";
+            OnTileFood.text = "0";
+            OnTileWood.text = "0";
+        }
+        if (UItileType == "Food")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileFood.text = UITileAmt;
+            OnTileStone.text = "0";
+            OnTileGold.text = "0";
+            OnTileWood.text = "0";
+        }
+        if (UItileType == "Gold")
+        {
+            UITileAmt = map.GetTileResAmt(CurrUnitS.Xtile, CurrUnitS.Ytile).ToString();
+            OnTileGold.text = UITileAmt;
+            OnTileFood.text = "0";
+            OnTileStone.text = "0";
+            OnTileWood.text = "0";
+        }
+        if (UItileType == "Nothing")
+        {
+            OnTileWood.text = "0";
+            OnTileStone.text = "0";
+            OnTileFood.text = "0";
+            OnTileGold.text = "0";
+        }
+
+        }
     }
 
 
@@ -82,7 +157,8 @@ public class MouseManagerS : MonoBehaviour {
         OnTileWood.text = "0";
         OnTileStone.text = "0";
         OnTileFood.text = "0";
-        Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
+        OnTileGold.text = "0";
+        //Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
 
         selectedUnit = null;
     }
@@ -126,7 +202,8 @@ public class MouseManagerS : MonoBehaviour {
         OnTileWood.text = "0";
         OnTileStone.text = "0";
         OnTileFood.text = "0";
-        Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
+        OnTileGold.text = "0";
+       //Debug.Log("THE RESORCES SOULD BE CLEARD OUT!");
 
         enemySelectedUnit = null;
 	}
@@ -140,7 +217,7 @@ public class MouseManagerS : MonoBehaviour {
 
 
         string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-        Debug.Log("Num: " + result);
+        //Debug.Log("Num: " + result);
         int playerNum = Int32.Parse(result);
 
         string PlayerUC = "UnitControllerP";
@@ -174,9 +251,9 @@ public class MouseManagerS : MonoBehaviour {
             RaycastHit hitInfo = new RaycastHit();
 
 
-            Debug.Log("Num1: " + MMCurrPlayer);
+            //Debug.Log("Num1: " + MMCurrPlayer);
             string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-            Debug.Log("Num: " + result);
+            //Debug.Log("Num: " + result);
             int playerNum = Int32.Parse(result);
 
             string PlayerUT = "Unit tag P";
@@ -193,7 +270,7 @@ public class MouseManagerS : MonoBehaviour {
                 {
 
                     GameObject hitObject = hitInfo.transform.root.gameObject;
-                    Debug.Log("tile" + hitInfo.transform.gameObject.name);
+                    //Debug.Log("tile" + hitInfo.transform.gameObject.name);
 
                     SelectUnit(hitObject);
                     UnitInfo.gameObject.SetActive(true);
@@ -231,9 +308,9 @@ public class MouseManagerS : MonoBehaviour {
             RaycastHit hitInfo = new RaycastHit();
 
 
-            Debug.Log("Num1: " + MMCurrPlayer);
+            //Debug.Log("Num1: " + MMCurrPlayer);
             string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-            Debug.Log("Num: " + result);
+            //Debug.Log("Num: " + result);
             int playerNum = Int32.Parse(result);
 
             string PlayerUT = "Unit tag P";
@@ -250,14 +327,19 @@ public class MouseManagerS : MonoBehaviour {
                 {
 
                     GameObject hitObject = hitInfo.transform.root.gameObject;
-                    Debug.Log("Etile" + hitInfo.transform.gameObject.name);
+                    //Debug.Log("Etile" + hitInfo.transform.gameObject.name);
 
                     SelectUnitEnemy(hitObject);
                     UnitInfo.gameObject.SetActive(true);
 
-                    Unit Uscript = selectedUnit.GetComponent<Unit>();
+                    if(selectedUnit != null)
+                    {
+                        Unit Uscript = selectedUnit.GetComponent<Unit>();
 
-                    Uscript.attack();
+                        Uscript.attack();
+                    }
+
+                    
 
                 }
 
@@ -292,7 +374,7 @@ public class MouseManagerS : MonoBehaviour {
 
         //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
         string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-        Debug.Log("Num: " + result);
+        //Debug.Log("Num: " + result);
         int playerNum = Int32.Parse(result);
 
         string PlayerUC = "UnitControllerP";

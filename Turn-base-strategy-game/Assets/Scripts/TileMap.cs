@@ -441,7 +441,7 @@ public class TileMap : MonoBehaviour {
 
     public string GetTileResName(int x, int y)
     {
-        string ResorceNam = null;
+        string ResorceNam = "Nothing";
         Tile.tileResource ans = map[x, y].resource;
 
         if(ans == Tile.tileResource.Wood)
@@ -456,11 +456,16 @@ public class TileMap : MonoBehaviour {
         {
             ResorceNam = "Food";
         }
+        if(ans == Tile.tileResource.Gold)
+        {
+            ResorceNam = "Gold";
+        }
 
         if (ans == Tile.tileResource.Nothing)
         {
             ResorceNam = "Nothing";
         }
+
 
         return ResorceNam;
     }

@@ -15,35 +15,42 @@ public class Unit : MonoBehaviour {
     /*
 
     */
+    public Player UnitPlayerScript;
+    public GameController GCScript;
+    public string CurrPlayerCheck;
     public bool isGathering = false;
-    string UItileType;
-    string UITileAmt;
+    //string UItileType;
+    //string UITileAmt;
     public int amountGathered = 50;
+    public string UnitName = "null";
     public int HP = 100;
     public int attackPower = 25;
     public int attacksPerTurn = 1;
     public int NumOfAttacksThisTurn = 0;
 
-    public Text UnitName;
-    public Text UnitHealth;
-    public Text OnTileFood;
-    public Text OnTileWood;
-    public Text OnTileStone;
-    public Text OnTileGold;
     public Text TurnCount;
 
     public List<Node> CurrPath = null;
     private int moveSpeeds = 2;
-    
+    //public float remainingMovement = 2;
+    public string player;
+    public int playerNum;
+    public string result1;
+
+    Animation anim;
+
+
 
 
     void Start()
     {
         map = GameObject.Find("Map").GetComponent<TileMap>();
         MMS = GameObject.Find("MouseManager").GetComponent<MouseManagerS>();
+        anim = GetComponent<Animation>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
 
+<<<<<<< HEAD
         //UnitHealth.text = HP.ToString();
 
         UItileType = map.GetTileResName(Xtile, Ytile);
@@ -70,11 +77,16 @@ public class Unit : MonoBehaviour {
             OnTileFood.text = "0";
         }
 
+=======
+>>>>>>> Joel-UI-fix
     }
 
 
     void Update()
     {
+
+        
+
         if(CurrPath != null)
         {
             int CurrNode = 0;
@@ -90,13 +102,11 @@ public class Unit : MonoBehaviour {
 
                 CurrNode++;
             }
+                //MoveNextTile();
+            
         }
-        // UnitTile[Xtile, Ytile];
-        // UnitName.text = selectedUnit.name;
-        // OnTileFood.text = map.GetComponent<TileMap>()map[Xtile,Ytile].amountOfResource;
 
-        UItileType = map.GetTileResName(Xtile, Ytile);
-
+<<<<<<< HEAD
         /*if (UItileType == "Wood")
         {
             UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
@@ -118,6 +128,8 @@ public class Unit : MonoBehaviour {
             //OnTileStone.text = "0";
             //OnTileFood.text = "0";
         }*/
+=======
+>>>>>>> Joel-UI-fix
 
     }
 
@@ -155,6 +167,7 @@ public class Unit : MonoBehaviour {
             if(NumOfAttacksThisTurn < attacksPerTurn)
             {
                 Uscript.HP = Uscript.HP - attackPower;
+                //anim.Play("attack");
                 NumOfAttacksThisTurn++;
             }
 
@@ -170,9 +183,14 @@ public class Unit : MonoBehaviour {
 
     public void MoveNextTile()
     {
-        float remainingMovement = moveSpeeds;
 
+<<<<<<< HEAD
         float speed = 50;
+=======
+        float remainingMovement = moveSpeeds;
+        //Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
+
+>>>>>>> Joel-UI-fix
 
         while (remainingMovement > 0)
         {
