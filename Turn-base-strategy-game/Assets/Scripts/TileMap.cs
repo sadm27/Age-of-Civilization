@@ -97,7 +97,7 @@ public class TileMap : MonoBehaviour {
             int randY = Random.Range(0, MapSizeY - 1);
             if(pointsForArea(randX, randY) >= 7)
             {
-                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(1, cityGO);
                 firstCityX = randX;
                 firstCityY = randY;
@@ -114,7 +114,7 @@ public class TileMap : MonoBehaviour {
             }
             if (pointsForArea(randX, randY) >= 7)
             {
-                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(0, cityGO);
                 GameObject FoW = cityGO.transform.Find("FoW").gameObject;
                 GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
@@ -138,7 +138,7 @@ public class TileMap : MonoBehaviour {
             int randY = Random.Range(0, MapSizeY - 1);
             if (pointsForArea(randX, randY) >= 20)
             {
-                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(1, cityGO);
                 firstCityX = randX;
                 firstCityY = randY;
@@ -155,7 +155,7 @@ public class TileMap : MonoBehaviour {
             }
             if (pointsForArea(randX, randY) >= 20)
             {
-                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("Unit Prefabs/City"), new Vector3(randX, randY, 0), Quaternion.identity);
+                GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(0, cityGO);
                 GameObject FoW = cityGO.transform.Find("FoW").gameObject;
                 GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
