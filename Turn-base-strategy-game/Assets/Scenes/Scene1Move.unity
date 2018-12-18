@@ -580,6 +580,71 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca46e210588fba64e8aa3f1d062de43e, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1001 &680546676
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536417170883116, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114680519665391952, guid: 1248de89a79406d478a3530e7a9b6106,
+        type: 2}
+      propertyPath: settlerPanel
+      value: 
+      objectReference: {fileID: 714131127}
+    - target: {fileID: 114680519665391952, guid: 1248de89a79406d478a3530e7a9b6106,
+        type: 2}
+      propertyPath: settleCityBtn
+      value: 
+      objectReference: {fileID: 278986895}
+    - target: {fileID: 114680519665391952, guid: 1248de89a79406d478a3530e7a9b6106,
+        type: 2}
+      propertyPath: cityNameChoice
+      value: 
+      objectReference: {fileID: 920254262}
+    - target: {fileID: 1039713910896272, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_TagString
+      value: UnitControllerP1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121947085805464, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+      propertyPath: m_TagString
+      value: Unit tag P1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1248de89a79406d478a3530e7a9b6106, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &714131127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1933270957588102, guid: ca46e210588fba64e8aa3f1d062de43e,
@@ -829,72 +894,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b98ba4aa3c6b3d489aabccea4a97796, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &1352350750
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4271995227786584, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114415365050463884, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: settlerPanel
-      value: 
-      objectReference: {fileID: 714131127}
-    - target: {fileID: 114415365050463884, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: settleCityBtn
-      value: 
-      objectReference: {fileID: 278986895}
-    - target: {fileID: 114415365050463884, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: cityNameChoice
-      value: 
-      objectReference: {fileID: 920254262}
-    - target: {fileID: 1957140578627440, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_Name
-      value: P1Settler
-      objectReference: {fileID: 0}
-    - target: {fileID: 23116948966407590, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 817a0be58aab69745a4c401b55f2c2fd, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!114 &1481178596 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114543637841839110, guid: ca46e210588fba64e8aa3f1d062de43e,
@@ -954,19 +953,6 @@ Prefab:
     - target: {fileID: 1957140578627440, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
       propertyPath: m_Name
       value: Worker (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1957140578627440, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_TagString
-      value: UnitControllerP1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581351770172328, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
-      propertyPath: m_TagString
-      value: Unit tag P1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23901005757700836, guid: 77df2b3a6cb9772498a75b359b7f4038,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
@@ -1172,7 +1158,8 @@ Prefab:
       propertyPath: m_TagString
       value: Unit tag P1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &2000082514
@@ -1245,7 +1232,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 77df2b3a6cb9772498a75b359b7f4038, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2086119401
