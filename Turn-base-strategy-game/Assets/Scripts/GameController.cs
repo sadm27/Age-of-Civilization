@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour {
 
     public void ChangePlayer()
     {
-
+        Debug.Log("called");
         string buff = CurrPlayer.tag;
 
         //buffer get text on screen and parses it for the first int if there is no in an error will be thrown

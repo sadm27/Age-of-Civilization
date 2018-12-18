@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AIManager : MonoBehaviour {
 
@@ -24,12 +25,21 @@ public class AIManager : MonoBehaviour {
     public string CurrPlayerCheck;
     public string AIPlayerStr;
 
+    //Unit prefabs
+    public Button USpawnButt;
+    public GameObject EnWarrior;
+    public GameObject EnKING;
+    public GameObject EnSettler;
+    public GameObject EnPezz;
+
     // Use this for initialization
     void Start () {
 
         CurrPlayerCheck = GCScript.GetCurrPlayer();
         seltectAIPlayerUnits();
         seltectAIEnemyUnits();
+
+        //USpawnButt.onClick.AddListener(SpawnEnemyUnits);
 
 
     }
@@ -43,13 +53,72 @@ public class AIManager : MonoBehaviour {
 
 
 
+    public void SpawnEnWarrior()
+    {
+        Debug.Log("Spawn");
+
+        //every five turns spawn unit and resourse check
+        if (GCScript.turnCountNum % 5 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        {
+            //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
+            Instantiate(EnWarrior, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 50;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 50;
+        }
+
+    }
 
 
+    public void SpawnEnKING()
+    {
+        Debug.Log("Spawn");
+
+        //every five turns spawn unit and resourse check
+        if (GCScript.turnCountNum % 15 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        {
+            //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
+            Instantiate(EnKING, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 200;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+        }
+
+    }
 
 
+    public void SpawnEnSettler()
+    {
+        Debug.Log("Spawn");
+
+        //every five turns spawn unit and resourse check
+        if (GCScript.turnCountNum % 15 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        {
+            //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
+            Instantiate(EnSettler, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+        }
+
+    }
 
 
+    public void SpawnEnPezz()
+    {
+        Debug.Log("Spawn");
 
+        //every five turns spawn unit and resourse check
+        if (GCScript.turnCountNum % 10 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        {
+            //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
+            Instantiate(EnPezz, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100; 
+        }
+
+    }
 
 
 
@@ -142,3 +211,16 @@ public class AIManager : MonoBehaviour {
 
 
 }
+
+
+
+
+
+
+
+
+
+//Warrior and KING and settler and pezz
+//Instantiate(enemy, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
+
+//Instantiate(tr.ResourceVisualPrefab, new Vector3(x, y, -.5f), Quaternion.Euler(0, 0, Random.Range(0f, 360f)), this.transform);
