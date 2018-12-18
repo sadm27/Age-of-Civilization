@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114587952535923292}
   m_Layer: 0
   m_Name: unitModel2
-  m_TagString: Unit tag
+  m_TagString: Unit tag P1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,9 +57,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4271995227786584}
   - component: {fileID: 114748681875384162}
+  - component: {fileID: 114415365050463884}
   m_Layer: 0
   m_Name: Worker
-  m_TagString: UnitController
+  m_TagString: UnitControllerP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957140578627440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 3, z: 0}
+  m_LocalPosition: {x: 4, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752736820222240}
@@ -201,6 +202,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114415365050463884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1957140578627440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec1896c844e777e4699232dc6954d8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settlerPanel: {fileID: 0}
+  cityPrefab: {fileID: 1209521723695378, guid: 5c2d861cd29440e49a8819207c593c8a, type: 2}
+  settleCityBtn: {fileID: 0}
+  cityNameChoice: {fileID: 0}
 --- !u!114 &114587952535923292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,10 +257,15 @@ MonoBehaviour:
   Xtile: 0
   Ytile: 0
   isGathering: 0
-  amountGathered: 50
+  amountGathered: 0
+  HP: 100
+  attackPower: 0
+  attacksPerTurn: 0
+  NumOfAttacksThisTurn: 0
   UnitName: {fileID: 0}
   UnitHealth: {fileID: 0}
   OnTileFood: {fileID: 0}
   OnTileWood: {fileID: 0}
   OnTileStone: {fileID: 0}
   OnTileGold: {fileID: 0}
+  TurnCount: {fileID: 0}
