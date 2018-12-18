@@ -213,26 +213,26 @@ public class MouseManagerS : MonoBehaviour {
 
     public void RunMoveNext()
     {
-        //GameObject[] units;
+        GameObject[] units;
 
 
-        //string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
-        ////Debug.Log("Num: " + result);
-        //int playerNum = Int32.Parse(result);
+        string result = Regex.Match(MMCurrPlayer, @"\d+").Value;
+        //Debug.Log("Num: " + result);
+        int playerNum = Int32.Parse(result);
 
-        //string PlayerUC = "UnitControllerP";
-        //string Ucont = string.Concat(PlayerUC, playerNum);
+        string PlayerUC = "UnitControllerP";
+        string Ucont = string.Concat(PlayerUC, playerNum);
 
-        //units = GameObject.FindGameObjectsWithTag(Ucont);
+        units = GameObject.FindGameObjectsWithTag(Ucont);
 
-        //foreach (GameObject unit in units)
-        //{
-        //    Unit Uscript = unit.GetComponent<Unit>();
-        //    Uscript.NumOfAttacksThisTurn = 0;
+        foreach (GameObject unit in units)
+        {
+            Unit Uscript = unit.GetComponent<Unit>();
+            Uscript.NumOfAttacksThisTurn = 0;
 
-        //    SelectUnit(unit);
-        //    selectedUnit.GetComponent<Unit>().MoveNextTile();
-        //}
+            SelectUnit(unit);
+            selectedUnit.GetComponent<Unit>().MoveNextTile();
+        }
         gatherResources();
     }
 

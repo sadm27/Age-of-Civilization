@@ -38,7 +38,7 @@ public class AIManager : MonoBehaviour {
         CurrPlayerCheck = GCScript.GetCurrPlayer();
         seltectAIPlayerUnits();
         seltectAIEnemyUnits();
-
+        
         //USpawnButt.onClick.AddListener(SpawnEnemyUnits);
 
 
@@ -46,25 +46,33 @@ public class AIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         CurrPlayerCheck = GCScript.GetCurrPlayer();
-        AiMoveUnit();
+
+            //SpawnEnWarrior();
+            //SpawnEnKING();
+            //SpawnEnSettler();
+            //SpawnEnPezz();
+
+            AiMoveUnit();
+
+
+        
     }
 
 
 
     public void SpawnEnWarrior()
     {
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
 
         //every five turns spawn unit and resourse check
-        if (GCScript.turnCountNum % 5 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        if (CurrPlayerCheck == AiPlayerScript.tag.ToString() && GCScript.turnCountNum % 5 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.woodAmount > 50 && AiPlayerScript.goldAmount > 25)
         {
             //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
             Instantiate(EnWarrior, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
             AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 50;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 50;
+            AiPlayerScript.woodAmount = AiPlayerScript.woodAmount - 50;
+            AiPlayerScript.goldAmount = AiPlayerScript.goldAmount - 25;
         }
 
     }
@@ -72,16 +80,16 @@ public class AIManager : MonoBehaviour {
 
     public void SpawnEnKING()
     {
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
 
         //every five turns spawn unit and resourse check
-        if (GCScript.turnCountNum % 15 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        if (CurrPlayerCheck == AiPlayerScript.tag.ToString() && GCScript.turnCountNum % 10 == 0 && AiPlayerScript.foodAmount > 200 && AiPlayerScript.woodAmount > 100 && AiPlayerScript.goldAmount > 50)
         {
             //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
             Instantiate(EnKING, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
             AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 200;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.woodAmount = AiPlayerScript.woodAmount - 100;
+            AiPlayerScript.goldAmount = AiPlayerScript.goldAmount - 50;
         }
 
     }
@@ -89,16 +97,16 @@ public class AIManager : MonoBehaviour {
 
     public void SpawnEnSettler()
     {
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
 
         //every five turns spawn unit and resourse check
-        if (GCScript.turnCountNum % 15 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        if (CurrPlayerCheck == AiPlayerScript.tag.ToString() && GCScript.turnCountNum % 15 == 0 && AiPlayerScript.foodAmount > 400 && AiPlayerScript.stoneAmount > 250 && AiPlayerScript.goldAmount > 50)
         {
             //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
             Instantiate(EnSettler, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 400;
+            AiPlayerScript.stoneAmount = AiPlayerScript.stoneAmount - 250;
+            AiPlayerScript.goldAmount = AiPlayerScript.goldAmount - 50;
         }
 
     }
@@ -106,16 +114,16 @@ public class AIManager : MonoBehaviour {
 
     public void SpawnEnPezz()
     {
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
 
         //every five turns spawn unit and resourse check
-        if (GCScript.turnCountNum % 10 == 0 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100 && AiPlayerScript.foodAmount > 100)
+        if (CurrPlayerCheck == AiPlayerScript.tag.ToString() && GCScript.turnCountNum % 5 == 0 && AiPlayerScript.foodAmount > 200 && AiPlayerScript.stoneAmount > 100 && AiPlayerScript.goldAmount > 15)
         {
             //make Vector3 x and y the same as enemy city coordinance or near those coordinance and DO NOT TOUCH the z of vector 3 or the rotation at the end
             Instantiate(EnPezz, new Vector3(2, 5, 0), Quaternion.Euler(new Vector3(90, 180, 0)));
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100;
-            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 100; 
+            AiPlayerScript.foodAmount = AiPlayerScript.foodAmount - 200;
+            AiPlayerScript.stoneAmount = AiPlayerScript.stoneAmount - 100;
+            AiPlayerScript.goldAmount = AiPlayerScript.goldAmount - 15;
         }
 
     }
@@ -131,20 +139,34 @@ public class AIManager : MonoBehaviour {
             foreach (GameObject unit in units)
             {
                 MMS.SelectUnit(unit);
-                Debug.Log("CurrPlayer: " + unit.tag);
+                //Debug.Log("CurrPlayer: " + unit.tag);
                 Unit Uscript1 = unit.GetComponent<Unit>();
                 int x = Uscript1.Xtile;
                 int y = Uscript1.Xtile;
 
                 //check for adjacent tileType to see if it can move there
                 AIAttack(Uscript1, x, y);
-                
-                map.MoveSelectedUnitTo(x + r.Next(-2, 2), y + r.Next(-2, 2));
 
-                Uscript1.MoveNextTile();
+                int ranX = r.Next(-2, 2);
+                int ranY = r.Next(-2, 2);
+
+                if (x + ranX <= map.MapSizeX && x + ranX >= 0 && y + ranY <= map.MapSizeY && y + ranY >= 0)
+                {
+                    map.MoveSelectedUnitTo(x + r.Next(-2, 2), y + r.Next(-2, 2));
+
+                    Uscript1.MoveNextTile();
+                }
+
+                
 
                 MMS.ClearSelection();
             }
+
+            SpawnEnWarrior();
+            SpawnEnKING();
+            SpawnEnSettler();
+            SpawnEnPezz();
+
             GCScript.ChangePlayer();
 
         }

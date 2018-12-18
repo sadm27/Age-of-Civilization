@@ -31,8 +31,8 @@ public class Unit : MonoBehaviour {
     public Text TurnCount;
 
     public List<Node> CurrPath = null;
-    public float moveSpeeds = 2;
-    public float remainingMovement = 2;
+    private int moveSpeeds = 2;
+    //public float remainingMovement = 2;
     public string player;
     public int playerNum;
     public string result1;
@@ -73,7 +73,7 @@ public class Unit : MonoBehaviour {
 
                 CurrNode++;
             }
-                MoveNextTile();
+                //MoveNextTile();
             
         }
 
@@ -114,7 +114,7 @@ public class Unit : MonoBehaviour {
             if(NumOfAttacksThisTurn < attacksPerTurn)
             {
                 Uscript.HP = Uscript.HP - attackPower;
-                anim.Play("attack");
+                //anim.Play("attack");
                 NumOfAttacksThisTurn++;
             }
 
@@ -131,7 +131,8 @@ public class Unit : MonoBehaviour {
     public void MoveNextTile()
     {
 
-        Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
+        float remainingMovement = moveSpeeds;
+        //Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
 
 
         while (remainingMovement > 0)

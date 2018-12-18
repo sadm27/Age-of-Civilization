@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour {
     public Player CurrPlayer;
     public Button nextTurnButton;
     public Text TurnCount;
+    public Text CurrenPlayer;
     public int turnCountNum;
     public MouseManagerS MMS;
 
@@ -26,6 +27,12 @@ public class GameController : MonoBehaviour {
     void Start () {
 
         CurrPlayer = player_1;
+
+        Debug.Log("Player: " + CurrPlayer.tag);
+        CurrenPlayer.text = string.Concat("Current Player: ", CurrPlayer.tag);
+
+        turnCountNum = 1;
+        TurnCount.text = string.Concat("Turn: ", turnCountNum);
 
         nextTurnButton.onClick.AddListener(ChangePlayer);
 
@@ -45,7 +52,7 @@ public class GameController : MonoBehaviour {
 
     public void ChangePlayer()
     {
-        Debug.Log("called");
+        
         string buff = CurrPlayer.tag;
 
         //buffer get text on screen and parses it for the first int if there is no in an error will be thrown
@@ -56,23 +63,12 @@ public class GameController : MonoBehaviour {
         if(playerNum >= playerCount)
         {
             CurrPlayer = player_1;
+            CurrenPlayer.text = string.Concat("Current Player: ", CurrPlayer.tag);
+            Debug.Log("Player: " + CurrPlayer.tag);
             playerNum = 1;
             turnCountNum++;
             TurnCount.text = string.Concat("Turn: ", turnCountNum);
 
-            GameObject[] units;
-
-            string PlayerUC = "UnitControllerP";
-            string Ucont = string.Concat(PlayerUC, playerNum);
-
-            units = GameObject.FindGameObjectsWithTag(Ucont);
-
-            foreach (GameObject unit in units)
-            {
-                Unit Uscript = unit.GetComponent<Unit>();
-                Uscript.NumOfAttacksThisTurn = 0;
-                Uscript.remainingMovement = Uscript.moveSpeeds;
-            }
 
             MMS.ClearSelection();
             MMS.ClearSelectionEnemy();
@@ -83,20 +79,6 @@ public class GameController : MonoBehaviour {
             string playerString = "Player";
             string NewPlayerString = string.Concat(playerString, playerNum); // This is the line which was changed.
 
-            GameObject[] units;
-
-            string PlayerUC = "UnitControllerP";
-            string Ucont = string.Concat(PlayerUC, playerNum);
-
-            units = GameObject.FindGameObjectsWithTag(Ucont);
-
-            foreach (GameObject unit in units)
-            {
-                Unit Uscript = unit.GetComponent<Unit>();
-                Uscript.NumOfAttacksThisTurn = 0;
-                //Uscript.remainingMovement = Uscript.moveSpeeds;
-            }
-
             Console.WriteLine(NewPlayerString);
 
             GameObject playerGameObj = GameObject.FindGameObjectWithTag(NewPlayerString);
@@ -104,6 +86,8 @@ public class GameController : MonoBehaviour {
             if (playerGameObj != null)
             {
                 CurrPlayer = playerGameObj.GetComponent<Player>();
+                Debug.Log("Player: " + CurrPlayer.tag);
+                CurrenPlayer.text = string.Concat("Current Player: ", CurrPlayer.tag);
                 MMS.ClearSelection();
                 MMS.ClearSelectionEnemy();
             }
