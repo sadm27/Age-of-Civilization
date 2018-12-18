@@ -49,36 +49,6 @@ public class Unit : MonoBehaviour {
         anim = GetComponent<Animation>();
         Xtile = (int)transform.position.x;
         Ytile = (int)transform.position.y;
-
-<<<<<<< HEAD
-        //UnitHealth.text = HP.ToString();
-
-        UItileType = map.GetTileResName(Xtile, Ytile);
-
-        if (UItileType == "Wood")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileWood.text = UITileAmt;
-        }
-        if (UItileType == "Stone")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileStone.text = UITileAmt;
-        }
-        if (UItileType == "Food")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileFood.text = UITileAmt;
-        }
-        if (UItileType == "Nothing")
-        {
-            OnTileWood.text = "0";
-            OnTileStone.text = "0";
-            OnTileFood.text = "0";
-        }
-
-=======
->>>>>>> Joel-UI-fix
     }
 
 
@@ -106,30 +76,6 @@ public class Unit : MonoBehaviour {
             
         }
 
-<<<<<<< HEAD
-        /*if (UItileType == "Wood")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileWood.text = UITileAmt;
-        }
-        if (UItileType == "Stone")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileStone.text = UITileAmt;
-        }
-        if (UItileType == "Food")
-        {
-            UITileAmt = map.GetTileResAmt(Xtile, Ytile).ToString();
-            OnTileFood.text = UITileAmt;
-        }
-        if (UItileType == "Nothing")
-        {
-            //OnTileWood.text = "0";
-            //OnTileStone.text = "0";
-            //OnTileFood.text = "0";
-        }*/
-=======
->>>>>>> Joel-UI-fix
 
     }
 
@@ -184,13 +130,9 @@ public class Unit : MonoBehaviour {
     public void MoveNextTile()
     {
 
-<<<<<<< HEAD
-        float speed = 50;
-=======
         float remainingMovement = moveSpeeds;
         //Debug.Log("click!slkjafjskhfkjdlhsakhdfhskfhjsdfjklshjfhskd");
 
->>>>>>> Joel-UI-fix
 
         while (remainingMovement > 0)
         {
@@ -204,7 +146,6 @@ public class Unit : MonoBehaviour {
 
 
             //gets first node and moves us to that position and updates our units world position
-            float step = speed * Time.deltaTime;
             Xtile = CurrPath[1].NodeX;
             Ytile = CurrPath[1].NodeY;
             transform.position = map.TileCoordToWorldCoord(Xtile, Ytile);   //this line can change from transform with animation

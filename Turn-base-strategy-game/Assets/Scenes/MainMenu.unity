@@ -619,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e32d64472ef3a448f886fe47a23386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tmScript: {fileID: 0}
   mapSizeChoice: {fileID: 997522116}
   playBtn: {fileID: 965631141}
   camSpeed: 2
