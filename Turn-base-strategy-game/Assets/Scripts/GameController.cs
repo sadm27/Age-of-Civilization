@@ -23,6 +23,8 @@ public class GameController : MonoBehaviour {
     public int turnCountNum;
     public MouseManagerS MMS;
 
+    public float counter = 0;
+
     // Use this for initialization
     void Start () {
 
@@ -108,7 +110,24 @@ public class GameController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        
+
+        counter += Time.deltaTime;
+
+        if (counter >= 5)
+        {
+            if (CurrPlayer.foodAmount > 0 && CurrPlayer.woodAmount > 0 && CurrPlayer.goldAmount > 0 && CurrPlayer.stoneAmount > 0)
+            {
+                CurrPlayer.foodAmount = CurrPlayer.foodAmount - 1;
+                CurrPlayer.stoneAmount = CurrPlayer.stoneAmount - 1;
+                CurrPlayer.woodAmount = CurrPlayer.woodAmount - 1;
+                CurrPlayer.goldAmount = CurrPlayer.goldAmount - 1;
+            }
+            
+
+            //RESET Counter
+            counter = 0;
+        }
+
 
     }
 
