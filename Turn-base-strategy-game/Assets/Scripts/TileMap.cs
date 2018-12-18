@@ -101,6 +101,9 @@ public class TileMap : MonoBehaviour {
                 assignTags(1, cityGO);
                 firstCityX = randX;
                 firstCityY = randY;
+                spawnStartingUnits(randX, randY);
+
+
                 break;
             }
         }
@@ -116,15 +119,71 @@ public class TileMap : MonoBehaviour {
             {
                 GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("City"), new Vector3(randX, randY, -0.5f), Quaternion.Euler(180f, 0f, 0f));
                 assignTags(0, cityGO);
+                spawnENStartingUnits(randX, randY);
                 GameObject FoW = cityGO.transform.Find("FoW").gameObject;
-                GameObject mesh = cityGO.transform.Find("Cylinder").gameObject;
+                GameObject mesh = cityGO.transform.Find("City").gameObject;
+                GameObject name = cityGO.transform.Find("CityName").gameObject;
+                cityGO.GetComponent<Renderer>().enabled = false;
+                name.GetComponent<Renderer>().enabled = false;
                 mesh.GetComponent<Renderer>().enabled = false;
                 FoW.GetComponent<Renderer>().enabled = false;
-                mesh.GetComponent<FogOfWarSight>().enabled = false;
-                mesh.GetComponent<FogOfWarVisibility>().enabled = true;
+                cityGO.GetComponent<FogOfWarSight>().enabled = false;
+                cityGO.GetComponent<FogOfWarVisibility>().enabled = true;
                 break;
             }
         }
+    }
+
+
+    void spawnStartingUnits(int mapx, int mapy)
+    {
+        bool spawned = false;
+            for (int i = mapx - 1; i <= (mapx + 1); i++)
+            {
+                for (int j = mapy - 1; j <= (mapy + 1); j++)
+                {
+                    if(map[i,j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Plains || map[i, j].type == Tile.tileType.Desert)
+                    {
+                        GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/SpartanWarrior"), new Vector3(i, j, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+                        spawned = true;
+                        break;
+                    }
+                }
+            if (spawned)
+            {
+                spawned = false;
+                break;
+
+            }
+                
+            }
+
+            for (int i = mapx; i <= (mapx + 1); i++)
+            {
+                for (int j = mapy - 1; j <= (mapy + 1); j++)
+                {
+                    if (map[i, j].type == Tile.tileType.Grassland || map[i, j].type == Tile.tileType.Plains || map[i, j].type == Tile.tileType.Desert)
+                    {
+                        GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/PezzWorkerFBX"), new Vector3(i, j, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+                    spawned = true;
+                    break;
+                    }
+                }
+            if (spawned)
+            {
+                spawned = false;
+                break;
+
+            }
+        }
+    }
+
+    void spawnENStartingUnits(int mapx, int mapy)
+    {
+    GameObject cityGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnSpartanWarrior"), new Vector3(mapx-1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+    
+    GameObject warGO = (GameObject)Instantiate(Resources.Load<GameObject>("FINALPREFABS/EnPezzWorkerFBX 1"), new Vector3(mapx+1, mapy, -0.5f), Quaternion.Euler(90f, 180f, 0f));
+
     }
 
 
