@@ -1466,8 +1466,6 @@ MonoBehaviour:
   attacksPerTurn: 1
   NumOfAttacksThisTurn: 0
   TurnCount: {fileID: 0}
-  moveSpeeds: 2
-  remainingMovement: 2
   player: 
   playerNum: 0
   result1: 

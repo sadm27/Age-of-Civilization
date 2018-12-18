@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 95807389640092530}
   - component: {fileID: 114295489001403920}
   m_Layer: 0
-  m_Name: SettlerFBX 1
+  m_Name: SettlerFBX
   m_TagString: UnitControllerP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

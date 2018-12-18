@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 114574449284024674}
   m_Layer: 0
   m_Name: PezzWorkerFBX
-  m_TagString: Untagged
+  m_TagString: UnitControllerP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 114473122164816976}
   m_Layer: 0
   m_Name: WorkerModel
-  m_TagString: Untagged
+  m_TagString: Unit tag P1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 95787152154429816}
   - component: {fileID: 114767862767400234}
   m_Layer: 0
-  m_Name: PezzWorkerFBX 1
+  m_Name: EnPezzWorkerFBX 1
   m_TagString: UnitControllerP2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
